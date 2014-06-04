@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Feature User Config feature.
+ */
+
+include_once 'feature_user_config.features.inc';
