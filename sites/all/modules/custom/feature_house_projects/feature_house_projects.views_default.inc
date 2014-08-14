@@ -110,11 +110,11 @@ function feature_house_projects_views_default_views() {
   );
   $handler->display->display_options['filters']['field_house_category_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_house_category_tid']['vocabulary'] = 'house_category';
-  /* Filter criterion: Content: Коллекция (field_house_collection) */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['field_house_collection_tid']['id'] = 'field_house_collection_tid';
   $handler->display->display_options['filters']['field_house_collection_tid']['table'] = 'field_data_field_house_collection';
   $handler->display->display_options['filters']['field_house_collection_tid']['field'] = 'field_house_collection_tid';
-  $handler->display->display_options['filters']['field_house_collection_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_house_collection_tid']['operator'] = 'or';
   $handler->display->display_options['filters']['field_house_collection_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_house_collection_tid']['expose']['operator_id'] = 'field_house_collection_tid_op';
   $handler->display->display_options['filters']['field_house_collection_tid']['expose']['label'] = 'Коллекция';
@@ -125,8 +125,6 @@ function feature_house_projects_views_default_views() {
     1 => 0,
     3 => 0,
   );
-  $handler->display->display_options['filters']['field_house_collection_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_house_collection_tid']['vocabulary'] = 'house_collections';
   /* Filter criterion: Content: Материал (field_house_material) */
   $handler->display->display_options['filters']['field_house_material_tid']['id'] = 'field_house_material_tid';
   $handler->display->display_options['filters']['field_house_material_tid']['table'] = 'field_data_field_house_material';
@@ -159,11 +157,11 @@ function feature_house_projects_views_default_views() {
     1 => 0,
     3 => 0,
   );
-  /* Filter criterion: Content: Стиль (field_house_style) */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['field_house_style_tid']['id'] = 'field_house_style_tid';
   $handler->display->display_options['filters']['field_house_style_tid']['table'] = 'field_data_field_house_style';
   $handler->display->display_options['filters']['field_house_style_tid']['field'] = 'field_house_style_tid';
-  $handler->display->display_options['filters']['field_house_style_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_house_style_tid']['operator'] = 'or';
   $handler->display->display_options['filters']['field_house_style_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_house_style_tid']['expose']['operator_id'] = 'field_house_style_tid_op';
   $handler->display->display_options['filters']['field_house_style_tid']['expose']['label'] = 'Стиль';
@@ -174,8 +172,6 @@ function feature_house_projects_views_default_views() {
     1 => 0,
     3 => 0,
   );
-  $handler->display->display_options['filters']['field_house_style_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_house_style_tid']['vocabulary'] = 'house_styles';
   /* Filter criterion: Content: Цена (field_price) */
   $handler->display->display_options['filters']['field_price_value']['id'] = 'field_price_value';
   $handler->display->display_options['filters']['field_price_value']['table'] = 'field_data_field_price';

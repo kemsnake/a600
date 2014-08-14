@@ -463,13 +463,6 @@ function feature_user_config_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
-  // Exported permission: 'delete terms in house_collections'.
-  $permissions['delete terms in house_collections'] = array(
-    'name' => 'delete terms in house_collections',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
   // Exported permission: 'delete terms in house_floors'.
   $permissions['delete terms in house_floors'] = array(
     'name' => 'delete terms in house_floors',
@@ -480,13 +473,6 @@ function feature_user_config_user_default_permissions() {
   // Exported permission: 'delete terms in house_materials'.
   $permissions['delete terms in house_materials'] = array(
     'name' => 'delete terms in house_materials',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'delete terms in house_styles'.
-  $permissions['delete terms in house_styles'] = array(
-    'name' => 'delete terms in house_styles',
     'roles' => array(),
     'module' => 'taxonomy',
   );
@@ -566,13 +552,6 @@ function feature_user_config_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
-  // Exported permission: 'edit terms in house_collections'.
-  $permissions['edit terms in house_collections'] = array(
-    'name' => 'edit terms in house_collections',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
   // Exported permission: 'edit terms in house_floors'.
   $permissions['edit terms in house_floors'] = array(
     'name' => 'edit terms in house_floors',
@@ -583,13 +562,6 @@ function feature_user_config_user_default_permissions() {
   // Exported permission: 'edit terms in house_materials'.
   $permissions['edit terms in house_materials'] = array(
     'name' => 'edit terms in house_materials',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'edit terms in house_styles'.
-  $permissions['edit terms in house_styles'] = array(
-    'name' => 'edit terms in house_styles',
     'roles' => array(),
     'module' => 'taxonomy',
   );
