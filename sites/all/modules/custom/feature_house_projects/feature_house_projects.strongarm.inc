@@ -13,6 +13,20 @@ function feature_house_projects_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'custom_a600_count_bedroom_options';
+  $strongarm->value = '1,2,3,4,5,6';
+  $export['custom_a600_count_bedroom_options'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'custom_a600_square_options';
+  $strongarm->value = '0-100,100-200,200-300,300-500,500-900';
+  $export['custom_a600_square_options'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__house_project';
   $strongarm->value = array(
     'view_modes' => array(
