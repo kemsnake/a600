@@ -1,0 +1,4 @@
+name = A600 Customizations
+description = A600 Customizations
+core = 7.x
+dependencies[] = sliderfield

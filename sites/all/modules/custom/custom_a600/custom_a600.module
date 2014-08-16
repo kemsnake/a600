@@ -1,0 +1,178 @@
+<?php
+
+/**
+ * @file
+ * This module holds functions for a600 project
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function custom_a600_menu() {
+  $items['admin/config/a600/settings'] = array(
+    'title' => 'A600 search settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('custom_a600_project_settings'),
+    'access arguments' => array('administer site configuration'),
+  );
+
+  $items['project-search'] = array(
+    'title' => 'Project search',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('custom_a600_project_search'),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+function custom_a600_project_settings($form, &$form_state) {
+
+  $form['custom_a600_square_options'] = array(
+    '#type' => 'textfield',
+    '#default_value' => variable_get('custom_a600_square_options', ''),
+  );
+  $form['custom_a600_count_bedroom_options'] = array(
+    '#type' => 'textfield',
+    '#default_value' => variable_get('custom_a600_count_bedroom_options', ''),
+  );
+
+  return system_settings_form($form);
+}
+
+function custom_a600_project_search($form, &$form_state) {
+  $form = array();
+  drupal_set_title('');
+
+  $form['filters'] = array(
+    '#type' => 'fieldset',
+    '#collapsible' => FALSE,
+    //'#attributes' => array('class' => array('triangle-with-shadow')),
+  );
+
+  $form['filters']['description'] = array(
+    '#markup' => '<div class="filters-title">Какой он - дом мечты?</div>',
+  );
+
+  $options = explode(',', variable_get('custom_a600_square_options', ''));
+  $form['filters']['square'] = array(
+    '#title' => 'Площадь',
+    '#type' => 'radios',
+    '#options' => $options,
+  );
+
+  $options = explode(',', variable_get('custom_a600_count_bedroom_options', ''));
+  $form['filters']['count_bedroom'] = array(
+    '#title' => 'Сколько спален?',
+    '#type' => 'radios',
+    '#options' => $options,
+  );
+
+  $form['filters']['garage'] = array(
+    '#title' => 'Гараж нужен?',
+    '#type' => 'radios',
+    '#options' => array(
+      22 => 'Не очень',
+      23 => 'Обязательно',
+      24 => 'Несколько машин',
+    ),
+  );
+
+  $form['filters']['floor_group'] = array(
+    '#type' => 'fieldset',
+    '#collapsible' => FALSE,
+  );
+
+  $form['filters']['floor_group']['floor'] = array(
+    '#title' => 'Сколько этажей?',
+    '#type' => 'radios',
+    '#options' => array(
+      6 => 'Одноэтажный',
+      7 => 'Двухэтажный',
+    ),
+  );
+
+  $form['filters']['floor_group']['attic_floor'] = array(
+    '#title' => 'Мансардный этаж',
+    '#type' => 'checkbox',
+  );
+
+  $form['filters']['floor_group']['house_basement'] = array(
+    '#title' => 'Подвал',
+    '#type' => 'checkbox',
+  );
+
+  $form['filters']['price-slider'] = array(
+    '#title' => 'Цена',
+    '#type' => 'slider',
+    '#slider_style' => 'orange',
+    '#input_title' => '',
+    '#input2_title' => '',
+    '#max' => 150000,
+    '#min' => 10000,
+    '#range' => TRUE,
+    '#step' => 10000,
+    '#default_value' => array('value' => 10000, 'value2' => 150000),
+    /*'#display_bubble' => TRUE,
+    '#display_bubble_format' => '%{value}%руб||%{value}%руб',*/
+    '#display_values' => TRUE,
+    '#display_values_format' => '%{value}%',
+    '#display_inputs' => FALSE,
+  );
+
+
+  $form['bottom_triangle'] = array(
+    '#markup' => '<div class="bottom-triangle-wrapper"><div class="bottom-triangle">&nbsp;</div></div>',
+  );
+
+  $form['results-wrapper'] = array(
+    '#type' => 'fieldset',
+    '#collapsible' => FALSE,
+  );
+
+  $form['results-wrapper']['results'] = array(
+    '#markup' => _custom_a600_find_projects(),
+  );
+
+
+  return $form;
+}
+
+function custom_a600_init() {
+  drupal_set_breadcrumb(array());
+}
+
+function _custom_a600_find_projects() {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'house_project')
+    ->propertyCondition('status', 1)
+    /*->fieldCondition('field_news_types', 'value', 'spotlight', '=')
+    ->fieldCondition('field_photo', 'fid', 'NULL', '!=')
+    ->fieldCondition('field_faculty_tag', 'tid', $value)
+    ->fieldCondition('field_news_publishdate', 'value', $year . '%', 'like')
+    ->fieldOrderBy('field_photo', 'fid', 'DESC')*/
+    ->range(0, 12);
+  $result = $query->execute();
+  $output = '';
+  if (isset($result['node'])) {
+    $i = 0;
+    $nids = array_keys($result['node']);
+    foreach ($nids as $nid) {
+      $output .= _custom_a600_render_project($nid);
+      $i++;
+      if ($i==2) {
+        $block = module_invoke('block', 'block_view', '1');
+        $output .= '<div class="search-text-block">' . render($block['content']) . '</div>';
+      }
+    }
+  }
+  return $output;
+}
+
+function _custom_a600_render_project($nid) {
+  $node = node_load($nid);
+  $node = node_view($node, 'search_result');
+  return render($node);
+}
