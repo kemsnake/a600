@@ -77,13 +77,7 @@
         <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="site-logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
       <?php endif; ?>
 
-      <?php if ($site_name || $site_slogan): ?>
-        <?php if ($site_name): ?>
-          <h1 class="site-name">
-            <?php print $site_name; ?>
-          </h1>
-        <?php endif; ?>
-
+      <?php if ($site_slogan): ?>
         <?php if ($site_slogan): ?>
           <h3 class="site-slogan"><?php print $site_slogan; ?></h3>
         <?php endif; ?>
@@ -121,6 +115,12 @@
   </div>
 
   <footer class="l-footer" role="contentinfo">
+
+    <?php if ($site_name): ?>
+      <a href="<?php print $front_page; ?>" class="footer-site-name">
+        <?php print '&#169;' . date('Y') . ' ' . $site_name; ?>
+      </a>
+    <?php endif; ?>
     <?php print render($page['footer']); ?>
   </footer>
 </div>

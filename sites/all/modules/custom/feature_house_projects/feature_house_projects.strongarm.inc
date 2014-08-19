@@ -20,6 +20,13 @@ function feature_house_projects_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'custom_a600_site_phone';
+  $strongarm->value = '+7 495 645-44-34';
+  $export['custom_a600_site_phone'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'custom_a600_square_options';
   $strongarm->value = '0-100,100-200,200-300,300-500,500-900';
   $export['custom_a600_square_options'] = $strongarm;

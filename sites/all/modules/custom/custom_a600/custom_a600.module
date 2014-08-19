@@ -32,18 +32,60 @@ function custom_a600_project_settings($form, &$form_state) {
   $form['custom_a600_square_options'] = array(
     '#type' => 'textfield',
     '#default_value' => variable_get('custom_a600_square_options', ''),
+    '#title' => 'Опции для площади домов',
   );
   $form['custom_a600_count_bedroom_options'] = array(
     '#type' => 'textfield',
     '#default_value' => variable_get('custom_a600_count_bedroom_options', ''),
+    '#title' => 'Опции для кол-ва спален',
+  );
+  $form['custom_a600_site_phone'] = array(
+    '#type' => 'textfield',
+    '#default_value' => variable_get('custom_a600_site_phone', ''),
+    '#title' => 'Телефон отображаемый вверху сайта',
   );
 
   return system_settings_form($form);
 }
 
+/**
+ * Implements hook_block_info().
+ */
+function custom_a600_block_info() {
+  $blocks['site_top_phone'] = array(
+    'info' => t('Телефон сайта(шапка)'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  return $blocks;
+}
+
+
+/**
+ * Implements hook_block_view().
+ */
+function custom_a600_block_view($delta) {
+  $block = array();
+  switch ($delta) {
+    case 'site_top_phone':
+      $number = variable_get('custom_a600_site_phone', '');
+      $block['content'] = '<div class="top-phone-title">Звоните:</div><div class="top-phone-number">'. $number . '</div>';
+      break;
+  }
+  return $block;
+}
+
 function custom_a600_project_search($form, &$form_state) {
   $form = array();
   drupal_set_title('');
+  $default_params = array(
+    'square' => '100-200',
+    'count_bedroom' => '2',
+    'garage' => '23',
+    'floor' => '7',
+    'attic_floor' => FALSE,
+    'house_basement' => FALSE,
+    'price_slider' => array('value' => 10000, 'value2' => 150000),
+  );
 
   $form['filters'] = array(
     '#type' => 'fieldset',
@@ -55,28 +97,43 @@ function custom_a600_project_search($form, &$form_state) {
     '#markup' => '<div class="filters-title">Какой он - дом мечты?</div>',
   );
 
+  $ajax = array(
+    'callback' => '_custom_a600_search_projects_ajax',
+    'wrapper' => 'results-wrapper',
+    'method' => 'replace',
+    'effect' => 'fade',
+  );
+
   $options = explode(',', variable_get('custom_a600_square_options', ''));
+  $options = array_combine($options, $options);
   $form['filters']['square'] = array(
     '#title' => 'Площадь',
     '#type' => 'radios',
     '#options' => $options,
+    '#default_value' => $default_params['square'],
+    '#ajax' => $ajax,
   );
 
   $options = explode(',', variable_get('custom_a600_count_bedroom_options', ''));
+  $options = array_combine($options, $options);
   $form['filters']['count_bedroom'] = array(
     '#title' => 'Сколько спален?',
     '#type' => 'radios',
     '#options' => $options,
+    '#default_value' => $default_params['count_bedroom'],
+    '#ajax' => $ajax,
   );
 
   $form['filters']['garage'] = array(
     '#title' => 'Гараж нужен?',
     '#type' => 'radios',
     '#options' => array(
-      22 => 'Не очень',
-      23 => 'Обязательно',
+      23 => 'Не очень',
+      22 => 'Обязательно',
       24 => 'Несколько машин',
     ),
+    '#default_value' => 23,
+    '#ajax' => $ajax,
   );
 
   $form['filters']['floor_group'] = array(
@@ -91,19 +148,25 @@ function custom_a600_project_search($form, &$form_state) {
       6 => 'Одноэтажный',
       7 => 'Двухэтажный',
     ),
+    '#ajax' => $ajax,
+    '#default_value' => $default_params['floor'],
   );
 
   $form['filters']['floor_group']['attic_floor'] = array(
     '#title' => 'Мансардный этаж',
     '#type' => 'checkbox',
+    '#ajax' => $ajax,
+    '#default_value' => $default_params['attic_floor'],
   );
 
   $form['filters']['floor_group']['house_basement'] = array(
     '#title' => 'Подвал',
     '#type' => 'checkbox',
+    '#ajax' => $ajax,
+    '#default_value' => $default_params['house_basement'],
   );
 
-  $form['filters']['price-slider'] = array(
+  $form['filters']['price_slider'] = array(
     '#title' => 'Цена',
     '#type' => 'slider',
     '#slider_style' => 'orange',
@@ -113,12 +176,11 @@ function custom_a600_project_search($form, &$form_state) {
     '#min' => 10000,
     '#range' => TRUE,
     '#step' => 10000,
-    '#default_value' => array('value' => 10000, 'value2' => 150000),
-    /*'#display_bubble' => TRUE,
-    '#display_bubble_format' => '%{value}%руб||%{value}%руб',*/
+    '#default_value' => $default_params['price_slider'],
     '#display_values' => TRUE,
     '#display_values_format' => '%{value}%',
     '#display_inputs' => FALSE,
+    '#ajax' => $ajax,
   );
 
 
@@ -129,31 +191,71 @@ function custom_a600_project_search($form, &$form_state) {
   $form['results-wrapper'] = array(
     '#type' => 'fieldset',
     '#collapsible' => FALSE,
+    '#attributes' => array('id' => array('results-wrapper')),
   );
 
   $form['results-wrapper']['results'] = array(
-    '#markup' => _custom_a600_find_projects(),
+    '#markup' => _custom_a600_find_projects($default_params),
   );
 
-
   return $form;
+}
+
+function _custom_a600_search_projects_ajax($form, &$form_state) {
+  watchdog('d1', '<pre>' . var_export($form_state['values'],true) . '</pre>');
+  $form['results-wrapper'] = array(
+    '#type' => 'fieldset',
+    '#collapsible' => FALSE,
+    '#attributes' => array('id' => array('results-wrapper')),
+  );
+  $form['results-wrapper']['results'] = array(
+    '#markup' => _custom_a600_find_projects($form_state['values']),
+  );
+  return $form['results-wrapper'];
 }
 
 function custom_a600_init() {
   drupal_set_breadcrumb(array());
 }
 
-function _custom_a600_find_projects() {
+function _custom_a600_find_projects($params = NULL) {
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'house_project')
-    ->propertyCondition('status', 1)
-    /*->fieldCondition('field_news_types', 'value', 'spotlight', '=')
-    ->fieldCondition('field_photo', 'fid', 'NULL', '!=')
-    ->fieldCondition('field_faculty_tag', 'tid', $value)
-    ->fieldCondition('field_news_publishdate', 'value', $year . '%', 'like')
-    ->fieldOrderBy('field_photo', 'fid', 'DESC')*/
-    ->range(0, 12);
+    ->propertyCondition('status', 1);
+    // ->fieldOrderBy('field_photo', 'fid', 'DESC')
+
+  if (isset($params['count_bedroom'])) {
+    $query->fieldCondition('field_count_bedroom', 'value', $params['count_bedroom'], '=');
+  }
+  if (isset($params['square'])) {
+    $values = explode('-', $params['square']);
+    $query->fieldCondition('field_square', 'value', $values[0], '>=');
+    $query->fieldCondition('field_square', 'value', $values[1], '<=');
+  }
+  if (isset($params['garage']) && $params['garage'] != 23) {
+    $query->fieldCondition('field_house_garage', 'tid', $params['garage'], '=');
+  }
+  if (isset($params['floor'])) {
+    // hardcoded floor option
+    if ($params['floor'] == 6) {
+      $query->fieldCondition('field_house_floors', 'tid', $params['floor'], '=');
+    }
+    else {
+      $query->fieldCondition('field_house_floors', 'tid', 6, '!=');
+    }
+  }
+  if (isset($params['attic_floor']) && $params['attic_floor'] != FALSE) {
+    $query->fieldCondition('field_attic_floor ', 'value', TRUE);
+  }
+  if (isset($params['house_basement']) && $params['house_basement'] != FALSE) {
+    $query->fieldCondition('field_house_basement ', 'value', TRUE);
+  }
+  if (isset($params['price_slider'])) {
+    $query->fieldCondition('field_price', 'value', $params['price_slider']['value'],  '>=');
+    $query->fieldCondition('field_price', 'value', $params['price_slider']['value2'], '<=');
+  }
+  $query->range(0, 12);
   $result = $query->execute();
   $output = '';
   if (isset($result['node'])) {
@@ -167,6 +269,9 @@ function _custom_a600_find_projects() {
         $output .= '<div class="search-text-block">' . render($block['content']) . '</div>';
       }
     }
+  }
+  else {
+    $output = '<div class="search-no-results-block">По вашему запросу не найдено проектов.</div>';
   }
   return $output;
 }

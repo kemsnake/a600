@@ -78,14 +78,14 @@
  * @see template_process()
  */
 ?>
-<div class="search-result node">
+<div class="search-result node" onClick="document.location='<?php print $node_url; ?>'">
 
   <div<?php print $content_attributes; ?>>
     <?php
       print render($content['field_photo']);
-      print "<a href=\"$node_url\" rel=\"bookmark\"><h2>$title</h2></a>";
+      print "<div class =\"node-title\">$title</div>";
       print render($content['body']);
-      print render($content['field_price']);
+      print '<div class="house-project-price-wrapper">' . render($content['field_price']) . '<div class="price-suffix">&nbsp;</div></div>';
     ?>
   </div>
 

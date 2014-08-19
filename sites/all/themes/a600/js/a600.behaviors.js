@@ -57,4 +57,16 @@
     }
   };
 
+
+  Drupal.behaviors.searchInit = {
+    attach: function (context, settings) {
+        $('.form-type-radio:has(input)', context).each(function () {
+            $(this).css('background', 'none');
+        });
+        $('.form-type-radio:has(input:checked)', context).each(function () {
+            $(this).css('background', '#f2cda5');
+        });
+    }
+  };
+
 })(jQuery);

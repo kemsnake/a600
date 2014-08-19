@@ -536,8 +536,8 @@ function feature_house_projects_field_default_field_instances() {
         'module' => 'number',
         'settings' => array(
           'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 2,
+          'prefix_suffix' => 1,
+          'scale' => 0,
           'thousand_separator' => ' ',
         ),
         'type' => 'number_decimal',
@@ -548,8 +548,8 @@ function feature_house_projects_field_default_field_instances() {
         'module' => 'number',
         'settings' => array(
           'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 2,
+          'prefix_suffix' => 1,
+          'scale' => 0,
           'thousand_separator' => ' ',
         ),
         'type' => 'number_decimal',
@@ -570,7 +570,7 @@ function feature_house_projects_field_default_field_instances() {
       'max' => '',
       'min' => '',
       'prefix' => '',
-      'suffix' => ' руб.',
+      'suffix' => '',
       'user_register_form' => FALSE,
     ),
     'widget' => array(

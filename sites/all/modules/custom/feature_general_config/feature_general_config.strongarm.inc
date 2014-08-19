@@ -129,7 +129,7 @@ function feature_general_config_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'theme_a600_settings';
   $strongarm->value = array(
-    'toggle_logo' => 0,
+    'toggle_logo' => 1,
     'toggle_name' => 1,
     'toggle_slogan' => 1,
     'toggle_node_user_picture' => 1,
@@ -140,7 +140,7 @@ function feature_general_config_strongarm() {
     'toggle_secondary_menu' => 1,
     'omega_toggle_front_page_content' => 1,
     'default_logo' => 1,
-    'logo_path' => '',
+    'logo_path' => 'public://logo.png',
     'logo_upload' => '',
     'default_favicon' => 1,
     'favicon_path' => '',

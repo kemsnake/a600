@@ -10,17 +10,50 @@ body {
 .l-header {
     overflow: hidden;
 }
-.site-name {
-    width: 100px;
+.l-main {
+    overflow: hidden;
+}
+.l-footer {
+    margin-top:30px;
+    overflow: hidden;
+}
+.footer-site-name:active,
+.footer-site-name:visited {
+    color: black;
+}
+.footer-site-name {
     float: left;
-    font-size: 36px;
+    font-size: 22px;
     margin-top: 10px;
+    text-decoration: none;
+    margin-right: 100px;
+}
+.l-region--footer{
+    float:left;
+}
+/*.l-region--footer ul.menu li{
+    list-style-image: none;
+    list-style-type: none;
+}
+.l-region--footer ul.menu li a{
+    color:black;
+}*/
+#block-menu-menu-footer-menu-1,
+#block-menu-menu-footer-menu-2{
+    float: left;
+
+}
+.site-logo {
+    width: 150px;
+    float: left;
+    margin-top: 10px;
+    margin-right: 20px;
 }
 .site-slogan {
     width: 200px;
     float: left;
     font-weight: normal;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 /* search filters */
@@ -97,7 +130,7 @@ body {
 #custom-a600-project-search .form-item-price-slider .sliderfield,
 #custom-a600-project-search #edit-count-bedroom .form-item {
     float:left;
-    border: 3px dashed #ebe2b1;
+    border: 3px dashed #f2cda5;
     border-radius: 5px;
     margin:10px;
     padding:7px;
@@ -131,17 +164,17 @@ body {
     display: none;
 }
 
-#custom-a600-project-search #edit-results-wrapper {
+#custom-a600-project-search #results-wrapper {
     width: 100%;
     float:left;
     margin-top: 30px;
 }
 
-#custom-a600-project-search #edit-results-wrapper .node__content{
+#custom-a600-project-search #results-wrapper .node__content{
 
 }
 
-#custom-a600-project-search #edit-results-wrapper .search-text-block,
+#custom-a600-project-search #results-wrapper .search-text-block,
 #custom-a600-project-search div.search-result.node {
     display: block;
     overflow: hidden;
@@ -153,14 +186,130 @@ body {
     text-align: center;
 }
 
-#custom-a600-project-search #edit-results-wrapper .search-text-block {
-    border : 2px dashed white;
+#custom-a600-project-search div.search-result.node:hover {
+    cursor: pointer;
+}
+
+#custom-a600-project-search #results-wrapper .search-text-block {
+    border : 5px dashed white;
     background: none;
     padding: 15px;
+    height:370px
 }
-#custom-a600-project-search #edit-results-wrapper .search-text-block .title {
-    font-size: 36px;
+#custom-a600-project-search #results-wrapper .search-text-block .title {
+    font-size: 38px;
+    margin:10px 0 10px 0;
+    text-align: left;
 }
-#custom-a600-project-search #edit-results-wrapper .search-text-block .text {
+#custom-a600-project-search #results-wrapper .search-text-block .text {
+    font-size: 24px;
+    text-align: left;
+}
+
+#custom-a600-project-search div.search-result.node .node-title,
+#custom-a600-project-search div.search-result.node .field--name-body {
+    text-align: left;
+    padding-left: 20px;
+}
+
+#custom-a600-project-search div.search-result.node .node-title {
+    text-transform: uppercase;
+    font-size: 24px;
+    letter-spacing: 5px;
+    margin-top:1px;
+}
+
+#custom-a600-project-search div.search-result.node .field--name-body {
+    height: 50px;
+}
+
+#custom-a600-project-search div.search-result.node .house-project-price-wrapper {
+    padding: 10px;
+    background: #ffe6c9;
+    margin: 10px 30% 10px 30%;
+    float: left;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+#custom-a600-project-search div.search-result.node .house-project-price-wrapper .field--name-field-price {
+    float: left;
     font-size: 20px;
 }
+#custom-a600-project-search div.search-result.node .house-project-price-wrapper .price-suffix {
+    background: url('../images/ruble.gif') no-repeat;
+    background-size: contain;
+    opacity:0.9;
+    float: left;
+    width:20px;
+    height:20px;
+    margin-left:5px;
+}
+
+.search-no-results-block {
+    font-size: 36px;
+    float: left;
+    width: 100%;
+}
+
+/* top region */
+.l-header {
+    margin-bottom: 25px;
+}
+.l-region--branding {
+    overflow: hidden;
+    float: right;
+}
+#block-custom-a600-site-top-phone,
+#block-menu-menu-top-menu {
+    float:left;
+    margin-right:100px;
+}
+#block-custom-a600-site-top-phone {
+    margin-top:1em;
+}
+#block-custom-a600-site-top-phone .top-phone-title {
+    font-size: 18px;
+}
+#block-custom-a600-site-top-phone .top-phone-number {
+    font-size: 22px;
+}
+
+#block-menu-menu-top-menu ul.menu li a,
+.l-region--footer ul.menu li a{
+    color: #000000;
+    font-size: 18px;
+    text-decoration: none;
+    border-bottom: 2px black dashed;
+}
+#block-menu-menu-top-menu ul.menu li,
+.l-region--footer ul.menu li{
+    list-style: none;
+    margin-bottom: 10px;
+}
+/* end top region */
+
+/* throbber */
+.ajax-progress, .ajax-progress-throbber {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 500;
+    vertical-align: middle;
+    text-align: center;
+}
+.ajax-progress .throbber {
+    position: relative;
+    top: 48%;
+    left: 48%;
+    width: 64px; /* dimensions of the ajax-loader.gif */
+    height: 64px;
+    margin: auto;
+    background:url(../images/ajax_loader_blue_64.gif) no-repeat;
+    color: #000;
+    z-index: 501;
+}
+/* end throbber */
