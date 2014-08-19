@@ -214,9 +214,6 @@ function _custom_a600_search_projects_ajax($form, &$form_state) {
   return $form['results-wrapper'];
 }
 
-function custom_a600_init() {
-  drupal_set_breadcrumb(array());
-}
 
 function _custom_a600_find_projects($params = NULL) {
   $query = new EntityFieldQuery();
