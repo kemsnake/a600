@@ -133,8 +133,16 @@ body {
     border: 3px dashed #f2cda5;
     border-radius: 5px;
     margin:10px;
-    padding:7px;
     text-align: center;
+}
+
+#custom-a600-project-search #edit-square .form-item label,
+#custom-a600-project-search #edit-garage .form-item label,
+#custom-a600-project-search #edit-floor .form-item label,
+#custom-a600-project-search .form-item-price-slider .sliderfield label,
+#custom-a600-project-search #edit-count-bedroom .form-item label{
+    padding:7px;
+    display:block;
 }
 
 #custom-a600-project-search #edit-garage .form-item:last-child {
