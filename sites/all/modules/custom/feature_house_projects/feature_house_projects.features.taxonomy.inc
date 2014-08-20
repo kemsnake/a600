@@ -33,13 +33,5 @@ function feature_house_projects_taxonomy_default_vocabularies() {
       'module' => 'taxonomy',
       'weight' => 0,
     ),
-    'house_materials' => array(
-      'name' => 'Материалы',
-      'machine_name' => 'house_materials',
-      'description' => '',
-      'hierarchy' => 0,
-      'module' => 'taxonomy',
-      'weight' => 0,
-    ),
   );
 }

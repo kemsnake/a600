@@ -470,13 +470,6 @@ function feature_user_config_user_default_permissions() {
     'module' => 'taxonomy',
   );
 
-  // Exported permission: 'delete terms in house_materials'.
-  $permissions['delete terms in house_materials'] = array(
-    'name' => 'delete terms in house_materials',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
   // Exported permission: 'display drupal links'.
   $permissions['display drupal links'] = array(
     'name' => 'display drupal links',
@@ -555,13 +548,6 @@ function feature_user_config_user_default_permissions() {
   // Exported permission: 'edit terms in house_floors'.
   $permissions['edit terms in house_floors'] = array(
     'name' => 'edit terms in house_floors',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'edit terms in house_materials'.
-  $permissions['edit terms in house_materials'] = array(
-    'name' => 'edit terms in house_materials',
     'roles' => array(),
     'module' => 'taxonomy',
   );

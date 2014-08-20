@@ -125,23 +125,6 @@ function feature_house_projects_views_default_views() {
     1 => 0,
     3 => 0,
   );
-  /* Filter criterion: Content: Материал (field_house_material) */
-  $handler->display->display_options['filters']['field_house_material_tid']['id'] = 'field_house_material_tid';
-  $handler->display->display_options['filters']['field_house_material_tid']['table'] = 'field_data_field_house_material';
-  $handler->display->display_options['filters']['field_house_material_tid']['field'] = 'field_house_material_tid';
-  $handler->display->display_options['filters']['field_house_material_tid']['value'] = '';
-  $handler->display->display_options['filters']['field_house_material_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_house_material_tid']['expose']['operator_id'] = 'field_house_material_tid_op';
-  $handler->display->display_options['filters']['field_house_material_tid']['expose']['label'] = 'Материал';
-  $handler->display->display_options['filters']['field_house_material_tid']['expose']['operator'] = 'field_house_material_tid_op';
-  $handler->display->display_options['filters']['field_house_material_tid']['expose']['identifier'] = 'field_house_material_tid';
-  $handler->display->display_options['filters']['field_house_material_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-  );
-  $handler->display->display_options['filters']['field_house_material_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_house_material_tid']['vocabulary'] = 'house_materials';
   /* Filter criterion: Content: Площадь (field_square) */
   $handler->display->display_options['filters']['field_square_value']['id'] = 'field_square_value';
   $handler->display->display_options['filters']['field_square_value']['table'] = 'field_data_field_square';
@@ -230,7 +213,6 @@ function feature_house_projects_views_default_views() {
     t('Категория дома'),
     t('Категория дома (field_house_category)'),
     t('Коллекция'),
-    t('Материал'),
     t('Площадь'),
     t('Стиль'),
     t('Цена'),
