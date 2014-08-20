@@ -88,8 +88,12 @@
         print "<div class =\"node-right-section\">";
           print "<div class =\"node-title\">$title</div>";
           print render($content['body']);
+          print render($content['field_rooms_list']);
           print '<div class="house-project-price-wrapper">' . render($content['field_price']) . '<div class="price-suffix">&nbsp;</div></div>';
         print "</div>";
+      print "</div>";
+      print "<div class =\"top-section\">";
+        print render($content['field_plans']);
       print "</div>";
     ?>
   </div>
