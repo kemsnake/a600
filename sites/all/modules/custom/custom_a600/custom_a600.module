@@ -278,3 +278,27 @@ function _custom_a600_render_project($nid) {
   $node = node_view($node, 'search_result');
   return render($node);
 }
+
+/**
+ * Implementation of hook_galleryformatter_styles().
+ *
+ * This hook allows other modules to create additional tab styles for
+ * the galleryformatter module.
+ *
+ * @return array
+ *   An array of key => value pairs suitable for inclusion as the #options in a
+ *   select or radios form element. Each key must be the location of a css
+ *   file for a gallery formatter style. Each value should be the name of the style.
+ */
+function custom_a600_galleryformatter_styles() {
+  $gallerystyles_directory = drupal_get_path('module', 'custom_a600') . '/gallerystyles';
+  $files = file_scan_directory($gallerystyles_directory, '/\.css$/');
+  $gallerystyles = array();
+  foreach ($files as $file) {
+    // Skip RTL files.
+    if (!strpos($file->name, '-rtl')) {
+      $gallerystyles[$file->uri] = drupal_ucfirst($file->name);
+    }
+  }
+  return $gallerystyles;
+}

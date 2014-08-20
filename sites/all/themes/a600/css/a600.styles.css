@@ -321,3 +321,47 @@ body {
     z-index: 501;
 }
 /* end throbber */
+
+/* gallery arrows */
+
+a.arrow.back{
+    background: url("../images/sprite.png") no-repeat scroll !important;
+    background-position:  -25px 0  !important;
+    display: block  !important;
+    height: 65px  !important;
+    position: absolute  !important;
+    width: 17px  !important;
+    cursor: pointer  !important;
+    bottom: 13px !important;
+
+}
+a.arrow{
+    width: 0px !important;
+    height: 0px !important;
+}
+a.arrow.forward{
+    background: url("../images/sprite.png") no-repeat scroll -45px 0px !important;
+    display: block !important;
+    height: 65px !important;
+    position: absolute !important;
+    width: 17px !important;
+    cursor: pointer !important;
+    bottom: 13px !important;
+
+}
+/* end gallery arrows */
+
+/* full house project view */
+.top-section {
+    background: white;
+    overflow: hidden;
+}
+.node-right-section{
+    padding-left: 19px;
+    padding-top: 30px;
+    float: left;
+    width:400px;
+    overflow: hidden;
+}
+
+/* end full house project view */

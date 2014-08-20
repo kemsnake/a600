@@ -78,17 +78,21 @@
  * @see template_process()
  */
 ?>
-<div class="search-result node" onClick="document.location='<?php print $node_url; ?>'">
+<article<?php print $attributes; ?>>
+<div class="node-house-project-full">
 
   <div<?php print $content_attributes; ?>>
     <?php
-      // Render only first image
-      $content['field_photo']['#items'] = array(array_shift($content['field_photo']['#items']));
-      print render($content['field_photo']);
-      print "<div class =\"node-title\">$title</div>";
-      print render($content['body']);
-      print '<div class="house-project-price-wrapper">' . render($content['field_price']) . '<div class="price-suffix">&nbsp;</div></div>';
+      print "<div class =\"top-section\">";
+        print render($content['field_photo']);
+        print "<div class =\"node-right-section\">";
+          print "<div class =\"node-title\">$title</div>";
+          print render($content['body']);
+          print '<div class="house-project-price-wrapper">' . render($content['field_price']) . '<div class="price-suffix">&nbsp;</div></div>';
+        print "</div>";
+      print "</div>";
     ?>
   </div>
 
 </div>
+</article>

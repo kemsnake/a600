@@ -1,0 +1,125 @@
+.galleryformatter-customarrows{
+    float:left;
+}
+.galleryformatter-customarrows .gallery-thumbs {
+    padding: 0 46px;
+}
+
+.galleryformatter-customarrows .gallery-slides .panel-overlay {
+  position: absolute;
+  bottom: 0.5em; left: 0;
+  background: transparent url(images/bg-trans.png) repeat;
+  width:100%;
+  color: white;
+}
+.galleryformatter-customarrows .gallery-slides .panel-overlay .overlay-inner { padding: 10px; }
+.galleryformatter-customarrows .gallery-thumbs .wrapper {
+  overflow: auto;
+  line-height:0;
+  background-position: center -326px;
+  background-repeat: repeat-x;
+  border-bottom: 1px solid #EEEEEE;
+}
+.galleryformatter-customarrows .view-full {
+  background-position:center -205px;
+  height:46px; width:46px;
+  margin:10px;
+  position:absolute;
+  right:0; top:0;
+  text-indent:-9999px;
+}
+.galleryformatter-customarrows a:hover .view-full {
+  background-position: center -252px;
+}
+.galleryformatter-customarrows .gallery-thumbs ul { list-style: none; }
+.galleryformatter-customarrows .gallery-thumbs li {
+  float: left;
+  background: transparent none;
+  overflow:hidden;
+  padding-top: 3px;
+}
+.galleryformatter-customarrows .gallery-thumbs li a {
+  display: block;
+}
+.galleryformatter-customarrows .gallery-thumbs li a:hover { background-position: center -307px; }
+.galleryformatter-customarrows .gallery-thumbs li.active a { background-position: center -303px; }
+
+.galleryformatter-customarrows .gallery-thumbs li.active img,
+.galleryformatter-customarrows .gallery-thumbs li a:hover img {
+  filter:alpha(opacity=100);
+  -ms-filter:”alpha(opacity=100)”;
+  -moz-opacity:1;
+  -khtml-opacity: 1;
+  opacity: 1;
+}
+.galleryformatter-customarrows .gallery-thumbs li img {
+  filter:alpha(opacity=60);
+  -ms-filter:”alpha(opacity=60)”;
+  -moz-opacity:0.6;
+  -khtml-opacity: 0.6;
+  opacity: 0.6;
+}
+
+.galleryformatter-customarrows .gallery-thumbs .arrow {
+  bottom:0;
+  display:block;
+  height:46px;
+  position:absolute;
+  text-indent:-9999px;
+  width:46px;
+}
+
+.galleryformatter-customarrows .gallery-thumbs .forward {
+  background-position: 0px 0;
+  right: 0;
+}
+
+.galleryformatter-customarrows .gallery-thumbs .back {
+  background-position: -4px -102px;
+  left: 0;
+}
+
+.galleryformatter-customarrows .gallery-thumbs .forward:hover { background-position: 0px -52px; }
+
+.galleryformatter-customarrows .gallery-thumbs .back:hover { background-position: -4px -156px; }
+
+.galleryformatter-customarrows .slide-button {
+  background: transparent url(images/next-prev.png) no-repeat top left;
+  height: 64px;
+  width: 32px;
+  top: 43%;
+  text-indent: -9999px;
+  filter:alpha(opacity=20);
+  -ms-filter:”alpha(opacity=20)”;
+  -moz-opacity:0.2;
+  -khtml-opacity: 0.2;
+  opacity: 0.2;
+}
+
+.galleryformatter-customarrows .prev-slide {
+  background-position: top left;
+}
+.galleryformatter-customarrows .next-slide {
+  background-position: top right;
+}
+.galleryformatter-customarrows .slide-button:hover {
+  filter: alpha(opacity=100);
+  -ms-filter: ”alpha(opacity=100)”;
+  -moz-opacity: 1;
+  -khtml-opacity: 1;
+  opacity: 1;
+}
+
+.slide-button{
+    display: none !important;
+}
+
+.galleryformatter-customarrows .gallery-thumbs .wrapper{
+    background: 0;
+    border: none;
+}
+
+.galleryformatter-customarrows .gallery-thumbs,
+.galleryformatter-customarrows .gallery-slides {
+    width:770px!important;
+}
