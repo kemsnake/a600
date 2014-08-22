@@ -78,7 +78,7 @@
  * @see template_process()
  */
 ?>
-<article<?php print $attributes; ?>>
+<article<?php print $attributes;?>>
 <div class="node-house-project-full">
 
   <div<?php print $content_attributes; ?>>
@@ -90,10 +90,30 @@
           print render($content['body']);
           print render($content['field_rooms_list']);
           print '<div class="house-project-price-wrapper">' . render($content['field_price']) . '<div class="price-suffix">&nbsp;</div></div>';
+          print '<div class="create-order-wrapper">';
+            print '<div class="create-order"><a href="/node/' . $node->nid . '/order">Сформировать заказ</a></div>';
+            print '<div class="create-order-suffix">&nbsp;</div>';
+          print "</div>";
         print "</div>";
       print "</div>";
-      print "<div class =\"top-section\">";
+      print "<div class =\"main-section\">";
         print render($content['field_plans']);
+      print "</div>";
+      print "<div class =\"footer-section\">";
+        print '<div class="create-order-wrapper">';
+          print '<div class="create-order"><a href="/node/' . $node->nid . '/order">Сформировать заказ</a></div>';
+          print '<div class="create-order-suffix">&nbsp;</div>';
+        print "</div>";
+
+        print '<div class="order-steps-wrapper">';
+        print '<div class="order-steps">';
+          print '<div class="step1 active">Описание</div>';
+          print '<div class="step-separator">&mdash;</div>';
+          print '<div class="step2">Формирование</div>';
+          print '<div class="step-separator">&mdash;</div>';
+          print '<div class="step3">Оплата</div>';
+        print "</div>";
+        print "</div>";
       print "</div>";
     ?>
   </div>

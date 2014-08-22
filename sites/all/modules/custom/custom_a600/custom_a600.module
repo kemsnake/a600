@@ -302,3 +302,9 @@ function custom_a600_galleryformatter_styles() {
   }
   return $gallerystyles;
 }
+
+function custom_a600_node_view($node, $view_mode) {
+  if ($node->type == 'house_project' && $view_mode == 'full') {
+    drupal_set_title('');
+  }
+}

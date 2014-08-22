@@ -27,6 +27,7 @@ body {
     margin-top: 10px;
     text-decoration: none;
     margin-right: 100px;
+    color: black;
 }
 .l-region--footer{
     float:left;
@@ -352,16 +353,121 @@ a.arrow.forward{
 /* end gallery arrows */
 
 /* full house project view */
-.top-section {
+.node-house-project-full {
     background: white;
     overflow: hidden;
 }
-.node-right-section{
-    padding-left: 19px;
-    padding-top: 30px;
-    float: left;
-    width:400px;
+.top-section,
+.main-section,
+.footer-section{
     overflow: hidden;
 }
+.node-right-section{
+    padding-left: 29px;
+    padding-top: 30px;
+    float: left;
+    width:390px;
+    overflow: hidden;
+}
+.node-house-project-full .field--name-field-plans .field__item {
+    float: left;
+    margin: 28px;
+}
+.node-house-project-full .node-title {
+    text-transform: uppercase;
+    font-size: 24px;
+    letter-spacing: 5px;
+    height:30px;
+}
+.node-house-project-full .field--name-body {
+    height:70px;
+}
+.node-house-project-full .field--name-field-rooms-list {
+    height:400px;
+}
 
+.node-house-project-full .footer-section .create-order-wrapper{
+    font-size: 30px;
+    width: 27%;
+    margin: 0 auto;
+    text-align: center;
+    overflow: hidden;
+}
+.node-house-project-full .footer-section .create-order{
+    float: left;
+    background: #fce4c0;
+    padding: 5px;
+}
+.node-house-project-full .footer-section .create-order-suffix{
+    width: 0;
+    height: 0;
+    border: 23px solid transparent;
+    border-left-color: #fce4c0;
+    border-right: 0;
+    float: left;
+}
+.node-house-project-full .top-section .create-order-wrapper{
+    font-size: 20px;
+    overflow: hidden;
+}
+.node-house-project-full .top-section .create-order{
+    float: left;
+    background: #fce4c0;
+    padding: 5px;
+}
+.node-house-project-full .top-section .create-order-suffix{
+    width: 0;
+    height: 0;
+    border: 17px solid transparent;
+    border-left-color: #fce4c0;
+    border-right: 0;
+    float: left;
+}
+.node-house-project-full .house-project-price-wrapper {
+    width: 100%;
+    overflow: hidden;
+    margin: 10px 0;
+}
+.node-house-project-full .house-project-price-wrapper .price-suffix {
+    background: url('../images/ruble.gif') no-repeat;
+    background-size: contain;
+    opacity:0.9;
+    float: left;
+    width:20px;
+    height:24px;
+    margin-left:5px;
+    margin-top:2px;
+}
+.field--name-field-price{
+    float: left;
+    font-size: 28px;
+}
+
+.order-steps-wrapper {
+    float:right;
+    right: 50%;
+    position: relative;
+    margin: 10px 0;
+}
+
+.order-steps {
+    position: relative;
+    float: left;
+    left:50%;
+}
+.order-steps div {
+    font-weight: lighter;
+    color:lightgray;
+    font-size: 24px;
+    float:left;
+    margin-right: 10px;
+}
+.order-steps .active {
+    font-weight: bold;
+    color:black;
+}
+.footer-section {
+    text-align: center;
+    margin: 30px 0;
+}
 /* end full house project view */
