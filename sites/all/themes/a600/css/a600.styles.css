@@ -353,7 +353,8 @@ a.arrow.forward{
 /* end gallery arrows */
 
 /* full house project view */
-.node-house-project-full {
+.node-house-project-full,
+.node-house-project-order {
     background: white;
     overflow: hidden;
 }
@@ -470,4 +471,34 @@ a.arrow.forward{
     text-align: center;
     margin: 30px 0;
 }
+
 /* end full house project view */
+/* order house project view */
+.node-house-project-order .top-section {
+    border-bottom: 1px solid #000000;
+}
+.node-house-project-order .top-left-section,
+.node-house-project-order .top-right-section {
+    float:left;
+}
+.node-house-project-order .top-left-section img {
+    vertical-align:bottom;
+}
+.node-house-project-order .top-right-section {
+    margin: 20px 20px 0 40px;
+}
+.node-house-project-order .top-right-section .node-title {
+    width:100%;
+    text-transform: uppercase;
+    font-size: 24px;
+    letter-spacing: 5px;
+    height:30px;
+}
+
+.node-house-project-order .top-right-section .field--name-body,
+.node-house-project-order .top-right-section .field--name-field-rooms-list {
+    width:40%;
+    float:left;
+    margin-right: 40px;
+}
+/* end order house project view */

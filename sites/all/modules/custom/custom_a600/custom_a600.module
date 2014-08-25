@@ -16,6 +16,14 @@ function custom_a600_menu() {
     'access arguments' => array('administer site configuration'),
   );
 
+  $items['order/%'] = array(
+    'title' => 'Купить проект',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('custom_a600_project_order_form', 1),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
   $items['project-search'] = array(
     'title' => 'Project search',
     'page callback' => 'drupal_get_form',
@@ -307,4 +315,22 @@ function custom_a600_node_view($node, $view_mode) {
   if ($node->type == 'house_project' && $view_mode == 'full') {
     drupal_set_title('');
   }
+}
+
+function custom_a600_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['order'] = array(
+    'label' => t('Order'),
+    'custom settings' => TRUE,
+  );
+}
+
+function custom_a600_project_order_form($form, &$form_state, $nid) {
+  $node_obj = node_load($nid);
+  $node = node_view($node_obj, 'order');
+  $form['node_info'] = array(
+    '#markup' => drupal_render($node)
+  );
+
+  return $form;
+
 }

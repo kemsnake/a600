@@ -78,45 +78,23 @@
  * @see template_process()
  */
 ?>
-<article<?php print $attributes;?>>
-<div class="node-house-project-full">
+<div class="node-house-project-order">
 
   <div<?php print $content_attributes; ?>>
     <?php
       print "<div class =\"top-section\">";
-        print render($content['field_photo']);
-        print "<div class =\"node-right-section\">";
+        print "<div class =\"top-left-section\">";
+          // Render only first image
+          $content['field_photo']['#items'] = array(array_shift($content['field_photo']['#items']));
+          print render($content['field_photo']);
+        print "</div>";
+        print "<div class =\"top-right-section\">";
           print "<div class =\"node-title\">$title</div>";
           print render($content['body']);
           print render($content['field_rooms_list']);
-          print '<div class="house-project-price-wrapper">' . render($content['field_price']) . '<div class="price-suffix">&nbsp;</div></div>';
-          print '<div class="create-order-wrapper">';
-            print '<div class="create-order"><a href="/node/' . $node->nid . '/order">Сформировать заказ</a></div>';
-            print '<div class="create-order-suffix">&nbsp;</div>';
-          print "</div>";
-        print "</div>";
-      print "</div>";
-      print "<div class =\"main-section\">";
-        print render($content['field_plans']);
-      print "</div>";
-      print "<div class =\"footer-section\">";
-        print '<div class="create-order-wrapper">';
-          print '<div class="create-order"><a href="/order/' . $node->nid . '">Сформировать заказ</a></div>';
-          print '<div class="create-order-suffix">&nbsp;</div>';
-        print "</div>";
-
-        print '<div class="order-steps-wrapper">';
-        print '<div class="order-steps">';
-          print '<div class="step1 active">Описание</div>';
-          print '<div class="step-separator">&mdash;</div>';
-          print '<div class="step2">Формирование</div>';
-          print '<div class="step-separator">&mdash;</div>';
-          print '<div class="step3">Оплата</div>';
-        print "</div>";
         print "</div>";
       print "</div>";
     ?>
   </div>
 
 </div>
-</article>
