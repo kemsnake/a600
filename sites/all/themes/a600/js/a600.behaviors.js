@@ -60,7 +60,6 @@
 
   Drupal.behaviors.searchInit = {
     attach: function (context, settings) {
-        console.log(context);
         //скрываем инпуты у фильтров поиска
         $('#edit-filters .form-type-radio input').hide();
         // раскрашиваем активные инпуты
@@ -77,8 +76,22 @@
         // убираем ненужную обертку от ajax в результатах поиска
         $('#results-wrapper div .search-result').unwrap();
 
-        $('#edit-prices .form-type-textfield input').before('<div class="decrease-count"> - </div>');
-        $('#edit-prices .form-type-textfield input').after('<div class="increase-count"> + </div>');
+        // вставляем кнопки + и - для количества покупаемых проектов
+        $('#edit-prices .form-type-textfield input').before('<div class="decrease-count">&#8211;</div>');
+        $('#edit-prices .form-type-textfield input').after('<div class="increase-count">&#43;</div>');
+        // обработчики кнопок + и -
+        $('.increase-count', context).click(function () {
+            var parent = $(this).parent();
+            parent.children('input').each(function () {
+                if (this.value < 10) this.value++;
+            });
+        });
+        $('.decrease-count', context).click(function () {
+            var parent = $(this).parent();
+            parent.children('input').each(function () {
+                if (this.value >= 2) this.value--;
+            });
+        });
     }
   };
 

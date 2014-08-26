@@ -91,7 +91,7 @@
           print render($content['field_rooms_list']);
           print '<div class="house-project-price-wrapper">' . render($content['field_price']) . '<div class="price-suffix">&nbsp;</div></div>';
           print '<div class="create-order-wrapper">';
-            print '<div class="create-order"><a href="/node/' . $node->nid . '/order">Сформировать заказ</a></div>';
+            print '<div class="create-order"><a href="/order/' . $node->nid . '">Сформировать заказ</a></div>';
             print '<div class="create-order-suffix">&nbsp;</div>';
           print "</div>";
         print "</div>";

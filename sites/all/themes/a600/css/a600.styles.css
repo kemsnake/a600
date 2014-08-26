@@ -521,8 +521,12 @@ a.arrow.forward{
 .node-house-project-order .top-left-section img {
     vertical-align:bottom;
 }
+.node-house-project-order .top-left-section {
+    width: 20%;
+}
 .node-house-project-order .top-right-section {
     margin: 20px 20px 0 40px;
+    width: 75%;
 }
 .node-house-project-order .top-right-section .node-title {
     width:100%;
@@ -532,23 +536,34 @@ a.arrow.forward{
     height:30px;
 }
 
-.node-house-project-order .top-right-section .field--name-body,
-.node-house-project-order .top-right-section .field--name-field-rooms-list {
-    width:40%;
+.node-house-project-order .top-right-section .field--name-body{
+    width:60%;
     float:left;
     margin-right: 40px;
+}
+.node-house-project-order .top-right-section .field--name-field-rooms-list {
+    width:35%;
+    float: left;
 }
 fieldset#edit-prices {
     border: 0;
     margin:0;
     padding-top: 20px;
 }
-fieldset#edit-standard-price {
+fieldset#edit-standard-price,
+fieldset#edit-full-price,
+fieldset#edit-extended-price {
     border: 1px solid #f2cda5;
     border-radius: 15px;
     box-shadow: 2px 2px;
-    margin: 0 20px 20px 10%;
+    margin: 0 20px 20px 15%;
     padding: 20px;
+}
+fieldset#edit-standard-price .order-option-options {
+    margin-top: 60px;
+}
+fieldset#edit-prices .order-option-description {
+    margin-top:10px;
 }
 fieldset#edit-prices .order-option-title {
     font-size: 24px;
@@ -557,12 +572,26 @@ fieldset#edit-prices .order-option-col1 {
     width:30%;
     float: left;
 }
-fieldset#edit-prices .order-option-options,
-fieldset#edit-prices #edit-col3{
+fieldset#edit-prices .order-option-all-options,
+fieldset#edit-prices .price-options-col3 {
     margin-left:2%;
     width:30%;
     float: left;
     border: none;
+}
+
+fieldset#edit-prices .additional-option-marker {
+    float: left;
+    background: url(../images/square.png);
+    width: 20px;
+    height: 20px;
+}
+fieldset#edit-prices .additional-option {
+    float: left;
+    width:100%;
+}
+fieldset#edit-prices .order-options-additional {
+    margin-top:10px;
 }
 fieldset#edit-prices .price-wrapper,
 fieldset#edit-prices .form-type-textfield,
@@ -572,7 +601,7 @@ fieldset#edit-prices .submit-wrapper {
 }
 fieldset#edit-prices .price {
     float:left;
-    font-size: 24px;
+    font-size: 28px;
 }
 fieldset#edit-prices .price-suffix {
     background: url('../images/ruble.gif') no-repeat;
@@ -581,12 +610,14 @@ fieldset#edit-prices .price-suffix {
     float: left;
     width: 20px;
     height: 20px;
-    margin-left: 5px;
+    margin: 5px 0 0 5px;
 }
 #edit-prices .form-type-textfield input {
     display: block;
     float: left;
     margin-top:3px;
+    width: 30px;
+    text-align: right;
 }
 #edit-prices .form-type-textfield .decrease-count,
 #edit-prices .form-type-textfield .increase-count{
@@ -596,5 +627,20 @@ fieldset#edit-prices .price-suffix {
     margin: 0 5px 0 5px;
     padding: 5px;
     width:19px;
+    cursor:pointer;
+}
+#edit-prices .form-submit {
+    float: left;
+    background: #fce4c0;
+    padding: 7px;
+    border:none;
+}
+#edit-prices .create-order-suffix {
+    width: 0;
+    height: 0;
+    border: 17px solid transparent;
+    border-left-color: #fce4c0;
+    border-right: 0;
+    float: left;
 }
 /* end order house project view */
