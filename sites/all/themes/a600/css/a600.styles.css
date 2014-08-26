@@ -411,14 +411,8 @@ a.arrow.forward{
 .node-house-project-full .node-title {
     text-transform: uppercase;
     font-size: 24px;
-    letter-spacing: 5px;
+    letter-spacing: 3px;
     height:30px;
-}
-.node-house-project-full .field--name-body {
-    height:70px;
-}
-.node-house-project-full .field--name-field-rooms-list {
-    height:400px;
 }
 
 .node-house-project-full .footer-section .create-order-wrapper{
@@ -505,9 +499,18 @@ a.arrow.forward{
     text-align: center;
     margin: 30px 0;
 }
-
 /* end full house project view */
+
 /* order house project view */
+#custom-a600-project-order-form {
+    border-radius: 15px;
+    border: 1px solid #000000;
+    background: #ffffff;
+    box-shadow: 2px 2px;
+}
+.node-house-project-order {
+    border-radius: 15px 15px 0 0;
+}
 .node-house-project-order .top-section {
     border-bottom: 1px solid #000000;
 }
@@ -534,5 +537,64 @@ a.arrow.forward{
     width:40%;
     float:left;
     margin-right: 40px;
+}
+fieldset#edit-prices {
+    border: 0;
+    margin:0;
+    padding-top: 20px;
+}
+fieldset#edit-standard-price {
+    border: 1px solid #f2cda5;
+    border-radius: 15px;
+    box-shadow: 2px 2px;
+    margin: 0 20px 20px 10%;
+    padding: 20px;
+}
+fieldset#edit-prices .order-option-title {
+    font-size: 24px;
+}
+fieldset#edit-prices .order-option-col1 {
+    width:30%;
+    float: left;
+}
+fieldset#edit-prices .order-option-options,
+fieldset#edit-prices #edit-col3{
+    margin-left:2%;
+    width:30%;
+    float: left;
+    border: none;
+}
+fieldset#edit-prices .price-wrapper,
+fieldset#edit-prices .form-type-textfield,
+fieldset#edit-prices .submit-wrapper {
+    width:100%;
+    float:left;
+}
+fieldset#edit-prices .price {
+    float:left;
+    font-size: 24px;
+}
+fieldset#edit-prices .price-suffix {
+    background: url('../images/ruble.gif') no-repeat;
+    background-size: contain;
+    opacity: 0.9;
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+}
+#edit-prices .form-type-textfield input {
+    display: block;
+    float: left;
+    margin-top:3px;
+}
+#edit-prices .form-type-textfield .decrease-count,
+#edit-prices .form-type-textfield .increase-count{
+    float: left;
+    background: #fce4c0;
+    border-radius: 5px;
+    margin: 0 5px 0 5px;
+    padding: 5px;
+    width:19px;
 }
 /* end order house project view */

@@ -76,6 +76,9 @@
         }
         // убираем ненужную обертку от ajax в результатах поиска
         $('#results-wrapper div .search-result').unwrap();
+
+        $('#edit-prices .form-type-textfield input').before('<div class="decrease-count"> - </div>');
+        $('#edit-prices .form-type-textfield input').after('<div class="increase-count"> + </div>');
     }
   };
 
