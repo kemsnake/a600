@@ -58,6 +58,9 @@ function feature_house_projects_strongarm() {
       'order' => array(
         'custom_settings' => TRUE,
       ),
+      'search_result_special_offer' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
