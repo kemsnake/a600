@@ -32,8 +32,8 @@ function feature_house_projects_default_fe_block_boxes() {
   $fe_block_boxes->info = 'Search text block 2';
   $fe_block_boxes->format = 'full_html';
   $fe_block_boxes->machine_name = 'search_text_block_2';
-  $fe_block_boxes->body = '<div class="title">Никакой переплаты</div>
-<div class="text">Это не проекты, адаптированные под минимальную стоимость. Это проекты готовых для жизни домов, не требующие переплаты.</div>';
+  $fe_block_boxes->body = '<div class="title">Текст блока 2</div>
+<div class="text">Это втоорй блок. Это втоорй блок. Это втоорй блок. Это втоорй блок. Это втоорй блок. Это втоорй блок. Это втоорй блок. </div>';
 
   $export['search_text_block_2'] = $fe_block_boxes;
 

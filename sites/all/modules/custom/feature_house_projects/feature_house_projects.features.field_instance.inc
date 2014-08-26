@@ -44,6 +44,12 @@ function feature_house_projects_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 3,
       ),
+      'search_result_special_offer' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -110,6 +116,12 @@ function feature_house_projects_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 11,
       ),
+      'search_result_special_offer' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -169,6 +181,12 @@ function feature_house_projects_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 9,
+      ),
+      'search_result_special_offer' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -232,6 +250,12 @@ function feature_house_projects_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 10,
       ),
+      'search_result_special_offer' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -288,6 +312,12 @@ function feature_house_projects_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 6,
       ),
+      'search_result_special_offer' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -341,6 +371,12 @@ function feature_house_projects_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 7,
+      ),
+      'search_result_special_offer' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -399,6 +435,12 @@ function feature_house_projects_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 8,
+      ),
+      'search_result_special_offer' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -475,6 +517,16 @@ function feature_house_projects_field_default_field_instances() {
         'settings' => array(
           'image_link' => 'content',
           'image_style' => 'search_result_small',
+        ),
+        'type' => 'image',
+        'weight' => 0,
+      ),
+      'search_result_special_offer' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => 'content',
+          'image_style' => 'search_result_spec_offer',
         ),
         'type' => 'image',
         'weight' => 0,
@@ -558,6 +610,12 @@ function feature_house_projects_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 4,
+      ),
+      'search_result_special_offer' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 9,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -650,6 +708,18 @@ function feature_house_projects_field_default_field_instances() {
         'type' => 'number_decimal',
         'weight' => 2,
       ),
+      'search_result_special_offer' => array(
+        'label' => 'hidden',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => 1,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_decimal',
+        'weight' => 2,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -716,6 +786,15 @@ function feature_house_projects_field_default_field_instances() {
         'type' => 'text_summary_or_trimmed',
         'weight' => 1,
       ),
+      'search_result_special_offer' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 600,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 1,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -741,6 +820,72 @@ function feature_house_projects_field_default_field_instances() {
       ),
       'type' => 'text_textarea_with_summary',
       'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'node-house_project-field_special_offer'
+  $field_instances['node-house_project-field_special_offer'] = array(
+    'bundle' => 'house_project',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'order' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_result_special_offer' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_special_offer',
+    'label' => 'Специальное предложение',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 13,
     ),
   );
 
@@ -774,6 +919,12 @@ function feature_house_projects_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 5,
+      ),
+      'search_result_special_offer' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -812,6 +963,7 @@ function feature_house_projects_field_default_field_instances() {
   t('Планировки');
   t('Площадь');
   t('Подвал');
+  t('Специальное предложение');
   t('Фото');
   t('Цена');
   t('Экспликация помещений');

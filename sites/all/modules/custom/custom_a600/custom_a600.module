@@ -87,12 +87,14 @@ function custom_a600_project_search($form, &$form_state) {
   drupal_set_title('');
   $default_params = array(
     'square' => '100-200',
-    'count_bedroom' => '2',
+    'count_bedroom' => '1',
     'garage' => '23',
     'floor' => '7',
     'attic_floor' => FALSE,
     'house_basement' => FALSE,
     'price_slider' => array('value' => 10000, 'value2' => 150000),
+    'page' => 0,
+    'count_search' => 0,
   );
 
   $form['filters'] = array(
@@ -206,11 +208,37 @@ function custom_a600_project_search($form, &$form_state) {
     '#markup' => _custom_a600_find_projects($default_params),
   );
 
+  $form['results-wrapper']['count_search'] = array(
+    '#type' => 'value',
+    '#value' => $default_params['count_search'],
+  );
+  $form['results-wrapper']['page'] = array(
+    '#type' => 'value',
+    '#value' => $default_params['page'],
+  );
+
+  $form['more-wrapper'] = array(
+    '#type' => 'fieldset',
+    '#collapsible' => FALSE,
+    '#attributes' => array('id' => array('more-wrapper')),
+  );
+
+  $ajax_more = array(
+    'callback' => '_custom_a600_search_projects_append_ajax',
+    'wrapper' => 'results-wrapper',
+    'method' => 'append',
+    'effect' => 'fade',
+  );
+  $form['more-wrapper']['more_text'] = array(
+    '#type' => 'button',
+    '#value' => 'Ещё',
+    '#ajax' => $ajax_more,
+  );
+
   return $form;
 }
 
 function _custom_a600_search_projects_ajax($form, &$form_state) {
-  watchdog('d1', '<pre>' . var_export($form_state['values'],true) . '</pre>');
   $form['results-wrapper'] = array(
     '#type' => 'fieldset',
     '#collapsible' => FALSE,
@@ -222,13 +250,28 @@ function _custom_a600_search_projects_ajax($form, &$form_state) {
   return $form['results-wrapper'];
 }
 
+function _custom_a600_search_projects_append_ajax($form, &$form_state) {
+  $form = array();
+  $form['results'] = array(
+    '#markup' => _custom_a600_find_projects($form_state['values']),
+  );
+  $form['count_search'] = array(
+    '#type' => 'hidden',
+    '#value' => $form_state['values']['count_search'],
+  );
+  $form['page'] = array(
+    '#type' => 'hidden',
+    '#value' => $form_state['values']['page'],
+  );
+  return $form;
+}
 
-function _custom_a600_find_projects($params = NULL) {
+
+function _custom_a600_find_projects(&$params = NULL) {
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'house_project')
     ->propertyCondition('status', 1);
-    // ->fieldOrderBy('field_photo', 'fid', 'DESC')
 
   if (isset($params['count_bedroom'])) {
     $query->fieldCondition('field_count_bedroom', 'value', $params['count_bedroom'], '=');
@@ -260,25 +303,81 @@ function _custom_a600_find_projects($params = NULL) {
     $query->fieldCondition('field_price', 'value', $params['price_slider']['value'],  '>=');
     $query->fieldCondition('field_price', 'value', $params['price_slider']['value2'], '<=');
   }
-  $query->range(0, 12);
+
+  // ищем спец спрецпредложение
+  $query_spec_offer = clone $query;
+  $query_spec_offer->fieldCondition('field_special_offer ', 'value', 1);
+  $query_spec_offer->range($params['page'], 1);
+  $result_spec_offer = $query_spec_offer->execute();
+  $spec_offer_nid = FALSE;
+  if (isset($result_spec_offer['node'])) {
+    $nids = array_keys($result_spec_offer['node']);
+    $spec_offer_nid = array_shift($nids);
+  }
+  if ($spec_offer_nid) {
+    $so_offset = 2;
+  }
+  else {
+    $so_offset = 0;
+  }
+
+  $start = $params['count_search'];
+  // не включаем спец предложеия, по ним отдельный поиск
+  $query->fieldCondition('field_special_offer ', 'value', 1, '!=');
+  // после пятой странциы текстовых блоков нет, так что надо показывать на 2 проекта больше
+  if ($params['page'] > 4) {
+    $text_offset = 2;
+  }
+  else {
+    $text_offset = 0;
+  }
+  // считаем один раз количество проектов по запросу
+  if (!isset($params['count_projects'])) {
+    $query_count = clone $query;
+    $query_count->count();
+    $params['count_projects'] = $query_count->execute();
+  }
+
+  $query->range($start, 14 - $so_offset + $text_offset);
+  $params['count_search'] += 14 - $so_offset + $text_offset;
+  // если у нас последняя страница - скрываем кнопку "Еще"
+  if ($params['count_projects'] <= $params['count_search']) {
+    drupal_add_js(array('remove_more_text' => TRUE), 'setting');
+  }
   $result = $query->execute();
   $output = '';
+  $current_text_block = 1;
   if (isset($result['node'])) {
     $i = 0;
     $nids = array_keys($result['node']);
     foreach ($nids as $nid) {
       $output .= _custom_a600_render_project($nid);
       $i++;
-      if ($i==2) {
-        $block = module_invoke('block', 'block_view', '1');
+      // выводим тектсовые блоки
+      if ($i==2 || $i==10-$so_offset) {
+        $block_id = $params['page']*2 + $current_text_block;
+        $current_text_block++;
+        $block = module_invoke('block', 'block_view', $block_id);
         $output .= '<div class="search-text-block">' . render($block['content']) . '</div>';
       }
+      // выводим спец предложение
+      if ($i==3 && $spec_offer_nid) {
+        $output .= _custom_a600_render_special_offer($spec_offer_nid);
+      }
     }
+    ++$params['page'];
   }
   else {
     $output = '<div class="search-no-results-block">По вашему запросу не найдено проектов.</div>';
+    drupal_add_js(array('remove_more_text' => TRUE), 'setting');
   }
   return $output;
+}
+
+function _custom_a600_render_special_offer($nid) {
+  $node = node_load($nid);
+  $node = node_view($node, 'search_result_special_offer');
+  return render($node);
 }
 
 function _custom_a600_render_project($nid) {
@@ -320,6 +419,10 @@ function custom_a600_node_view($node, $view_mode) {
 function custom_a600_entity_info_alter(&$entity_info) {
   $entity_info['node']['view modes']['order'] = array(
     'label' => t('Order'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['node']['view modes']['search_result_special_offer'] = array(
+    'label' => t('Special offer'),
     'custom settings' => TRUE,
   );
 }

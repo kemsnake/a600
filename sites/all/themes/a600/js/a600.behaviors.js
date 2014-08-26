@@ -66,6 +66,11 @@
         $('.form-type-radio:has(input:checked)', context).each(function () {
             $(this).css('background', '#f2cda5');
         });
+        if (Drupal.settings.remove_more_text === true) {
+            $('fieldset#more-wrapper').hide();
+        }
+        $('#results-wrapper div .search-result').unwrap();
+        console.log(div);
     }
   };
 
