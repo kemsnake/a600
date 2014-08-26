@@ -166,13 +166,6 @@ body {
     margin-bottom: 10px;
 }
 
-#custom-a600-project-search #edit-square input,
-#custom-a600-project-search #edit-garage input,
-#custom-a600-project-search #edit-floor input,
-#custom-a600-project-search #edit-count-bedroom input {
-    display: none;
-}
-
 #custom-a600-project-search #results-wrapper {
     width: 100%;
     float:left;
@@ -295,12 +288,6 @@ body {
 #custom-a600-project-search fieldset#more-wrapper{
     width:100%;
     text-align: center;
-}
-#custom-a600-project-search fieldset#more-wrapper .more-text {
-    font: 34px bold;
-    background: white;
-    border-radius: 10px;
-    cursor:pointer;
 }
 .search-no-results-block {
     font-size: 36px;

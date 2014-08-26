@@ -60,17 +60,22 @@
 
   Drupal.behaviors.searchInit = {
     attach: function (context, settings) {
+        console.log(context);
+        //скрываем инпуты у фильтров поиска
+        $('#edit-filters .form-type-radio input').hide();
+        // раскрашиваем активные инпуты
         $('.form-type-radio:has(input)', context).each(function () {
             $(this).css('background', 'none');
         });
         $('.form-type-radio:has(input:checked)', context).each(function () {
             $(this).css('background', '#f2cda5');
         });
+        // прячем кнопку еще
         if (Drupal.settings.remove_more_text === true) {
             $('fieldset#more-wrapper').hide();
         }
+        // убираем ненужную обертку от ajax в результатах поиска
         $('#results-wrapper div .search-result').unwrap();
-        console.log(div);
     }
   };
 
