@@ -121,7 +121,7 @@ function feature_general_config_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'site_slogan';
-  $strongarm->value = 'Проекты домов<br> из клееного бруса';
+  $strongarm->value = 'Проекты домов<br> из дерева';
   $export['site_slogan'] = $strongarm;
 
   $strongarm = new stdClass();

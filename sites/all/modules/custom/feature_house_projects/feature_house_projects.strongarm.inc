@@ -63,7 +63,7 @@ function feature_house_projects_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'custom_a600_site_phone';
-  $strongarm->value = '+7 495 645-44-34';
+  $strongarm->value = '+7 495 585-89-08';
   $export['custom_a600_site_phone'] = $strongarm;
 
   $strongarm = new stdClass();

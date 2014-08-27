@@ -496,7 +496,7 @@ function feature_house_projects_field_default_field_instances() {
           'modal' => 'none',
           'slide_style' => 'house_project_full',
           'style' => 'Customarrows',
-          'thumb_style' => 'galleryformatter_thumb',
+          'thumb_style' => 'house_project_thumb',
         ),
         'type' => 'galleryformatter_default',
         'weight' => 0,
@@ -555,7 +555,7 @@ function feature_house_projects_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'media',
+      'module' => 'multiupload_imagefield_widget',
       'settings' => array(
         'allowed_schemes' => array(
           'public' => 'public',
@@ -566,9 +566,10 @@ function feature_house_projects_field_default_field_instances() {
           'image' => 'image',
           'video' => 0,
         ),
+        'preview_image_style' => 'thumbnail',
         'progress_indicator' => 'throbber',
       ),
-      'type' => 'media_generic',
+      'type' => 'image_miw',
       'weight' => 3,
     ),
   );
@@ -641,7 +642,7 @@ function feature_house_projects_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'media',
+      'module' => 'multiupload_imagefield_widget',
       'settings' => array(
         'allowed_schemes' => array(
           'public' => 'public',
@@ -652,9 +653,10 @@ function feature_house_projects_field_default_field_instances() {
           'image' => 'image',
           'video' => 0,
         ),
+        'preview_image_style' => 'thumbnail',
         'progress_indicator' => 'throbber',
       ),
-      'type' => 'media_generic',
+      'type' => 'image_miw',
       'weight' => 4,
     ),
   );
@@ -794,7 +796,7 @@ function feature_house_projects_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_price_extended',
     'label' => 'Цена полного пакета документов + доработки',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'max' => '',
       'min' => '',
@@ -858,7 +860,7 @@ function feature_house_projects_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_price_full',
     'label' => 'Цена полного пакета документов',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'max' => '',
       'min' => '',

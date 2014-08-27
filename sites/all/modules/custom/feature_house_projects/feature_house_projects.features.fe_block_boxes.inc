@@ -32,8 +32,11 @@ function feature_house_projects_default_fe_block_boxes() {
   $fe_block_boxes->info = 'Search text block 2';
   $fe_block_boxes->format = 'full_html';
   $fe_block_boxes->machine_name = 'search_text_block_2';
-  $fe_block_boxes->body = '<div class="title">Текст блока 2</div>
-<div class="text">Это втоорй блок. Это втоорй блок. Это втоорй блок. Это втоорй блок. Это втоорй блок. Это втоорй блок. Это втоорй блок. </div>';
+  $fe_block_boxes->body = '<div class="title">
+	Внести изменения</div>
+<div class="text">
+	Вы можете вносить изменения в любой выбранный проект. Наши архитекторы готовы это сделать быстро и качественно.</div>
+';
 
   $export['search_text_block_2'] = $fe_block_boxes;
 

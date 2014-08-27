@@ -387,6 +387,9 @@ a.arrow.forward{
 /* end gallery arrows */
 
 /* full house project view */
+.node-house-project-full p{
+    margin:0;
+}
 .node-house-project-full,
 .node-house-project-order {
     background: white;

@@ -1,10 +1,6 @@
 .galleryformatter-customarrows{
     float:left;
 }
-.galleryformatter-customarrows .gallery-thumbs {
-    padding: 0 46px;
-}
-
 .galleryformatter-customarrows .gallery-slides .panel-overlay {
   position: absolute;
   bottom: 0.5em; left: 0;
@@ -36,7 +32,7 @@
   float: left;
   background: transparent none;
   overflow:hidden;
-  padding-top: 3px;
+  padding: 0;
 }
 .galleryformatter-customarrows .gallery-thumbs li a {
   display: block;

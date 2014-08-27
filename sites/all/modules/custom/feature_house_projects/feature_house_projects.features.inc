@@ -31,7 +31,7 @@ function feature_house_projects_image_default_styles() {
     'name' => 'house_project_full',
     'label' => 'house_project_full',
     'effects' => array(
-      1 => array(
+      7 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -41,11 +41,84 @@ function feature_house_projects_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => 770,
-          'height' => '',
+          'width' => '',
+          'height' => 450,
           'upscale' => 1,
         ),
         'weight' => 1,
+      ),
+      8 => array(
+        'label' => 'Crop',
+        'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
+        'effect callback' => 'image_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_crop_form',
+        'summary theme' => 'image_crop_summary',
+        'module' => 'image',
+        'name' => 'image_crop',
+        'data' => array(
+          'width' => 770,
+          'height' => 450,
+          'anchor' => 'center-center',
+        ),
+        'weight' => 2,
+      ),
+      9 => array(
+        'label' => 'Overlay (watermark)',
+        'help' => 'Choose the file image you wish to use as an overlay, and position it in a layer on top of the canvas.',
+        'effect callback' => 'canvasactions_file2canvas_effect',
+        'dimensions passthrough' => TRUE,
+        'form callback' => 'canvasactions_file2canvas_form',
+        'summary theme' => 'canvasactions_file2canvas_summary',
+        'module' => 'imagecache_canvasactions',
+        'name' => 'canvasactions_file2canvas',
+        'data' => array(
+          'xpos' => 'center',
+          'ypos' => 'center',
+          'alpha' => 20,
+          'path' => 'sites/all/themes/a600/images/watermark.png',
+        ),
+        'weight' => 3,
+      ),
+    ),
+  );
+
+  // Exported image style: house_project_thumb.
+  $styles['house_project_thumb'] = array(
+    'name' => 'house_project_thumb',
+    'label' => 'house_project_thumb',
+    'effects' => array(
+      15 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => '',
+          'height' => 100,
+          'upscale' => 1,
+        ),
+        'weight' => 1,
+      ),
+      16 => array(
+        'label' => 'Crop',
+        'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
+        'effect callback' => 'image_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_crop_form',
+        'summary theme' => 'image_crop_summary',
+        'module' => 'image',
+        'name' => 'image_crop',
+        'data' => array(
+          'width' => 130,
+          'height' => 100,
+          'anchor' => 'center-center',
+        ),
+        'weight' => 2,
       ),
     ),
   );
@@ -55,7 +128,7 @@ function feature_house_projects_image_default_styles() {
     'name' => 'house_project_variant',
     'label' => 'house_project_variant',
     'effects' => array(
-      2 => array(
+      10 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -65,7 +138,7 @@ function feature_house_projects_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => 550,
+          'width' => 1150,
           'height' => '',
           'upscale' => 1,
         ),
