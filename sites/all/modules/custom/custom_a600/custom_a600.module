@@ -445,7 +445,6 @@ function _custom_a600_find_projects(&$params = NULL) {
 
   $query->range($start, 14 - $so_offset + $text_offset);
   $params['count_search'] += 14 - $so_offset + $text_offset;
-  dsm($params);
   // если у нас последняя страница - скрываем кнопку "Еще"
   if ($params['count_projects'] <= $params['count_search']) {
     drupal_add_js(array('remove_more_text' => TRUE), 'setting');
