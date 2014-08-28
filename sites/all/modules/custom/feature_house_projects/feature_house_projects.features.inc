@@ -41,8 +41,8 @@ function feature_house_projects_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => '',
-          'height' => 450,
+          'width' => 770,
+          'height' => '',
           'upscale' => 1,
         ),
         'weight' => 1,
