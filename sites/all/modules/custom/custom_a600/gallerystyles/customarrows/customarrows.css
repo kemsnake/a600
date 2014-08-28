@@ -119,3 +119,24 @@
 .galleryformatter-customarrows .gallery-slides {
     width:770px!important;
 }
+
+.galleryformatter-customarrows .gallery-thumbs a.arrow.back{
+    background: url("images/back.png") no-repeat scroll;
+    display: block;
+    height: 32px;
+    position: absolute;
+    width: 32px;
+    cursor: pointer;
+    bottom: 34px;
+
+}
+.galleryformatter-customarrows .gallery-thumbs a.arrow.forward{
+    background: url("images/next.png") no-repeat scroll;
+    display: block;
+    height: 32px;
+    position: absolute;
+    width: 32px;
+    cursor: pointer;
+    bottom: 34px ;
+
+}

@@ -88,7 +88,7 @@ function feature_house_projects_image_default_styles() {
     'name' => 'house_project_thumb',
     'label' => 'house_project_thumb',
     'effects' => array(
-      15 => array(
+      17 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -98,13 +98,13 @@ function feature_house_projects_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => '',
-          'height' => 100,
+          'width' => 130,
+          'height' => '',
           'upscale' => 1,
         ),
         'weight' => 1,
       ),
-      16 => array(
+      18 => array(
         'label' => 'Crop',
         'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
         'effect callback' => 'image_crop_effect',

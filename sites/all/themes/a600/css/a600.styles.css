@@ -246,10 +246,8 @@ body {
     text-align: left;
 }
 
-#custom-a600-project-search div.search-result.node .node-title,
-#custom-a600-project-search div.search-result.node .field--name-body {
-    text-align: left;
-    padding-left: 20px;
+#custom-a600-project-search div.search-result.node .node-title {
+    text-align: center;
 }
 
 #custom-a600-project-search div.search-result.node .node-title {
@@ -357,36 +355,10 @@ body {
 }
 /* end throbber */
 
-/* gallery arrows */
-
-a.arrow.back{
-    background: url("../images/sprite.png") no-repeat scroll !important;
-    background-position:  -25px 0  !important;
-    display: block  !important;
-    height: 65px  !important;
-    position: absolute  !important;
-    width: 17px  !important;
-    cursor: pointer  !important;
-    bottom: 13px !important;
-
-}
-a.arrow{
-    width: 0px !important;
-    height: 0px !important;
-}
-a.arrow.forward{
-    background: url("../images/sprite.png") no-repeat scroll -45px 0px !important;
-    display: block !important;
-    height: 65px !important;
-    position: absolute !important;
-    width: 17px !important;
-    cursor: pointer !important;
-    bottom: 13px !important;
-
-}
-/* end gallery arrows */
-
 /* full house project view */
+.search-result.node p{
+    margin: 10px 0 0 0;
+}
 .node-house-project-full p{
     margin:0;
 }

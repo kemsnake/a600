@@ -35,3 +35,10 @@ function a600_fieldset($variables) {
   $output .= "</fieldset>\n";
   return $output;
 }
+
+function a600_js_alter(&$js) {
+  if (isset($js[drupal_get_path('module', 'galleryformatter') . '/theme/infiniteCarousel.js'])) {
+    unset($js[drupal_get_path('module', 'galleryformatter') . '/theme/infiniteCarousel.js']);
+    drupal_add_js(drupal_get_path('theme', 'a600') . '/js/gallery_pager.js');
+  }
+}

@@ -52,6 +52,11 @@ function custom_a600_project_settings($form, &$form_state) {
     '#default_value' => variable_get('custom_a600_site_phone', ''),
     '#title' => 'Телефон отображаемый вверху сайта',
   );
+  $form['custom_a600_item_price'] = array(
+    '#type' => 'textfield',
+    '#default_value' => variable_get('custom_a600_item_price', 500),
+    '#title' => 'Цена каждого дополнительного экземпляра документации',
+  );
 
   $form['standard_price'] = array(
     '#type' => 'fieldset',
@@ -83,6 +88,11 @@ function custom_a600_project_settings($form, &$form_state) {
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
+  $form['full_price']['custom_a600_full_price_enabled'] = array(
+    '#type' => 'checkbox',
+    '#default_value' => variable_get('custom_a600_full_price_enabled', FALSE),
+    '#title' => 'Включено',
+  );
   $form['full_price']['custom_a600_full_price_description'] = array(
     '#type' => 'textfield',
     '#default_value' => variable_get('custom_a600_full_price_description', ''),
@@ -106,6 +116,12 @@ function custom_a600_project_settings($form, &$form_state) {
     '#title' => 'Параметры расширенной цены',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
+  );
+
+  $form['extended_price']['custom_a600_extended_price_enabled'] = array(
+    '#type' => 'checkbox',
+    '#default_value' => variable_get('custom_a600_extended_price_enabled', FALSE),
+    '#title' => 'Включено',
   );
   $form['extended_price']['custom_a600_extended_price_description'] = array(
     '#type' => 'textfield',
@@ -202,10 +218,13 @@ function custom_a600_project_search($form, &$form_state) {
 
   $options = explode(',', variable_get('custom_a600_count_bedroom_options', ''));
   $options = array_combine($options, $options);
+  $bedroom_options['all'] = 'Не важно';
+  $bedroom_options = array_merge($bedroom_options, $options);
+  array_push($options, 'Не важно');
   $form['filters']['count_bedroom'] = array(
     '#title' => 'Сколько спален?',
     '#type' => 'radios',
-    '#options' => $options,
+    '#options' => $bedroom_options,
     '#default_value' => $default_params['count_bedroom'],
     '#ajax' => $ajax,
   );
@@ -320,7 +339,7 @@ function _custom_a600_search_projects_ajax($form, &$form_state) {
     '#collapsible' => FALSE,
     '#attributes' => array('id' => array('results-wrapper')),
   );
-  $form_state['values']['count_search'] = 0;
+  /*$form_state['values']['count_search'] = 0;
   $form_state['values']['page'] = 0;
   $form['results-wrapper']['count_search'] = array(
     '#type' => 'hidden',
@@ -329,7 +348,7 @@ function _custom_a600_search_projects_ajax($form, &$form_state) {
   $form['results-wrapper']['page'] = array(
     '#type' => 'hidden',
     '#value' => 0,
-  );
+  );*/
   $form['results-wrapper']['results'] = array(
     '#markup' => _custom_a600_find_projects($form_state['values']),
   );
@@ -359,7 +378,7 @@ function _custom_a600_find_projects(&$params = NULL) {
     ->entityCondition('bundle', 'house_project')
     ->propertyCondition('status', 1);
 
-  if (isset($params['count_bedroom'])) {
+  if (isset($params['count_bedroom']) && $params['count_bedroom'] != 'all') {
     $query->fieldCondition('field_count_bedroom', 'value', $params['count_bedroom'], '=');
   }
   if (isset($params['square'])) {
@@ -426,6 +445,7 @@ function _custom_a600_find_projects(&$params = NULL) {
 
   $query->range($start, 14 - $so_offset + $text_offset);
   $params['count_search'] += 14 - $so_offset + $text_offset;
+  dsm($params);
   // если у нас последняя страница - скрываем кнопку "Еще"
   if ($params['count_projects'] <= $params['count_search']) {
     drupal_add_js(array('remove_more_text' => TRUE), 'setting');
@@ -515,7 +535,11 @@ function custom_a600_entity_info_alter(&$entity_info) {
 
 function custom_a600_project_order_form($form, &$form_state, $nid) {
   drupal_set_title('');
+
   $node_obj = node_load($nid);
+  // todo изменить перед  использованием нескольких цен
+  drupal_add_js(array('standard_price' =>  $node_obj->field_price['und'][0]['value']), 'setting');
+  drupal_add_js(array('item_price' =>  variable_get('custom_a600_item_price', 500)), 'setting');
   $node = node_view($node_obj, 'order');
   $form['node_info'] = array(
     '#markup' => drupal_render($node)
@@ -564,101 +588,105 @@ function custom_a600_project_order_form($form, &$form_state, $nid) {
     '#size' => 1,
   );
 
-  $form['prices']['full_price'] = array(
-    '#type' => 'fieldset',
-  );
-  $form['prices']['full_price']['description'] = array(
-    '#prefix' => '<div class="order-option-col1">',
-    '#markup' => '<div class="order-option-title">Полный пакет документов</div><div class="order-option-description">' . variable_get('custom_a600_full_price_description', '') . '</div>',
-    '#suffix' => '</div>',
-  );
-  $options = explode(',', variable_get('custom_a600_full_price_options', ''));
-  $output = '';
-  foreach ($options as $opt) {
-    $output .= ' &mdash; ' . trim($opt) . '<br>';
+  if (variable_get('custom_a600_full_price_enabled', FALSE)) {
+    $form['prices']['full_price'] = array(
+      '#type' => 'fieldset',
+    );
+    $form['prices']['full_price']['description'] = array(
+      '#prefix' => '<div class="order-option-col1">',
+      '#markup' => '<div class="order-option-title">Полный пакет документов</div><div class="order-option-description">' . variable_get('custom_a600_full_price_description', '') . '</div>',
+      '#suffix' => '</div>',
+    );
+    $options = explode(',', variable_get('custom_a600_full_price_options', ''));
+    $output = '';
+    foreach ($options as $opt) {
+      $output .= ' &mdash; ' . trim($opt) . '<br>';
+    }
+    $form['prices']['full_price']['options'] = array(
+      '#prefix' => '<div class="order-option-all-options">',
+      '#markup' => '<div class="order-option-options">' . $output . '</div>',
+    );
+    $options = explode(',', variable_get('custom_a600_full_price_additional', ''));
+    $output = '';
+    foreach ($options as $opt) {
+      $output .= ' <div class="additional-option"><div class="additional-option-marker"> &nbsp;</div><div class="additional-option-text">' . trim($opt) . '</div></div>';
+    }
+    $form['prices']['full_price']['additional'] = array(
+      '#markup' => '<div class="order-options-additional">' . $output . '</div>',
+      '#suffix' => '</div>',
+    );
+    $form['prices']['full_price']['col3'] = array(
+      '#type' => 'fieldset',
+      '#attributes' => array('class' => array('price-options-col3')),
+    );
+    $form['prices']['full_price']['col3']['price'] = array(
+      '#prefix' => '<div class="price-wrapper">',
+      '#markup' => '<div class="full-price price">' . $node_obj->field_price_full['und'][0]['value'] . '</div>',
+      '#suffix' => '<div class="price-suffix">&nbsp;</div></div>'
+    );
+    $form['prices']['full_price']['col3']['buy-full'] = array(
+      '#prefix' => '<div class="submit-wrapper">',
+      '#type' => 'submit',
+      '#value' => 'Оплатить',
+      '#suffix' => '<div class="create-order-suffix">&nbsp;</div></div>'
+    );
+    $form['prices']['full_price']['col3']['count-full'] = array(
+      '#title' => 'Кол-во экземпляров',
+      '#type' => 'textfield',
+      '#default_value' => 1,
+      '#size' => 1,
+    );
   }
-  $form['prices']['full_price']['options'] = array(
-    '#prefix' => '<div class="order-option-all-options">',
-    '#markup' => '<div class="order-option-options">' . $output . '</div>',
-  );
-  $options = explode(',', variable_get('custom_a600_full_price_additional', ''));
-  $output = '';
-  foreach ($options as $opt) {
-    $output .= ' <div class="additional-option"><div class="additional-option-marker"> &nbsp;</div><div class="additional-option-text">' . trim($opt) . '</div></div>';
-  }
-  $form['prices']['full_price']['additional'] = array(
-    '#markup' => '<div class="order-options-additional">' . $output . '</div>',
-    '#suffix' => '</div>',
-  );
-  $form['prices']['full_price']['col3'] = array(
-    '#type' => 'fieldset',
-    '#attributes' => array('class' => array('price-options-col3')),
-  );
-  $form['prices']['full_price']['col3']['price'] = array(
-    '#prefix' => '<div class="price-wrapper">',
-    '#markup' => '<div class="full-price price">' . $node_obj->field_price_full['und'][0]['value'] . '</div>',
-    '#suffix' => '<div class="price-suffix">&nbsp;</div></div>'
-  );
-  $form['prices']['full_price']['col3']['buy-full'] = array(
-    '#prefix' => '<div class="submit-wrapper">',
-    '#type' => 'submit',
-    '#value' => 'Оплатить',
-    '#suffix' => '<div class="create-order-suffix">&nbsp;</div></div>'
-  );
-  $form['prices']['full_price']['col3']['count-full'] = array(
-    '#title' => 'Кол-во экземпляров',
-    '#type' => 'textfield',
-    '#default_value' => 1,
-    '#size' => 1,
-  );
 
-  $form['prices']['extended_price'] = array(
-    '#type' => 'fieldset',
-  );
-  $form['prices']['extended_price']['description'] = array(
-    '#prefix' => '<div class="order-option-col1">',
-    '#markup' => '<div class="order-option-title">Полный пакет + доработки</div><div class="order-option-description">' . variable_get('custom_a600_extended_price_description', '') . '</div>',
-    '#suffix' => '</div>',
-  );
-  $options = explode(',', variable_get('custom_a600_extended_price_options', ''));
-  $output = '';
-  foreach ($options as $opt) {
-    $output .= ' &mdash; ' . trim($opt) . '<br>';
+  if (variable_get('custom_a600_extended_price_enabled', FALSE)) {
+    $form['prices']['extended_price'] = array(
+      '#type' => 'fieldset',
+    );
+    $form['prices']['extended_price']['description'] = array(
+      '#prefix' => '<div class="order-option-col1">',
+      '#markup' => '<div class="order-option-title">Полный пакет + доработки</div><div class="order-option-description">' . variable_get('custom_a600_extended_price_description', '') . '</div>',
+      '#suffix' => '</div>',
+    );
+    $options = explode(',', variable_get('custom_a600_extended_price_options', ''));
+    $output = '';
+    foreach ($options as $opt) {
+      $output .= ' &mdash; ' . trim($opt) . '<br>';
+    }
+    $form['prices']['extended_price']['options'] = array(
+      '#prefix' => '<div class="order-option-all-options">',
+      '#markup' => '<div class="order-option-options">' . $output . '</div>',
+    );
+    $options = explode(',', variable_get('custom_a600_extended_price_additional', ''));
+    $output = '';
+    foreach ($options as $opt) {
+      $output .= '<div class="additional-option"><div class="additional-option-marker"> &nbsp;</div><div class="additional-option-text">' . trim($opt) . '</div></div>';
+    }
+    $form['prices']['extended_price']['additional'] = array(
+      '#markup' => '<div class="order-options-additional">' . $output . '</div>',
+      '#suffix' => '</div>',
+    );
+    $form['prices']['extended_price']['col3'] = array(
+      '#type' => 'fieldset',
+      '#attributes' => array('class' => array('price-options-col3')),
+    );
+    $form['prices']['extended_price']['col3']['price'] = array(
+      '#prefix' => '<div class="price-wrapper">',
+      '#markup' => '<div class="extended-price price">' . $node_obj->field_price_extended['und'][0]['value'] . '</div>',
+      '#suffix' => '<div class="price-suffix">&nbsp;</div></div>'
+    );
+    $form['prices']['extended_price']['col3']['buy-extended'] = array(
+      '#prefix' => '<div class="submit-wrapper">',
+      '#type' => 'submit',
+      '#value' => 'Оплатить',
+      '#suffix' => '<div class="create-order-suffix">&nbsp;</div></div>'
+    );
+    $form['prices']['extended_price']['col3']['count-extended'] = array(
+      '#title' => 'Кол-во экземпляров',
+      '#type' => 'textfield',
+      '#default_value' => 1,
+      '#size' => 1,
+    );
   }
-  $form['prices']['extended_price']['options'] = array(
-    '#prefix' => '<div class="order-option-all-options">',
-    '#markup' => '<div class="order-option-options">' . $output . '</div>',
-  );
-  $options = explode(',', variable_get('custom_a600_extended_price_additional', ''));
-  $output = '';
-  foreach ($options as $opt) {
-    $output .= '<div class="additional-option"><div class="additional-option-marker"> &nbsp;</div><div class="additional-option-text">' . trim($opt) . '</div></div>';
-  }
-  $form['prices']['extended_price']['additional'] = array(
-    '#markup' => '<div class="order-options-additional">' . $output . '</div>',
-    '#suffix' => '</div>',
-  );
-  $form['prices']['extended_price']['col3'] = array(
-    '#type' => 'fieldset',
-    '#attributes' => array('class' => array('price-options-col3')),
-  );
-  $form['prices']['extended_price']['col3']['price'] = array(
-    '#prefix' => '<div class="price-wrapper">',
-    '#markup' => '<div class="extended-price price">' . $node_obj->field_price_extended['und'][0]['value'] . '</div>',
-    '#suffix' => '<div class="price-suffix">&nbsp;</div></div>'
-  );
-  $form['prices']['extended_price']['col3']['buy-extended'] = array(
-    '#prefix' => '<div class="submit-wrapper">',
-    '#type' => 'submit',
-    '#value' => 'Оплатить',
-    '#suffix' => '<div class="create-order-suffix">&nbsp;</div></div>'
-  );
-  $form['prices']['extended_price']['col3']['count-extended'] = array(
-    '#title' => 'Кол-во экземпляров',
-    '#type' => 'textfield',
-    '#default_value' => 1,
-    '#size' => 1,
-  );
 
   return $form;
 

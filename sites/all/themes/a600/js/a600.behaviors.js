@@ -76,6 +76,8 @@
         // убираем ненужную обертку от ajax в результатах поиска
         $('#results-wrapper div .search-result').unwrap();
 
+        $('#edit-count-bedroom .form-item-count-bedroom:has(input#edit-count-bedroom-all)').css("width", "85%");
+
         // вставляем кнопки + и - для количества покупаемых проектов
         $('#edit-prices .form-type-textfield input').before('<div class="decrease-count">&#8211;</div>');
         $('#edit-prices .form-type-textfield input').after('<div class="increase-count">&#43;</div>');
@@ -83,13 +85,27 @@
         $('.increase-count', context).click(function () {
             var parent = $(this).parent();
             parent.children('input').each(function () {
-                if (this.value < 10) this.value++;
+                if (this.value < 10) {
+                    this.value++;
+                    var fieldset = $(this).parent().parent();
+                    var fieldset_id = fieldset.attr('id');
+                    var item_price = parseInt(Drupal.settings.item_price);
+                    var standard_price = parseInt(Drupal.settings.standard_price);
+                    $('#' + fieldset_id + ' .price-wrapper .price').text(standard_price + item_price * (this.value-1));
+                }
+
             });
+
         });
         $('.decrease-count', context).click(function () {
             var parent = $(this).parent();
             parent.children('input').each(function () {
                 if (this.value >= 2) this.value--;
+                var fieldset = $(this).parent().parent();
+                var fieldset_id = fieldset.attr('id');
+                var item_price = parseInt(Drupal.settings.item_price);
+                var standard_price = parseInt(Drupal.settings.standard_price);
+                $('#' + fieldset_id + ' .price-wrapper .price').text(standard_price + item_price * (this.value-1));
             });
         });
     }
