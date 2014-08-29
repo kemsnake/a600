@@ -89,7 +89,11 @@
           print "<div class =\"node-title\">$title</div>";
           print render($content['body']);
           print render($content['field_rooms_list']);
-          print '<div class="house-project-price-wrapper">' . render($content['field_price']) . '<div class="price-suffix">&nbsp;</div></div>';
+          if (module_exists('favorites')) {
+            $add_to_fav_form = drupal_get_form('custom_a600_add_favorite_form');
+            $add_to_fav = drupal_render($add_to_fav_form);
+          }
+          print '<div class="house-project-price-wrapper">' . render($content['field_price']) . '<div class="price-suffix">&nbsp;</div><div>' . $add_to_fav . '</div></div>';
           print '<div class="create-order-wrapper">';
             print '<div class="create-order"><a href="/order/' . $node->nid . '">Сформировать заказ</a></div>';
             print '<div class="create-order-suffix">&nbsp;</div>';

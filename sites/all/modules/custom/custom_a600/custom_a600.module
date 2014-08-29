@@ -690,3 +690,70 @@ function custom_a600_project_order_form($form, &$form_state, $nid) {
   return $form;
 
 }
+
+/**
+ * Form callback for the "add favorite form"
+ *
+ * @see favorites_user_block()
+ */
+function custom_a600_add_favorite_form($form, &$form_state) {
+
+  $nid = arg(1);
+  $node = node_load($nid);
+  $title = $node->title;
+  drupal_add_js(drupal_get_path('theme', 'a600') . '/js/favorites.js');
+  $path = strip_tags($_GET['q']);
+  $query = drupal_http_build_query($_GET);
+
+  // Add a collapsible container.
+  $form = array(
+    'title' => array(
+      '#type' => 'value',
+      '#value' => $title,
+      ),
+    'submit' => array(
+      '#type' => 'submit',
+      '#value' => t("Add"),
+      '#submit' => array('favorites_add_favorite_form_submit'),
+    ),
+    'path' => array(
+      '#type' => 'value',
+      '#value' => $path,
+    ),
+    'query' => array(
+      '#type' => 'value',
+      '#value' => $query,
+    ),
+    'uid' => array(
+      '#type' => 'value',
+      '#value' => 0,
+    ),
+  );
+  //Preserve the current path with query string.
+  $form_state['redirect'] = array(
+    $_GET['q'],
+    array(
+      'query' => drupal_http_build_query($_GET),
+    )
+  );
+  // Additionally add path and query to the JS settings.
+  drupal_add_js(
+    array(
+      'favorites' => array(
+        'path' => $path,
+        'query' => $query,
+        'addCallbackPath' => url('favorites/js/add'),
+      ),
+    ),
+    'setting'
+  );
+
+  return $form;
+}
+
+/**
+ * Submit callback for "add favorite" form.
+ */
+function custom_a600_add_favorite_form_submit($form, &$form_state) {
+  favorites_add_favorite($form_state['values']);
+}
