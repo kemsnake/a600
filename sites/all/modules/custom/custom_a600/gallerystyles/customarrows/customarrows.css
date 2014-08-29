@@ -115,11 +115,6 @@
     border: none;
 }
 
-.galleryformatter-customarrows .gallery-thumbs,
-.galleryformatter-customarrows .gallery-slides {
-    width:770px!important;
-}
-
 .galleryformatter-customarrows .gallery-thumbs a.arrow.back{
     background: url("images/back.png") no-repeat scroll;
     display: block;
