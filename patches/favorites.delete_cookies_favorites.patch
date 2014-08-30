@@ -1,0 +1,21 @@
+Index: sites/all/modules/favorites/favorites.module
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sites/all/modules/favorites/favorites.module	(revision 6c439f68aad7d02f1af35c59a3ac9528b61f4c22)
++++ sites/all/modules/favorites/favorites.module	(revision )
+@@ -77,11 +77,11 @@
+ function favorites_remove_favorite($favorite) {
+ 
+   global $user;
+-  $access = (user_access('manage own favorites') && $user->uid == $favorite->uid); // no admin page implemented yet! || user_access('manage all favorites');
++  $access = (user_access('manage own favorites') && ($user->uid == $favorite->uid || strpos($favorite->fid, 'c_') === 0)); // no admin page implemented yet! || user_access('manage all favorites');
+   if (
+     $access
+     &&
+-    drupal_valid_token($_GET['token'], $favorite->timestamp . $favorite->uid . $favorite->path)
++    drupal_valid_token($_GET['token'], $favorite->timestamp . $favorite->uid . $favorite->path, TRUE)
+   ) {
+     _favorites_delete($favorite);
+     if (!empty($_GET['js'])) {

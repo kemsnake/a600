@@ -79,19 +79,6 @@
 
 .galleryformatter-customarrows .gallery-thumbs .back:hover { background-position: -4px -156px; }
 
-.galleryformatter-customarrows .slide-button {
-  background: transparent url(images/next-prev.png) no-repeat top left;
-  height: 64px;
-  width: 32px;
-  top: 43%;
-  text-indent: -9999px;
-  filter:alpha(opacity=20);
-  -ms-filter:”alpha(opacity=20)”;
-  -moz-opacity:0.2;
-  -khtml-opacity: 0.2;
-  opacity: 0.2;
-}
-
 .galleryformatter-customarrows .prev-slide {
   background-position: top left;
 }

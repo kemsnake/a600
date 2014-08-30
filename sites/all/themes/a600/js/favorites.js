@@ -26,11 +26,6 @@
         success: function(data) {
           Drupal.favorites.rebuild(data);
 
-          // Collapse the form fieldset again.
-          var fs = $('form#favorites-add-favorite-form fieldset#edit-add');
-          if (!fs.is('.collapsed')) {
-            fs.find("a.fieldset-title").first().click();
-          }
         }
       });
     },
@@ -38,7 +33,7 @@
       return {
         path: Drupal.settings.favorites.path,
         query: Drupal.settings.favorites.query,
-        title: $('form#favorites-add-favorite-form input[name=title]').val()
+        title: $('form#custom-a600-add-favorite-form input[name=title]').val()
       };
     },
     rebuild: function(data) {
@@ -46,6 +41,10 @@
         Drupal.detachBehaviors($('div#favorites-list'));
         $('div#favorites-list').html(data.list);
         Drupal.attachBehaviors($('div#favorites-list'));
+      }
+      else{
+        Drupal.detachBehaviors($('div#favorites-list'));
+        $('div#favorites-list').html('У вас нет проектов в избранном');
       }
     },
     remove: function(caller) {
@@ -73,7 +72,7 @@
         event.preventDefault();
       }).addClass('js-processed');
       // We need to suppress any native submit options for the form before we add
-      $('form#favorites-add-favorite-form:not(.js-processed)', context).submit(function(event){
+      $('form#custom-a600-add-favorite-form:not(.js-processed)', context).submit(function(event){
         Drupal.favorites.add();
         event.preventDefault();
       }).addClass('js-processed');

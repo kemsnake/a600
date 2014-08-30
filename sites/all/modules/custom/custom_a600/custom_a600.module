@@ -152,6 +152,10 @@ function custom_a600_block_info() {
     'info' => t('Телефон сайта(шапка)'),
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
+  $blocks['favorites_projects'] = array(
+    'info' => t('Избранные проекты'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
   return $blocks;
 }
 
@@ -165,6 +169,9 @@ function custom_a600_block_view($delta) {
     case 'site_top_phone':
       $number = variable_get('custom_a600_site_phone', '');
       $block['content'] = '<div class="top-phone-title">Звоните:</div><div class="top-phone-number">'. $number . '</div>';
+      break;
+    case 'favorites_projects':
+      $block['content'] = '<div id="favorites-list">' . favorites_list() . '</div>';
       break;
   }
   return $block;
@@ -708,7 +715,7 @@ function custom_a600_add_favorite_form($form, &$form_state) {
   // Add a collapsible container.
   $form = array(
     'title' => array(
-      '#type' => 'value',
+      '#type' => 'hidden',
       '#value' => $title,
       ),
     'submit' => array(
