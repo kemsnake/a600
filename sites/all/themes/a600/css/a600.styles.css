@@ -283,9 +283,10 @@ body {
     height:20px;
     margin-left:5px;
 }
-#custom-a600-project-search fieldset#more-wrapper{
+#custom-a600-project-search .more-wrapper{
     width:100%;
     text-align: center;
+    float: left;
 }
 .search-no-results-block {
     font-size: 36px;

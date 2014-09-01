@@ -31,7 +31,7 @@ function feature_house_projects_image_default_styles() {
     'name' => 'house_project_full',
     'label' => 'house_project_full',
     'effects' => array(
-      7 => array(
+      12 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -41,13 +41,13 @@ function feature_house_projects_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => 770,
+          'width' => 780,
           'height' => '',
           'upscale' => 1,
         ),
         'weight' => 1,
       ),
-      8 => array(
+      13 => array(
         'label' => 'Crop',
         'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
         'effect callback' => 'image_crop_effect',
@@ -57,13 +57,13 @@ function feature_house_projects_image_default_styles() {
         'module' => 'image',
         'name' => 'image_crop',
         'data' => array(
-          'width' => 770,
+          'width' => 780,
           'height' => 450,
           'anchor' => 'center-center',
         ),
         'weight' => 2,
       ),
-      9 => array(
+      14 => array(
         'label' => 'Overlay (watermark)',
         'help' => 'Choose the file image you wish to use as an overlay, and position it in a layer on top of the canvas.',
         'effect callback' => 'canvasactions_file2canvas_effect',
@@ -88,7 +88,7 @@ function feature_house_projects_image_default_styles() {
     'name' => 'house_project_thumb',
     'label' => 'house_project_thumb',
     'effects' => array(
-      17 => array(
+      10 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -104,7 +104,7 @@ function feature_house_projects_image_default_styles() {
         ),
         'weight' => 1,
       ),
-      18 => array(
+      11 => array(
         'label' => 'Crop',
         'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
         'effect callback' => 'image_crop_effect',
@@ -115,7 +115,7 @@ function feature_house_projects_image_default_styles() {
         'name' => 'image_crop',
         'data' => array(
           'width' => 130,
-          'height' => 100,
+          'height' => 76,
           'anchor' => 'center-center',
         ),
         'weight' => 2,

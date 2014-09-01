@@ -69,14 +69,16 @@
         $('.form-type-radio:has(input:checked)', context).each(function () {
             $(this).css('background', '#f2cda5');
         });
-        // прячем кнопку еще
-        if (Drupal.settings.remove_more_text === true) {
-            $('fieldset#more-wrapper').hide();
-        }
+
         // убираем ненужную обертку от ajax в результатах поиска
         $('#results-wrapper div .search-result').unwrap();
 
         $('#edit-count-bedroom .form-item-count-bedroom:has(input#edit-count-bedroom-all)').css("width", "85%");
+
+        // прячем кнопку еще
+        if (Drupal.settings.remove_more_text === true) {
+            $('div.more-wrapper').hide();
+        }
 
         // вставляем кнопки + и - для количества покупаемых проектов
         $('#edit-prices .form-type-textfield input').before('<div class="decrease-count">&#8211;</div>');
@@ -108,6 +110,26 @@
                 $('#' + fieldset_id + ' .price-wrapper .price').text(standard_price + item_price * (this.value-1));
             });
         });
+
+
+        //$("a#load-more-link").die('click');
+        $('a#load-more-link').die("click").live('click', function(){
+            var href = $(this).attr("href");
+            $.ajax({
+                url: href,
+                dataType: 'json',
+                type: 'POST',
+                error: function(a, b, c) {
+                    console.log('An error occured.\n\nStatus:\n' + b + '\n\nMessage:\n' + c);
+                },
+                success: function(data) {
+                    $('div.more-wrapper').hide();
+                    $('fieldset#results-wrapper').append(data);
+                }
+            });
+            return false;
+        });
+
     }
   };
 

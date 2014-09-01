@@ -31,6 +31,13 @@ function custom_a600_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
+  $items['house_projects/search/%'] = array(
+    'title' => 'Project search',
+    'page callback' => '_custom_a600_search_projects_append_ajax',
+    'page arguments' => array(2),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
 
   return $items;
 }
@@ -183,7 +190,7 @@ function custom_a600_project_search($form, &$form_state) {
   if (!isset($form_state['vales'])) {
     $default_params = array(
       'square' => '100-200',
-      'count_bedroom' => '1',
+      'count_bedroom' => 'all',
       'garage' => '23',
       'floor' => '7',
       'attic_floor' => FALSE,
@@ -191,6 +198,7 @@ function custom_a600_project_search($form, &$form_state) {
       'price_slider' => array('value' => 10000, 'value2' => 150000),
       'page' => 0,
       'count_search' => 0,
+      'count_projects' => FALSE,
     );
   }
   else {
@@ -225,9 +233,10 @@ function custom_a600_project_search($form, &$form_state) {
 
   $options = explode(',', variable_get('custom_a600_count_bedroom_options', ''));
   $options = array_combine($options, $options);
-  $bedroom_options['all'] = 'Не важно';
-  $bedroom_options = array_merge($bedroom_options, $options);
-  array_push($options, 'Не важно');
+  $bedroom_options['all'] = t('Не важно');
+  foreach ($options as &$opt) {
+    $bedroom_options[(string) $opt] = (string) $opt;
+  }
   $form['filters']['count_bedroom'] = array(
     '#title' => 'Сколько спален?',
     '#type' => 'radios',
@@ -306,6 +315,14 @@ function custom_a600_project_search($form, &$form_state) {
     '#attributes' => array('id' => array('results-wrapper')),
   );
 
+  $form['results-wrapper']['results'] = array(
+    '#markup' => _custom_a600_find_projects($default_params),
+  );
+
+  $form['results-wrapper']['count_projects'] = array(
+    '#type' => 'hidden',
+    '#value' => $default_params['count_projects'],
+  );
   $form['results-wrapper']['count_search'] = array(
     '#type' => 'hidden',
     '#value' => $default_params['count_search'],
@@ -315,26 +332,9 @@ function custom_a600_project_search($form, &$form_state) {
     '#value' => $default_params['page'],
   );
 
-  $form['results-wrapper']['results'] = array(
-    '#markup' => _custom_a600_find_projects($default_params),
-  );
-
-  $form['more-wrapper'] = array(
-    '#type' => 'fieldset',
-    '#collapsible' => FALSE,
-    '#attributes' => array('id' => array('more-wrapper')),
-  );
-
-  $ajax_more = array(
-    'callback' => '_custom_a600_search_projects_append_ajax',
-    'wrapper' => 'results-wrapper',
-    'method' => 'append',
-    'effect' => 'fade',
-  );
-  $form['more-wrapper']['more_text'] = array(
-    '#type' => 'button',
-    '#value' => 'Ещё',
-    '#ajax' => $ajax_more,
+  $more_href = 'house_projects/search/' . urlencode(serialize($default_params));
+  $form['results-wrapper']['more_text'] = array(
+    '#markup' => '<div class ="more-wrapper"><a id="load-more-link" href="' . $more_href . '"> Загрузить ещё </a></div>',
   );
 
   return $form;
@@ -346,38 +346,31 @@ function _custom_a600_search_projects_ajax($form, &$form_state) {
     '#collapsible' => FALSE,
     '#attributes' => array('id' => array('results-wrapper')),
   );
-  /*$form_state['values']['count_search'] = 0;
   $form_state['values']['page'] = 0;
-  $form['results-wrapper']['count_search'] = array(
-    '#type' => 'hidden',
-    '#value' => 0,
-  );
-  $form['results-wrapper']['page'] = array(
-    '#type' => 'hidden',
-    '#value' => 0,
-  );*/
+  $form_state['values']['count_search'] = 0;
+  $form_state['values']['count_projects'] = 0;
   $form['results-wrapper']['results'] = array(
     '#markup' => _custom_a600_find_projects($form_state['values']),
   );
+  if ($form_state['values']['count_projects'] >= $form_state['values']['count_search']) {
+    $more_href = 'house_projects/search/' . urlencode(serialize($form_state['values']));
+    $form['results-wrapper']['more_text'] = array(
+      '#markup' => '<div class ="more-wrapper"><a id="load-more-link" href="' . $more_href . '"> Загрузить ещё </a></div>',
+    );
+  }
   return $form['results-wrapper'];
 }
 
-function _custom_a600_search_projects_append_ajax($form, &$form_state) {
-  $form = array();
-  $form['results'] = array(
-    '#markup' => _custom_a600_find_projects($form_state['values']),
-  );
-  $form['count_search'] = array(
-    '#type' => 'hidden',
-    '#value' => $form_state['values']['count_search'],
-  );
-  $form['page'] = array(
-    '#type' => 'hidden',
-    '#value' => $form_state['values']['page'],
-  );
-  return $form;
+function _custom_a600_search_projects_append_ajax($params) {
+  $params = urldecode($params);
+  $params = unserialize($params);
+  $results = _custom_a600_find_projects($params);
+  if ($params['count_projects'] >= $params['count_search']) {
+    $more_href = 'house_projects/search/' . urlencode(serialize($params));
+    $results .= '<div class ="more-wrapper"><a id="load-more-link" href="' . $more_href . '"> Загрузить ещё </a></div>';
+  }
+  drupal_json_output($results);
 }
-
 
 function _custom_a600_find_projects(&$params = NULL) {
   $query = new EntityFieldQuery();
@@ -444,7 +437,7 @@ function _custom_a600_find_projects(&$params = NULL) {
     $text_offset = 0;
   }
   // считаем один раз количество проектов по запросу
-  if (!isset($params['count_projects'])) {
+  if (!isset($params['count_projects']) || $params['count_projects'] == FALSE) {
     $query_count = clone $query;
     $query_count->count();
     $params['count_projects'] = $query_count->execute();
@@ -455,6 +448,9 @@ function _custom_a600_find_projects(&$params = NULL) {
   // если у нас последняя страница - скрываем кнопку "Еще"
   if ($params['count_projects'] <= $params['count_search']) {
     drupal_add_js(array('remove_more_text' => TRUE), 'setting');
+  }
+  else {
+    drupal_add_js(array('remove_more_text' => FALSE), 'setting');
   }
   $result = $query->execute();
   $output = '';
@@ -483,6 +479,7 @@ function _custom_a600_find_projects(&$params = NULL) {
     $output = '<div class="search-no-results-block">По вашему запросу не найдено проектов.</div>';
     drupal_add_js(array('remove_more_text' => TRUE), 'setting');
   }
+
   return $output;
 }
 
