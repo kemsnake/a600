@@ -860,7 +860,7 @@ function custom_a600_add_favorite_form($form, &$form_state) {
       ),
     'submit' => array(
       '#type' => 'submit',
-      '#value' => t("Add"),
+      '#value' => t(""),
       '#submit' => array('favorites_add_favorite_form_submit'),
     ),
     'path' => array(

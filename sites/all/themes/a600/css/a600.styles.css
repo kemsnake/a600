@@ -442,6 +442,13 @@ body {
     height:30px;
 }
 
+.node-house-project-full .custom-a600-add-favorite-form #edit-submit {
+    background: url(../images/heart.jpg);
+    border:0;
+    outline:none;
+    width:22px;
+    margin-top:3px;
+}
 .node-house-project-full .footer-section .create-order-wrapper{
     font-size: 30px;
     width: 27%;
