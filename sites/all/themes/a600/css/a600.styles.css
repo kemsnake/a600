@@ -73,6 +73,17 @@ body {
     border-radius: 15px;
     padding-top: 10px;
     padding-left: 10px;
+    overflow: hidden;
+}
+
+#custom-a600-project-search #edit-extra-filters {
+    background: white;
+    border-radius: 15px;
+    padding-top: 10px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    width:100%;
+    overflow: hidden;
 }
 
 #custom-a600-project-search .bottom-triangle-wrapper {
@@ -99,20 +110,59 @@ body {
     overflow: hidden;
 }
 
-#custom-a600-project-search .form-item-square {
+#custom-a600-project-search .form-type-radios.form-item-square {
     width: 24%;
 }
 
-#custom-a600-project-search .form-item-count-bedroom {
+#custom-a600-project-search .form-type-radios.form-item-count-bedroom {
     width: 13%;
 }
 
-#custom-a600-project-search .form-item-garage {
+#custom-a600-project-search .form-type-radios.form-item-garage {
     width: 24%;
 }
 #custom-a600-project-search #edit-floor-group {
     width: 24%;
 }
+#custom-a600-project-search #edit-dimensions-group {
+    width: 24%;
+}
+#custom-a600-project-search #edit-count-bedroom-group {
+    width: 24%;
+    margin-left: 24%;
+}
+#custom-a600-project-search #edit-count-bedroom-group {
+    width: 30%;
+    margin-left: 20%;
+}
+#custom-a600-project-search #edit-count-bedroom-group label,
+#custom-a600-project-search #edit-count-bedroom-group input {
+    float:left;
+}
+#custom-a600-project-search .form-item-length,
+#custom-a600-project-search .form-item-width {
+    width: 50%;
+}
+#custom-a600-project-search .form-item-length label,
+#custom-a600-project-search .form-item-width label {
+    float: left;
+    padding-top: 20px;
+    font-size: 20px;
+}
+#custom-a600-project-search .form-item-length .sliderfield,
+#custom-a600-project-search .form-item-width .sliderfield {
+    width: 70%;
+    float: left;
+    padding: 15px;
+}
+#custom-a600-project-search .form-type-radios.form-item-second-light,
+#custom-a600-project-search .form-type-radios.form-item-balcony,
+#custom-a600-project-search .form-type-radios.form-item-terrace,
+#custom-a600-project-search .form-type-radios.form-item-erker,
+#custom-a600-project-search .form-type-radios.form-item-pool {
+    width: 17%;
+}
+
 #custom-a600-project-search .form-item-attic-floor,
 #custom-a600-project-search .form-item-house-basement {
     margin-left: 10px;
@@ -125,11 +175,13 @@ body {
     padding:10px!important;
 }
 
-#custom-a600-project-search #edit-square .form-item,
+/*#custom-a600-project-search #edit-square .form-item,
 #custom-a600-project-search #edit-garage .form-item,
 #custom-a600-project-search #edit-floor .form-item,
 #custom-a600-project-search .form-item-price-slider .sliderfield,
-#custom-a600-project-search #edit-count-bedroom .form-item {
+#custom-a600-project-search #edit-count-bedroom .form-item {*/
+#custom-a600-project-search .form-type-radio,
+#custom-a600-project-search .form-type-slider .sliderfield {
     float:left;
     border: 3px dashed #f2cda5;
     border-radius: 5px;
@@ -137,18 +189,17 @@ body {
     text-align: center;
 }
 
-#custom-a600-project-search #edit-square .form-item label,
+/*#custom-a600-project-search #edit-square .form-item label,
 #custom-a600-project-search #edit-garage .form-item label,
 #custom-a600-project-search #edit-floor .form-item label,
 #custom-a600-project-search .form-item-price-slider .sliderfield label,
-#custom-a600-project-search #edit-count-bedroom .form-item label{
+#custom-a600-project-search #edit-count-bedroom .form-item label{*/
+#custom-a600-project-search .form-type-radio label,
+#custom-a600-project-search .form-type-slider .sliderfield label {
     padding:7px;
     display:block;
 }
 
-#custom-a600-project-search #edit-garage .form-item:last-child {
-    width:160px;
-}
 #custom-a600-project-search #edit-garage .form-item {
     width:120px;
 }
