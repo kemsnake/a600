@@ -586,7 +586,7 @@ function _custom_a600_find_projects(&$params = NULL) {
     $query->fieldCondition('field_price', 'value', $params['price_slider']['value2'], '<=');
   }
   if (isset($params['garage']) && $params['garage'] != 'all') {
-    $query->fieldCondition('field_house_garage', 'tid', $params['garage'], '=');
+    $query->fieldCondition('field_house_garage', 'tid', 23, '!=');
   }
   if (isset($params['second_light']) && $params['second_light'] != 'all') {
     $query->fieldCondition('field_second_light', 'value', $params['second_light'], '=');
