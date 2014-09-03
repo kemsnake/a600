@@ -515,6 +515,32 @@ function _custom_a600_search_projects_append_ajax($params) {
   drupal_json_output($results);
 }
 
+/*
+ * Find and render house projects by params
+ *
+ *  @param $params array
+ *   Search params
+ *   - 'width': project width. Array ('value', 'value2')
+ *   - 'length': project length. Array ('value', 'value2')
+ *   - 'all_dimensions': Flag for ignore dimensions params)width and length)
+ *   - 'floor': Count of floors (taxonomy)
+ *   - 'attic_floor': Attic floor (bool)
+ *   - 'house_basement': House basement (bool)
+ *   - 'price_slider': project price. Array ('value', 'value2')
+ *   - 'second_light': Second light (bool or all)
+ *   - 'balcony': balcony (bool or all)
+ *   - 'terrace': terrace (bool or all)
+ *   - 'erker': erker (bool or all)
+ *   - 'pool': pool (bool or all)
+ *   - 'count_bedroom_floor1': Bedrooms on floor1 (int or all)
+ *   - 'count_bedroom_floor2': Bedrooms on floor2 (int or all)
+ *   - 'page': search page (int)
+ *   - 'count_search': count searched (offset) (int)
+ *   - 'count_projects': projects count all (int)
+ *
+ *  @return
+ *   Markup of search results
+ */
 function _custom_a600_find_projects(&$params = NULL) {
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
@@ -529,9 +555,17 @@ function _custom_a600_find_projects(&$params = NULL) {
     $query->fieldCondition('field_square', 'value', $values[0], '>=');
     $query->fieldCondition('field_square', 'value', $values[1], '<=');
   }
-  if (isset($params['garage']) && $params['garage'] != 'all') {
-    $query->fieldCondition('field_house_garage', 'tid', $params['garage'], '=');
+  if ($params['all_dimensions'] != TRUE) {
+    if (isset($params['width'])) {
+      $query->fieldCondition('field_width', 'value', $params['width']['value'],  '>=');
+      $query->fieldCondition('field_width', 'value', $params['width']['value2'], '<=');
+    }
+    if (isset($params['length'])) {
+      $query->fieldCondition('field_length', 'value', $params['length']['value'],  '>=');
+      $query->fieldCondition('field_length', 'value', $params['length']['value2'], '<=');
+    }
   }
+
   if (isset($params['floor'])) {
     // hardcoded floor option
     if ($params['floor'] == 6) {
@@ -551,6 +585,26 @@ function _custom_a600_find_projects(&$params = NULL) {
     $query->fieldCondition('field_price', 'value', $params['price_slider']['value'],  '>=');
     $query->fieldCondition('field_price', 'value', $params['price_slider']['value2'], '<=');
   }
+  if (isset($params['garage']) && $params['garage'] != 'all') {
+    $query->fieldCondition('field_house_garage', 'tid', $params['garage'], '=');
+  }
+  if (isset($params['second_light']) && $params['second_light'] != 'all') {
+    $query->fieldCondition('field_second_light', 'value', $params['second_light'], '=');
+  }
+  if (isset($params['balcony']) && $params['balcony'] != 'all') {
+    $query->fieldCondition('field_balcony', 'value', $params['balcony'], '=');
+  }
+  if (isset($params['terrace']) && $params['terrace'] != 'all') {
+    $query->fieldCondition('field_terrace', 'value', $params['terrace'], '=');
+  }
+  if (isset($params['erker']) && $params['erker'] != 'all') {
+    $query->fieldCondition('field_erker', 'value', $params['erker'], '=');
+  }
+  if (isset($params['pool']) && $params['pool'] != 'all') {
+    $query->fieldCondition('field_pool', 'value', $params['pool'], '=');
+  }
+
+  //todo add count bedrooms handler
 
   // ищем спец спрецпредложение
   $query_spec_offer = clone $query;
@@ -860,7 +914,7 @@ function custom_a600_add_favorite_form($form, &$form_state) {
       ),
     'submit' => array(
       '#type' => 'submit',
-      '#value' => t(""),
+      '#value' => '',
       '#submit' => array('favorites_add_favorite_form_submit'),
     ),
     'path' => array(

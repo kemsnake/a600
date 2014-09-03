@@ -67,12 +67,15 @@
    */
   Drupal.behaviors.favoritesLinks = {
     attach: function(context) {
-      $('a.favorites-remove:not(.js-processed)',context).click(function(event){
+        var ua = navigator.userAgent,
+        event = (ua.match(/iPad/i)) ? "touchstart" : "click"; //Если имеем дело с iPad - touchstart, иначе - событие click;
+
+        $('a.favorites-remove:not(.js-processed)',context).bind(event, function(event){
         Drupal.favorites.remove($(this));
         event.preventDefault();
       }).addClass('js-processed');
       // We need to suppress any native submit options for the form before we add
-      $('form#custom-a600-add-favorite-form:not(.js-processed)', context).submit(function(event){
+      $('form#custom-a600-add-favorite-form .form-submit:not(.js-processed)', context).bind(event,function(event){
         Drupal.favorites.add();
         event.preventDefault();
       }).addClass('js-processed');
