@@ -122,5 +122,7 @@
       </a>
     <?php endif; ?>
     <?php print render($page['footer']); ?>
+    <div class="footer-payments">
+    </div>
   </footer>
 </div>

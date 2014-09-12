@@ -32,17 +32,17 @@ body {
 .l-region--footer{
     float:left;
 }
-/*.l-region--footer ul.menu li{
-    list-style-image: none;
-    list-style-type: none;
-}
-.l-region--footer ul.menu li a{
-    color:black;
-}*/
 #block-menu-menu-footer-menu-1,
 #block-menu-menu-footer-menu-2{
     float: left;
-
+}
+.footer-payments {
+    background: url('../images/payments.jpg');
+    background-size: contain;
+    overflow: hidden;
+    float: right;
+    width: 200px;
+    height: 45px;
 }
 .site-logo {
     width: 150px;

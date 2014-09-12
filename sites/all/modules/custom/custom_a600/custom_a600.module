@@ -203,8 +203,10 @@ function custom_a600_project_search($form, &$form_state) {
       'balcony' => 'all',
       'terrace' => 'all',
       'erker' => 'all',
-      'count_bedroom_floor1' => 'all',
-      'count_bedroom_floor2' => 'all',
+      'count_bedroom_floor1' => 3,
+      'count_bedroom_floor1_all' => TRUE,
+      'count_bedroom_floor2' => 3,
+      'count_bedroom_floor2_all' => TRUE,
       'pool' => 'all',
       'page' => 0,
       'count_search' => 0,
@@ -432,12 +434,27 @@ function custom_a600_project_search($form, &$form_state) {
     '#ajax' => $ajax,
     '#default_value' => $default_params['count_bedroom_floor1'],
   );
+
+  $form['filters']['extra_filters']['count_bedroom_group']['count_bedroom_floor1_all'] = array(
+    '#title' => 'Не важно',
+    '#type' => 'checkbox',
+    '#ajax' => $ajax,
+    '#default_value' => $default_params['count_bedroom_floor1_all'],
+  );
+
   $form['filters']['extra_filters']['count_bedroom_group']['count_bedroom_floor2'] = array(
     '#title' => 'Сколько спален на втором этаже?',
     '#type' => 'textfield',
     '#size' => 3,
     '#ajax' => $ajax,
     '#default_value' => $default_params['count_bedroom_floor2'],
+  );
+
+  $form['filters']['extra_filters']['count_bedroom_group']['count_bedroom_floor2_all'] = array(
+    '#title' => 'Не важно',
+    '#type' => 'checkbox',
+    '#ajax' => $ajax,
+    '#default_value' => $default_params['count_bedroom_floor2_all'],
   );
 
   $form['filters']['extra_filters']['pool'] = array(
@@ -605,6 +622,12 @@ function _custom_a600_find_projects(&$params = NULL) {
   }
 
   //todo add count bedrooms handler
+  if (isset($params['count_bedroom_floor1']) && $params['count_bedroom_floor1_all'] != TRUE) {
+    $query->fieldCondition('field_bedroom_floor1', 'value', $params['count_bedroom_floor1'], '=');
+  }
+  if (isset($params['count_bedroom_floor2']) && $params['count_bedroom_floor2_all'] != TRUE) {
+    $query->fieldCondition('field_bedroom_floor2', 'value', $params['count_bedroom_floor2'], '=');
+  }
 
   // ищем спец спрецпредложение
   $query_spec_offer = clone $query;
