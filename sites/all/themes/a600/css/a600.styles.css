@@ -543,7 +543,7 @@ body {
     background: #ffffff;
     box-shadow: 2px 2px;
 }
-.node-house-project-order {
+.custom-a600-project-order-form .node-house-project-order {
     border-radius: 15px 15px 0 0;
 }
 .node-house-project-order .top-section {
@@ -593,6 +593,19 @@ fieldset#edit-extended-price {
     box-shadow: 2px 2px;
     margin: 0 20px 20px 15%;
     padding: 20px;
+}
+fieldset#edit-contacts {
+    border: 0;
+}
+fieldset#edit-contacts .fieldset-wrapper{
+    width:45%;
+    margin: auto;
+}
+fieldset#edit-contacts .form-type-textfield label{
+    display: block;
+    float: left;
+    text-align: left;
+    width: 140px;
 }
 fieldset#edit-standard-price .order-option-options {
     margin-top: 60px;

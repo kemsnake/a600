@@ -89,7 +89,7 @@
             parent.children('input').each(function () {
                 if (this.value < 10) {
                     this.value++;
-                    var fieldset = $(this).parent().parent();
+                    var fieldset = $(this).parent().parent().parent();
                     var fieldset_id = fieldset.attr('id');
                     var item_price = parseInt(Drupal.settings.item_price);
                     var standard_price = parseInt(Drupal.settings.standard_price);
@@ -103,7 +103,7 @@
             var parent = $(this).parent();
             parent.children('input').each(function () {
                 if (this.value >= 2) this.value--;
-                var fieldset = $(this).parent().parent();
+                var fieldset = $(this).parent().parent().parent();
                 var fieldset_id = fieldset.attr('id');
                 var item_price = parseInt(Drupal.settings.item_price);
                 var standard_price = parseInt(Drupal.settings.standard_price);
