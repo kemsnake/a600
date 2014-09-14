@@ -219,15 +219,6 @@ function feature_user_config_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'administer payments'.
-  $permissions['administer payments'] = array(
-    'name' => 'administer payments',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'robokassa',
-  );
-
   // Exported permission: 'administer permissions'.
   $permissions['administer permissions'] = array(
     'name' => 'administer permissions',
@@ -244,15 +235,6 @@ function feature_user_config_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'search',
-  );
-
-  // Exported permission: 'administer settings'.
-  $permissions['administer settings'] = array(
-    'name' => 'administer settings',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'robokassa',
   );
 
   // Exported permission: 'administer site configuration'.
@@ -377,15 +359,6 @@ function feature_user_config_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'node',
-  );
-
-  // Exported permission: 'create payment order'.
-  $permissions['create payment order'] = array(
-    'name' => 'create payment order',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'robokassa',
   );
 
   // Exported permission: 'create url aliases'.
@@ -586,24 +559,6 @@ function feature_user_config_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'media',
-  );
-
-  // Exported permission: 'make foreign payment'.
-  $permissions['make foreign payment'] = array(
-    'name' => 'make foreign payment',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'robokassa',
-  );
-
-  // Exported permission: 'make payment'.
-  $permissions['make payment'] = array(
-    'name' => 'make payment',
-    'roles' => array(
-      'administrator' => 'administrator',
-    ),
-    'module' => 'robokassa',
   );
 
   // Exported permission: 'manage features'.
