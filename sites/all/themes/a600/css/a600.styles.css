@@ -450,6 +450,10 @@ body {
     width:22px;
     margin-top:3px;
 }
+
+.node-house-project-full .custom-a600-add-favorite-form #edit-submit.favorite {
+    background: url(../images/heart_red.jpg);
+}
 .node-house-project-full .footer-section .create-order-wrapper{
     font-size: 30px;
     width: 27%;

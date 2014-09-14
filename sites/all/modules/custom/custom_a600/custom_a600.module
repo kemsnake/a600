@@ -1018,6 +1018,16 @@ function custom_a600_add_favorite_form($form, &$form_state) {
   $path = strip_tags($_GET['q']);
   $query = drupal_http_build_query($_GET);
 
+  // если проект в избранном, добавляем класс картинке
+  global $user;
+  $classes = array();
+  $favorites = favorites_load_favorites($user);
+  foreach ($favorites as $favorite) {
+    if ($path == $favorite->path) {
+      $classes = array('favorite');
+    }
+  }
+
   // Add a collapsible container.
   $form = array(
     'title' => array(
@@ -1028,6 +1038,7 @@ function custom_a600_add_favorite_form($form, &$form_state) {
       '#type' => 'submit',
       '#value' => '',
       '#submit' => array('favorites_add_favorite_form_submit'),
+      '#attributes' => array('class' => $classes),
     ),
     'path' => array(
       '#type' => 'value',

@@ -85,16 +85,20 @@
       print "<div class =\"top-section\">";
         print "<div class =\"top-left-section\">";
           // Render only first image
-$content['field_photo']['#items'] = array(array_shift($content['field_photo']['#items']));
-print render($content['field_photo']);
-print "</div>";
-print "<div class =\"top-right-section\">";
-  print "<div class =\"node-title\"><a href=\"$node_url\">$title</a>";
-    print "<div class =\"remove-favorite\"><a href=\"$node_url\">$title</a>";
-      print "</div>";
-    print render($content['body']);
-    print render($content['field_rooms_list']);
-    print "</div>";
+          $content['field_photo']['#items'] = array(array_shift($content['field_photo']['#items']));
+          print render($content['field_photo']);
+        print "</div>";
+
+        print "<div class =\"top-right-section\">";
+          if (!isset($delete_favorite_link)) {
+            print "<div class =\"node-title\"><a href=\"$node_url\">$title</a></div>";
+          }
+          else {
+            print "<div class =\"node-title\">$delete_favorite_link</div>";
+          }
+          print render($content['body']);
+          print render($content['field_rooms_list']);
+        print "</div>";
   print "</div>";
 ?>
 </div>

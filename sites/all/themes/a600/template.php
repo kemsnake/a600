@@ -26,6 +26,7 @@ function a600_js_alter(&$js) {
 }
 
 function a600_favorites($favorites) {
+  drupal_add_js(drupal_get_path('theme', 'a600') . '/js/favorites.js');
   $output = '';
   $destination = drupal_get_destination();
   $destination = explode('=', $destination['destination'], 2);
@@ -44,7 +45,7 @@ function a600_favorites($favorites) {
           ),
           'attributes' => array(
             'class' => array('favorites-remove'),
-            'title' => t('delete this item'),
+            'title' => t('Удалить из избранного'),
           ),
         )
       );
@@ -53,6 +54,12 @@ function a600_favorites($favorites) {
     $node->delete_favorite_link = $link;
     $node = node_view($node, 'order');
     $output .= drupal_render($node);
+  }
+  if ($output != '') {
+    $output = '<div id="favorites-list">' . $output . '</div>';
+  }
+  else {
+    $output = 'У вас нет проектов в избранном';
   }
   return $output;
 }

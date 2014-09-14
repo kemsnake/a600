@@ -25,7 +25,7 @@
         },
         success: function(data) {
           Drupal.favorites.rebuild(data);
-
+          $('form#custom-a600-add-favorite-form .form-submit').attr('class', 'favorite')
         }
       });
     },
@@ -37,15 +37,9 @@
       };
     },
     rebuild: function(data) {
-      if (data.list) {
         Drupal.detachBehaviors($('div#favorites-list'));
         $('div#favorites-list').html(data.list);
         Drupal.attachBehaviors($('div#favorites-list'));
-      }
-      else{
-        Drupal.detachBehaviors($('div#favorites-list'));
-        $('div#favorites-list').html('У вас нет проектов в избранном');
-      }
     },
     remove: function(caller) {
       jQuery.ajax({
@@ -56,6 +50,8 @@
           alert('An error occured.\n\nStatus:\n' + b + '\n\nMessage:\n' + c);
         },
         success: function(data) {
+            console.log('success');
+            console.log(data);
           Drupal.favorites.rebuild(data);
         }
       });
@@ -67,10 +63,10 @@
    */
   Drupal.behaviors.favoritesLinks = {
     attach: function(context) {
-        var ua = navigator.userAgent,
-        event = (ua.match(/iPad/i)) ? "touchstart" : "click"; //Если имеем дело с iPad - touchstart, иначе - событие click;
+      var ua = navigator.userAgent,
+      event = (ua.match(/iPad/i)) ? "touchstart" : "click"; //Если имеем дело с iPad - touchstart, иначе - событие click;
 
-        $('a.favorites-remove:not(.js-processed)',context).bind(event, function(event){
+      $('a.favorites-remove:not(.js-processed)',context).bind(event, function(event){
         Drupal.favorites.remove($(this));
         event.preventDefault();
       }).addClass('js-processed');
