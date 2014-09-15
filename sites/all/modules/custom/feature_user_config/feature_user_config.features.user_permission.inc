@@ -570,6 +570,17 @@ function feature_user_config_user_default_permissions() {
     'module' => 'features',
   );
 
+  // Exported permission: 'manage own favorites'.
+  $permissions['manage own favorites'] = array(
+    'name' => 'manage own favorites',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'favorites',
+  );
+
   // Exported permission: 'revert revisions'.
   $permissions['revert revisions'] = array(
     'name' => 'revert revisions',
