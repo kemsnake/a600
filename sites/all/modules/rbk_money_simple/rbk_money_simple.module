@@ -33,36 +33,6 @@ function rbk_money_simple_permission() {
  * Implements hook_menu().
  */
 function rbk_money_simple_menu() {
-  $items['rbk_money_simple/payment'] = array(
-    'title' => 'Payment using RBK Money',
-    'description' => 'Payment using RBK Money',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('rbk_money_simple_form'),
-    'access arguments' => array('create payment order'),
-    'type' => MENU_CALLBACK,
-  );
-  $items['rbk_money_simple/payment/%'] = array(
-    'title' => 'RBK Money payment order',
-    'description' => 'Payment using RBK Money',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('rbk_money_simple_form_render', 2),
-    'access arguments' => array('make payment'),
-    'type' => MENU_CALLBACK,
-  );
-  $items['rbk_money_simple/success'] = array(
-    'title' => 'RBK Money payment complete',
-    'description' => 'Payment using RBK Money successfully proccessed.',
-    'page callback' => 'rbk_money_simple_success',
-    'access arguments' => array('make payment'),
-    'type' => MENU_CALLBACK,
-  );
-  $items['rbk_money_simple/fail'] = array(
-    'title' => 'RBK Money payment failed',
-    'description' => 'Payment using RBK Money was not complete.',
-    'page callback' => 'rbk_money_simple_fail',
-    'access arguments' => array('make payment'),
-    'type' => MENU_CALLBACK,
-  );
   $items['rbk_money_simple/status'] = array(
     'title' => 'Internal Data',
     'page callback' => 'rbk_money_simple_status',
@@ -86,205 +56,8 @@ function rbk_money_simple_menu() {
     'file' => 'rbk_money_simple.admin.inc',
     'type' => MENU_NORMAL_ITEM,
   );
-  $items['admin/config/rbk_money_simple/payments'] = array(
-    'title' => 'Payments',
-    'description' => 'Browse all RBK Money payments',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('rbk_money_simple_payments'),
-    'access arguments' => array('administer payments'),
-    'file' => 'rbk_money_simple.admin.inc',
-    'type' => MENU_NORMAL_ITEM,
-  );
 
   return $items;
-}
-
-/*
- * Simple payment form page
- */
-function rbk_money_simple_form($form, &$form_state) {
-  $currency = variable_get('rbk_money_simple_recipientCurrency', 'RUR');
-  $form['amount'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Amount'),
-    '#default_value' => '',
-    '#size' => 8,
-    '#maxlength' => 8,
-    '#field_suffix' => ($currency == 'RUR') ? 'руб.' : $currency,
-    '#required' => TRUE
-  );
-  $form['description'] = array(
-    '#type' => 'textarea',
-    '#title' => t('Payment description'),
-    '#description' => t('Max 255 symbols.'),
-    '#maxlength' => 255,
-    '#default_value' => t('Payment to !sitename', array('!sitename' => variable_get('site_name', 'Drupal'))),
-  );
-  $form['submit'] = array(
-    '#type' => 'submit',
-    '#value' => t('Create payment'),
-  );
-  $form['#attached']['js'] = array(
-    drupal_get_path('module', 'rbk_money_simple') . '/rbk_money_simple.js',
-  );
-
-  return $form;
-}
-
-function rbk_money_simple_form_submit($form, &$form_state) {
-  $params = array();
-  $params['amount'] = $form_state['values']['amount'];
-  $params['description'] = $form_state['values']['description'];
-  $pid = rbk_money_simple_payment_save($params);
-  drupal_set_message(t("Payment saved. Please confirm payment details"));
-  drupal_goto("rbk_money_simple/payment/{$pid}");
-}
-
-/*
- * Generating payment form for sending POST data
- * @param $payment
- *  номер платежа или массив с параметрами платежа
- * @param $silent
- *  (optional) отображать ли детали платежа
- * @return
- *  payment form
-*/
-function rbk_money_simple_form_render($form, &$form_state, $payment, $silent = false) {
-  if (!is_array($payment) && is_numeric($payment)) { // load existing payment
-    $payment = rbk_money_simple_payment_load($payment);
-  }
-
-  if (!is_array($payment) || $payment['pid'] <= 0) {
-    $form['error'] = array(
-      '#type' => 'item',
-      '#title' => t('Error'),
-      '#markup' => t('Order you are going to pay for does not exist.'),
-    );
-  }
-  elseif (isset($payment['status']) && $payment['status'] == 5) {
-    $form['error'] = array(
-      '#type' => 'item',
-      '#title' => t('Error'),
-      '#markup' => t('Order you are going to pay already payed.'),
-    );
-  }
-  else{
-    $currency = variable_get('rbk_money_simple_recipientCurrency', 'RUR');
-    $description = (!empty($payment['description'])) ? $payment['description'] : '';
-
-    if (!$silent) {
-      $form['pid'] = array(
-        '#type' => 'item',
-        '#title' => t('Order #'),
-        '#markup' => $payment['pid'],
-      );
-      $form['amount'] = array(
-        '#type' => 'item',
-        '#title' => t('Amount'),
-        '#markup' => round($payment['amount'], 2),
-        '#field_suffix' => ($currency == 'RUR') ? 'руб.' : $currency,
-      );
-      if($description){
-        $form['description'] = array(
-          '#type' => 'item',
-          '#title' => t('Description'),
-          '#markup' => $description,
-        );
-      }
-    }
-    $form['eshopId'] = array(
-      '#type' => 'hidden',
-      '#value' => variable_get('rbk_money_simple_eshopId', ''),
-    );
-    $form['recipientCurrency'] = array(
-      '#type' => 'hidden',
-      '#value' => $currency,
-    );
-    $form['recipientAmount'] = array(
-      '#type' => 'hidden',
-      '#value' => $payment['amount'],
-    );
-    $form['orderId'] = array(
-      '#type' => 'hidden',
-      '#value' => $payment['pid'],
-    );
-    if($description){
-      $form['serviceName'] = array(
-        '#type' => 'hidden',
-        '#value' => $payment['description'],
-      );
-    }
-    $email = (user_is_logged_in() && $GLOBALS['user']->mail) ? $GLOBALS['user']->mail : '';
-    if ($email) {
-      $form['user_email'] = array(
-        '#type' => 'hidden',
-        '#value' => $email,
-      );
-    }
-    $language = variable_get('rbk_money_simple_language', 'ru');
-    if ($language != 'ru') {
-      $form['language'] = array(
-        '#type' => 'hidden',
-        '#value' => $language,
-      );
-    }
-    if (variable_get('rbk_money_simple_send_hash', 0) == 1) {
-      $price = str_replace('.', ',', $payment['amount']); // use comma as sum separator
-      $string = variable_get('rbk_money_simple_eshopId', '') . "::" . $price . "::" . variable_get('rbk_money_simple_recipientCurrency', 'RUR') . "::" . $email . "::" . $description . "::" . $payment['pid'] . "::::" . variable_get('rbk_money_simple_secretKey', '');
-      $hash_algo = variable_get('rbk_money_simple_hash', 'md5');
-      $form['hash'] = array(
-        '#type' => 'hidden',
-        '#value' => hash($hash_algo, $string),
-      );
-    }
-    $form['successUrl'] = array(
-      '#type' => 'hidden',
-      '#value' => url($GLOBALS['base_url'] . '/rbk_money_simple/success'),
-    );
-    $form['failUrl'] = array(
-      '#type' => 'hidden',
-      '#value' => url($GLOBALS['base_url'] . '/rbk_money_simple/fail'),
-    );
-    // adding advanced form parameters
-    if(isset($payment['advanced']) && count($payment['advanced'])){
-      foreach ($payment['advanced'] as $k => $v) {
-        $form[$k] = array(
-          '#type' => 'hidden',
-          '#value' => $v,
-        );
-      }
-    }
-
-    $form['#action'] = RBK_MONEY_SIMPLE_ACTION_URL;
-    $form['submit'] = array(
-      '#type' => 'submit',
-      '#value' => t('Pay now'),
-    );
-  }
-
-  return $form;
-}
-
-/*
- * Success & fail theme hooks
- */
-function rbk_money_simple_theme() {
-  return array(
-    'rbk_money_simple_success' => array(
-      'template' => 'rbk_money_simple_success',
-    ),
-    'rbk_money_simple_fail' => array(
-      'template' => 'rbk_money_simple_fail',
-    ),
-  );
-}
-
-function rbk_money_simple_success() {
-  return theme('rbk_money_simple_success');
-}
-
-function rbk_money_simple_fail() {
-  return theme('rbk_money_simple_fail');
 }
 
 /*
@@ -367,15 +140,15 @@ function rbk_money_simple_payment_save($params) {
     }
 
     $pid = db_insert('rbk_money_simple')->fields(array(
+      'price' => $params['price'],
+      'count' => $params['count'],
       'amount' => $params['amount'],
       'nid' => $params['nid'],
-      'count' => $params['count'],
       'created' => REQUEST_TIME,
       'changed' => REQUEST_TIME,
     ))->execute();
     return $pid;
   }
-
   else {
     db_update('rbk_money_simple')
       ->fields(array(

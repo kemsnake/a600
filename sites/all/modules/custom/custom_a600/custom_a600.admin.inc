@@ -116,29 +116,38 @@ function custom_a600_project_settings($form, &$form_state) {
 
 function custom_a600_payments($form, $form_state) {
   if (!empty($_POST['payments']) && isset($_POST['operation']) && ($_POST['operation'] == 'delete')) {
-    return drupal_get_form('custom_a600_multiple_delete_submit');
+    return drupal_get_form('custom_a600_multiple_delete');
   }
 
   $header = array(
     'pid' => array('data' => 'ID', 'field' => 'r.pid', 'sort' => 'desc'),
-    'created' => array('data' => t('Created'), 'field' => 'r.created'),
+    'nid' => array('data' => 'Project', 'field' => 'r.nid'),
+    'price' => array('data' => t('Price'), 'field' => 'r.price'),
+    'count' => array('data' => t('Count'), 'field' => 'r.count'),
     'amount' => array('data' => t('Amount'), 'field' => 'r.amount'),
+    'created' => array('data' => t('Created'), 'field' => 'r.created'),
+    'changed' => array('data' => t('Changed'), 'field' => 'r.changed'),
     'status' => array('data' => t('Status'), 'field' => 'r.status'),
   );
 
   $result = db_select('rbk_money_simple', 'r')
     ->extend('PagerDefault')
     ->extend('TableSort')
-    ->fields('r', array('pid', 'created', 'amount', 'status'))
+    ->fields('r', array('pid', 'nid', 'price', 'count', 'amount', 'created', 'changed', 'status'))
     ->orderByHeader($header)
     ->limit(50)
     ->execute();
 
   $payments = array();
   foreach ($result as $payment) {
+    $node = node_load($payment->nid);
     $payments[$payment->pid] = array(
       'pid' => "<label for=\"edit-payments-{$payment->pid}\">{$payment->pid}</label>",
+      'nid' => l($node->title, 'node/' . $payment->nid),
       'created' => date("d.m.Y H:i", $payment->created),
+      'changed' => date("d.m.Y H:i", $payment->changed),
+      'price' => $payment->price . ' ' . variable_get('rbk_money_simple_recipientCurrency', 'RUR'),
+      'count' => $payment->count,
       'amount' => $payment->amount . ' ' . variable_get('rbk_money_simple_recipientCurrency', 'RUR'),
       'status' => (($payment->status > 0) ? ($payment->status == RBK_MONEY_SIMPLE_STATUS_PROCESS ? t('Processing') : t('Successful')) : t('Pending'))
     );

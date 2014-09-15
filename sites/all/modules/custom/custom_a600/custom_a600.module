@@ -11,16 +11,21 @@
 function custom_a600_menu() {
   $items['admin/config/a600'] = array(
     'title' => 'A600',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('custom_a600_project_settings'),
-    'access arguments' => array('administer site configuration'),
-    'file' => 'custom_a600.admin.inc',
+    'page callback' => 'system_admin_menu_block_page',
+    'access arguments' => array('access administration pages'),
+    'file' => 'system.admin.inc',
+    'file path' => drupal_get_path('module', 'system'),
+    'type' => MENU_NORMAL_ITEM,
   );
 
   $items['admin/config/a600/settings'] = array(
     'title' => 'Настройки ',
-    'type' => MENU_DEFAULT_LOCAL_TASK,
-    'weight' => -10,
+    'description' => 'Настройки модуля',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('custom_a600_project_settings'),
+    'access arguments' => array('administer payments'),
+    'file' => 'custom_a600.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
   );
 
   $items['admin/config/a600/payments'] = array(
@@ -30,7 +35,7 @@ function custom_a600_menu() {
     'page arguments' => array('custom_a600_payments'),
     'access arguments' => array('administer payments'),
     'file' => 'custom_a600.admin.inc',
-    'type' => MENU_LOCAL_TASK,
+    'type' => MENU_NORMAL_ITEM,
   );
 
   $items['order/%'] = array(
@@ -960,7 +965,7 @@ function custom_a600_project_pay_form($form, &$form_state, $nid, $pid) {
     '#type' => 'submit',
   );
 
-  $form['#action'] = RBK_MONEY_SIMPLE_ACTION_URL;
+  //$form['#action'] = RBK_MONEY_SIMPLE_ACTION_URL;
   return $form;
 }
 
@@ -984,12 +989,30 @@ function custom_a600_project_pay_form_validate($form, &$form_state) {
 
 function custom_a600_project_pay_form_submit($form, &$form_state) {
   $params = array();
+  dsm($form_state);
   $params['fio'] = $form_state['values']['fio'];
   $params['email'] = $form_state['values']['user_email'];
   $params['address'] = $form_state['values']['address'];
   $params['phone'] = $form_state['values']['phone'];
   $params['pid'] = $form_state['values']['orderId'];
   rbk_money_simple_payment_save($params);
+
+
+  $valuetopost = $form_state['values']['valuetopost'];
+  $url = url('http://your_external_server/index.php');
+  $htmlform = make_htmlform($url, $valuetopost); //extra nonDrupal form
+  drupal_set_message($htmlform); //displays and selfsubmits extra form
+
+  //$form['#action'] = RBK_MONEY_SIMPLE_ACTION_URL;
+  /*$response = drupal_http_request(RBK_MONEY_SIMPLE_ACTION_URL, array(
+    'method' => 'POST',
+    'data' => drupal_http_build_query($params),
+    'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
+  ));*/
+  //http_post_data (RBK_MONEY_SIMPLE_ACTION_URL, drupal_http_build_query($params));
+
+  /*dsm($response);
+  return $response->data;*/
 }
 
 function custom_a600_payment_success(){
