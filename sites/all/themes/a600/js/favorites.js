@@ -24,7 +24,8 @@
           alert('An error occured.\n\nStatus:\n' + b + '\n\nMessage:\n' + c);
         },
         success: function(data) {
-          Drupal.favorites.rebuild(data);
+          // Не надо обновлять список, он на другой странице
+          // Drupal.favorites.rebuild(data);
           $('form#custom-a600-add-favorite-form .form-submit').attr('class', 'favorite')
         }
       });
