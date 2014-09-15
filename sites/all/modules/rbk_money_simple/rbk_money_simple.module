@@ -356,32 +356,38 @@ function rbk_money_simple_payment_save($params) {
     return FALSE;
   }
 
-  if(!isset($params['amount'])){
-    form_set_error('', t('Can not create payment. Please specify payment amount value'));
-    return FALSE;
+  if (!isset($params['pid'])) {
+    if(!isset($params['amount'])){
+      form_set_error('', t('Can not create payment. Please specify payment amount value'));
+      return FALSE;
+    }
+
+    if(!isset($params['description'])){
+      $params['description'] = '';
+    }
+
+    $pid = db_insert('rbk_money_simple')->fields(array(
+      'amount' => $params['amount'],
+      'nid' => $params['nid'],
+      'count' => $params['count'],
+      'created' => REQUEST_TIME,
+      'changed' => REQUEST_TIME,
+    ))->execute();
+    return $pid;
   }
 
-  if(!isset($params['uid'])){
-    $params['uid'] = (user_is_logged_in() && $GLOBALS['user']->mail) ? $GLOBALS['user']->uid : 0;
+  else {
+    db_update('rbk_money_simple')
+      ->fields(array(
+        'fio' => $params['fio'],
+        'address' => $params['address'],
+        'email' => $params['email'],
+        'phone' => $params['phone'],
+        'changed' => REQUEST_TIME,
+      ))
+      ->condition('pid', $params['pid'])
+      ->execute();
   }
-
-  if(!isset($params['description'])){
-    $params['description'] = '';
-  }
-
-  $defined_params = array('uid' => '', 'amount' => '', 'description' => '', 'created' => '');
-  $advanced_params = array_diff_key($params, $defined_params);
-  $advanced_params = serialize($advanced_params);
-
-  $pid = db_insert('rbk_money_simple')->fields(array(
-    'uid' => $params['uid'],
-    'amount' => $params['amount'],
-    'description' => substr($params['description'], 0, 255),
-    'created' => REQUEST_TIME,
-    'params' => $advanced_params,
-  ))->execute();
-
-  return $pid;
 }
 
 /*
@@ -389,17 +395,10 @@ function rbk_money_simple_payment_save($params) {
  */
 function rbk_money_simple_payment_load($pid) {
   $result = db_select('rbk_money_simple', 'r')
-    ->fields('r', array('pid', 'uid', 'amount', 'created', 'description', 'status', 'params'))
+    ->fields('r', array())
     ->condition('r.pid', (int) $pid, '=')
     ->execute()
     ->fetchAssoc();
-  if(isset($result['params'])){
-    $adv_params = unserialize($result['params']);
-    foreach ($adv_params as $k => $v) {
-      $result['advanced'][$k] = $v;
-    }
-  }
-
   return $result;
 }
 
@@ -410,7 +409,7 @@ function rbk_money_simple_payment_enroll($pid, $status = RBK_MONEY_SIMPLE_STATUS
   $pid = (int) $pid;
   if ($pid > 0){
     db_update('rbk_money_simple')
-      ->fields(array('status' => $status))
+      ->fields(array('status' => $status, 'changed' => REQUEST_TIME,))
       ->condition('pid', $pid, '=')
       ->execute();
   }

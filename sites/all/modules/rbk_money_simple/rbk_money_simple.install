@@ -12,12 +12,22 @@ function rbk_money_simple_schema() {
         'unsigned' => TRUE,
         'description' => 'Payment ID',
       ),
-      'uid' => array(
+      'price' => array(
+        'type' => 'numeric',
+        'size' => 'normal',
+        'not null' => TRUE,
+        'default' => 0,
+        'precision' => 8,
+        'scale' => 2,
+        'description' => 'Project Price',
+      ),
+      'count' => array(
         'type' => 'int',
+        'size' => 'small',
         'not null' => TRUE,
         'unsigned' => TRUE,
         'default' => 0,
-        'description' => 'User ID',
+        'description' => 'Count copies',
       ),
       'amount' => array(
         'type' => 'numeric',
@@ -28,16 +38,32 @@ function rbk_money_simple_schema() {
         'scale' => 2,
         'description' => 'recipientAmount',
       ),
-      'created' => array(
+      'nid' => array(
         'type' => 'int',
         'not null' => TRUE,
         'unsigned' => TRUE,
         'default' => 0,
+        'description' => 'Node ID',
       ),
-      'description' => array(
+      'fio' => array(
         'type' => 'varchar',
         'length' => 255,
-        'description' => 'serviceName',
+        'description' => 'FIO',
+      ),
+      'address' => array(
+        'type' => 'text',
+        'size' => 'normal',
+        'description' => 'Additional payment parameters',
+      ),
+      'email' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'description' => 'Email',
+      ),
+      'phone' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'description' => 'Phone',
       ),
       'status' => array(
         'type' => 'int',
@@ -47,10 +73,17 @@ function rbk_money_simple_schema() {
         'default' => 0,
         'description' => 'paymentStatus',
       ),
-      'params' => array(
-        'type' => 'text',
-        'size' => 'normal',
-        'description' => 'Additional payment parameters',
+      'created' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+        'default' => 0,
+      ),
+      'changed' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+        'default' => 0,
       ),
     ),
 
@@ -58,22 +91,4 @@ function rbk_money_simple_schema() {
   );
 
   return $schema;
-}
-
-function rbk_money_simple_install() {
-}
-
-function rbk_money_simple_uninstall() {
-  $vars = array(
-    'rbk_money_simple_eshopId',
-    'rbk_money_simple_secretKey',
-    'rbk_money_simple_recipientCurrency',
-    'rbk_money_simple_language',
-    'rbk_money_simple_hash',
-    'rbk_money_simple_log',
-    'rbk_money_simple_ip',
-  );
-  foreach ($vars as $var) {
-    variable_del($var);
-  }
 }
