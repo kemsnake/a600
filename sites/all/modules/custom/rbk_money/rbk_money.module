@@ -96,9 +96,9 @@ function rbk_money_status() {
     $string = variable_get('rbk_money_eshopId', '') . '::'
       . '::' . number_format($order['amount'], 2, '.', '')
       . '::' . variable_get('rbk_money_recipientCurrency', 'RUR')
-      . '::' . $response['userEmail']
+      . '::' . $order['email']
       . '::' . $response['serviceName']
-      . '::' . $response['orderId']
+      . '::' . $order['pid']
       . '::'
       . '::' . variable_get('rbk_money_secretKey', '');
 
@@ -116,7 +116,7 @@ function rbk_money_status() {
       }
     }
     elseif ($response['hash'] !== $crc) {
-      watchdog("rbk_money", "Payment #%pid control hash error. Possible fraud", array('%pid' => $response['orderId']), WATCHDOG_WARNING);
+      watchdog("rbk_money", "Payment #%pid control hash error. Possible fraud. String @s", array('%pid' => $response['orderId'], '%s' => $string), WATCHDOG_WARNING);
     }
   }
 
