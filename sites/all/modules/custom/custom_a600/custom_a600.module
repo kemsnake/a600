@@ -1033,7 +1033,7 @@ function custom_a600_project_pay_send_rbk_form($form, &$form_state, $pid) {
     '#value' => 'Перейти',
     '#type' => 'submit',
   );
-  $form['#action'] = rbk_money_ACTION_URL;
+  $form['#action'] = RBK_MONEY_ACTION_URL;
   return $form;
 }
 

@@ -5,9 +5,6 @@
  */
 
 function rbk_money_settings() {
-  $form['rbk_money_hint'] = array(
-    '#markup' => t('Simple payment page: <a href="!link">!link</a>', array('!link' => "{$GLOBALS['base_url']}/rbk_money/payment")),
-  );
   $form['rbk_money_response'] = array(
     '#type' => 'textfield',
     '#title' => t('Response URL'),
