@@ -99,7 +99,7 @@ function rbk_money_status() {
       . '::' . $response['userEmail']
       . '::' . $response['serviceName']
       . '::' . $response['orderId']
-      . '::' . $response['userFields']
+      . '::'
       . '::' . variable_get('rbk_money_secretKey', '');
 
     $hash_algo = variable_get('rbk_money_hash', 'md5');
