@@ -37,6 +37,15 @@ function feature_user_config_user_default_permissions() {
     'module' => 'views',
   );
 
+  // Exported permission: 'access config'.
+  $permissions['access config'] = array(
+    'name' => 'access config',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'rbk_money',
+  );
+
   // Exported permission: 'access content'.
   $permissions['access content'] = array(
     'name' => 'access content',
@@ -138,6 +147,15 @@ function feature_user_config_user_default_permissions() {
     'module' => 'block',
   );
 
+  // Exported permission: 'administer ckeditor'.
+  $permissions['administer ckeditor'] = array(
+    'name' => 'administer ckeditor',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'ckeditor',
+  );
+
   // Exported permission: 'administer content types'.
   $permissions['administer content types'] = array(
     'name' => 'administer content types',
@@ -217,6 +235,15 @@ function feature_user_config_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: 'administer payments'.
+  $permissions['administer payments'] = array(
+    'name' => 'administer payments',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'rbk_money',
   );
 
   // Exported permission: 'administer permissions'.
@@ -361,6 +388,15 @@ function feature_user_config_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'create payment order'.
+  $permissions['create payment order'] = array(
+    'name' => 'create payment order',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'rbk_money',
+  );
+
   // Exported permission: 'create url aliases'.
   $permissions['create url aliases'] = array(
     'name' => 'create url aliases',
@@ -368,6 +404,15 @@ function feature_user_config_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'path',
+  );
+
+  // Exported permission: 'customize ckeditor'.
+  $permissions['customize ckeditor'] = array(
+    'name' => 'customize ckeditor',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'ckeditor',
   );
 
   // Exported permission: 'delete any article content'.
@@ -427,6 +472,13 @@ function feature_user_config_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: 'delete terms in garage'.
+  $permissions['delete terms in garage'] = array(
+    'name' => 'delete terms in garage',
+    'roles' => array(),
+    'module' => 'taxonomy',
   );
 
   // Exported permission: 'delete terms in house_category'.
@@ -511,6 +563,13 @@ function feature_user_config_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'edit terms in garage'.
+  $permissions['edit terms in garage'] = array(
+    'name' => 'edit terms in garage',
+    'roles' => array(),
+    'module' => 'taxonomy',
+  );
+
   // Exported permission: 'edit terms in house_category'.
   $permissions['edit terms in house_category'] = array(
     'name' => 'edit terms in house_category',
@@ -559,6 +618,15 @@ function feature_user_config_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'media',
+  );
+
+  // Exported permission: 'make payment'.
+  $permissions['make payment'] = array(
+    'name' => 'make payment',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'rbk_money',
   );
 
   // Exported permission: 'manage features'.

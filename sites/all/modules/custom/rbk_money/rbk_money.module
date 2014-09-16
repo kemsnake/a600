@@ -1,14 +1,14 @@
 <?php
 
-define('RBK_MONEY_SIMPLE_ACTION_URL', 'https://rbkmoney.ru/acceptpurchase.aspx');
-define('RBK_MONEY_SIMPLE_IP_LIST', serialize(array('46.38.182.208', '46.38.182.209', '46.38.182.210', '89.111.188.128', '89.111.188.129', '94.236.107.4', '94.236.107.1', '95.215.102.166')));
-define('RBK_MONEY_SIMPLE_STATUS_PROCESS', 3);
-define('RBK_MONEY_SIMPLE_STATUS_SUCCESS', 5);
+define('RBK_MONEY_ACTION_URL', 'https://rbkmoney.ru/acceptpurchase.aspx');
+define('RBK_MONEY_IP_LIST', serialize(array('46.38.182.208', '46.38.182.209', '46.38.182.210', '89.111.188.128', '89.111.188.129', '94.236.107.4', '94.236.107.1', '95.215.102.166')));
+define('RBK_MONEY_STATUS_PROCESS', 3);
+define('RBK_MONEY_STATUS_SUCCESS', 5);
 
 /**
  * Implements hook_permission().
  */
-function rbk_money_simple_permission() {
+function rbk_money_permission() {
   return array(
     'access config' => array(
       'title' => t('Administer module settings'),
@@ -32,28 +32,28 @@ function rbk_money_simple_permission() {
 /**
  * Implements hook_menu().
  */
-function rbk_money_simple_menu() {
-  $items['rbk_money_simple/status'] = array(
+function rbk_money_menu() {
+  $items['rbk_money/status'] = array(
     'title' => 'Internal Data',
-    'page callback' => 'rbk_money_simple_status',
+    'page callback' => 'rbk_money_status',
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
   );
-  $items['admin/config/rbk_money_simple'] = array(
-    'title' => 'RBK Money simple',
+  $items['admin/config/rbk_money'] = array(
+    'title' => 'RBK Money',
     'page callback' => 'system_admin_menu_block_page',
     'access arguments' => array('access administration pages'),
     'file' => 'system.admin.inc',
     'file path' => drupal_get_path('module', 'system'),
     'type' => MENU_NORMAL_ITEM,
   );
-  $items['admin/config/rbk_money_simple/settings'] = array(
+  $items['admin/config/rbk_money/settings'] = array(
     'title' => 'Settings',
     'description' => 'RBK Money configuration',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('rbk_money_simple_settings'),
+    'page arguments' => array('rbk_money_settings'),
     'access arguments' => array('access config'),
-    'file' => 'rbk_money_simple.admin.inc',
+    'file' => 'rbk_money.admin.inc',
     'type' => MENU_NORMAL_ITEM,
   );
 
@@ -63,14 +63,14 @@ function rbk_money_simple_menu() {
 /*
  * Process response from RBK Money's server
  */
-function rbk_money_simple_status() {
+function rbk_money_status() {
   header("HTTP/1.0 200 OK");
 
   /* Check for allowed IP */
-  if (variable_get('rbk_money_simple_ip', 0) == 1) {
-    $allowed_ip = unserialize(RBK_MONEY_SIMPLE_IP_LIST);
+  if (variable_get('rbk_money_ip', 0) == 1) {
+    $allowed_ip = unserialize(RBK_MONEY_IP_LIST);
     if (!in_array($_SERVER['REMOTE_ADDR'], $allowed_ip)) {
-      watchdog("rbk_money_simple", "Error with remote IP address = %ip. The remote address of POST data does not match a valid RBK Money IP address. Possible fraud", array('%ip' => ip_address(), WATCHDOG_WARNING));
+      watchdog("rbk_money", "Error with remote IP address = %ip. The remote address of POST data does not match a valid RBK Money IP address. Possible fraud", array('%ip' => ip_address(), WATCHDOG_WARNING));
       exit();
     }
   }
@@ -83,33 +83,33 @@ function rbk_money_simple_status() {
     }
   }
 
-  $status_termin = ($response['paymentStatus'] == RBK_MONEY_SIMPLE_STATUS_SUCCESS) ? t('successful') : t('processing');
+  $status_termin = ($response['paymentStatus'] == RBK_MONEY_STATUS_SUCCESS) ? t('successful') : t('processing');
 
-  if (variable_get('rbk_money_simple_log', 1) == 1) {
+  if (variable_get('rbk_money_log', 1) == 1) {
     $log = var_export($response, TRUE);
-    watchdog('rbk_money_simple', "Payment #%pid {$status_termin}; Data: <pre>%log</pre>", array('%log' => $log, '%pid' => $response['orderId']));
+    watchdog('rbk_money', "Payment #%pid {$status_termin}; Data: <pre>%log</pre>", array('%log' => $log, '%pid' => $response['orderId']));
   }
 
   if (isset($response['hash'])) {
-    $order = rbk_money_simple_payment_load($response['orderId']);
+    $order = rbk_money_payment_load($response['orderId']);
 
-    $string = variable_get('rbk_money_simple_eshopId', '') . '::' . $response['orderId'] . '::' . $response['serviceName'] . '::' . $response['eshopAccount'] . '::' . number_format($order['amount'], 2, '.', '') . '::' . variable_get('rbk_money_simple_recipientCurrency', 'RUR') . '::' . $response['paymentStatus'] . '::' . $response['userName'] . '::' . $response['userEmail'] . '::' . $response['paymentData'] . '::' . variable_get('rbk_money_simple_secretKey', '');
+    $string = variable_get('rbk_money_eshopId', '') . '::' . $response['orderId'] . '::' . $response['serviceName'] . '::' . $response['eshopAccount'] . '::' . number_format($order['amount'], 2, '.', '') . '::' . variable_get('rbk_money_recipientCurrency', 'RUR') . '::' . $response['paymentStatus'] . '::' . $response['userName'] . '::' . $response['userEmail'] . '::' . $response['paymentData'] . '::' . variable_get('rbk_money_secretKey', '');
 
-    $hash_algo = variable_get('rbk_money_simple_hash', 'md5');
+    $hash_algo = variable_get('rbk_money_hash', 'md5');
     $crc = hash($hash_algo, $string);
 
     if ($response['hash'] == $crc) {
       switch ($response['paymentStatus']) {
-        case RBK_MONEY_SIMPLE_STATUS_PROCESS:
-          rbk_money_simple_payment_enroll($response['orderId'], RBK_MONEY_SIMPLE_STATUS_PROCESS);
+        case RBK_MONEY_STATUS_PROCESS:
+          rbk_money_payment_enroll($response['orderId'], RBK_MONEY_STATUS_PROCESS);
           break;
-        case RBK_MONEY_SIMPLE_STATUS_SUCCESS:
-          rbk_money_simple_payment_enroll($response['orderId'], RBK_MONEY_SIMPLE_STATUS_SUCCESS);
+        case RBK_MONEY_STATUS_SUCCESS:
+          rbk_money_payment_enroll($response['orderId'], RBK_MONEY_STATUS_SUCCESS);
           break;
       }
     }
     elseif ($response['hash'] !== $crc) {
-      watchdog("rbk_money_simple", "Payment #%pid control hash error. Possible fraud", array('%pid' => $response['orderId']), WATCHDOG_WARNING);
+      watchdog("rbk_money", "Payment #%pid control hash error. Possible fraud", array('%pid' => $response['orderId']), WATCHDOG_WARNING);
     }
   }
 
@@ -123,7 +123,7 @@ function rbk_money_simple_status() {
  * @return
  *  payment ID
  */
-function rbk_money_simple_payment_save($params) {
+function rbk_money_payment_save($params) {
   if (!is_array($params)) {
     form_set_error('', t('Can not create payment. Please contact site administrator for further assistance.'));
     return FALSE;
@@ -139,7 +139,7 @@ function rbk_money_simple_payment_save($params) {
       $params['description'] = '';
     }
 
-    $pid = db_insert('rbk_money_simple')->fields(array(
+    $pid = db_insert('rbk_money')->fields(array(
       'price' => $params['price'],
       'count' => $params['count'],
       'amount' => $params['amount'],
@@ -150,11 +150,11 @@ function rbk_money_simple_payment_save($params) {
     return $pid;
   }
   else {
-    db_update('rbk_money_simple')
+    db_update('rbk_money')
       ->fields(array(
         'fio' => $params['fio'],
         'address' => $params['address'],
-        'email' => $params['email'],
+        'email' => $params['user_email'],
         'phone' => $params['phone'],
         'changed' => REQUEST_TIME,
       ))
@@ -166,8 +166,8 @@ function rbk_money_simple_payment_save($params) {
 /*
  * Load payment details from DB
  */
-function rbk_money_simple_payment_load($pid) {
-  $result = db_select('rbk_money_simple', 'r')
+function rbk_money_payment_load($pid) {
+  $result = db_select('rbk_money', 'r')
     ->fields('r', array())
     ->condition('r.pid', (int) $pid, '=')
     ->execute()
@@ -178,28 +178,28 @@ function rbk_money_simple_payment_load($pid) {
 /*
  * Enroll payment (set status 5 or 3)
  */
-function rbk_money_simple_payment_enroll($pid, $status = RBK_MONEY_SIMPLE_STATUS_SUCCESS){
+function rbk_money_payment_enroll($pid, $status = RBK_MONEY_STATUS_SUCCESS){
   $pid = (int) $pid;
   if ($pid > 0){
-    db_update('rbk_money_simple')
+    db_update('rbk_money')
       ->fields(array('status' => $status, 'changed' => REQUEST_TIME,))
       ->condition('pid', $pid, '=')
       ->execute();
   }
-  if($status == RBK_MONEY_SIMPLE_STATUS_SUCCESS){
-    watchdog("rbk_money_simple", "Payment #%pid enrolled", array('%pid' => $pid));
+  if($status == RBK_MONEY_STATUS_SUCCESS){
+    watchdog("rbk_money", "Payment #%pid enrolled", array('%pid' => $pid));
   }
 }
 
 /*
  * Delete payment from DB
  */
-function rbk_money_simple_payment_delete($pid){
+function rbk_money_payment_delete($pid){
   $pid = (int) $pid;
   if ($pid > 0){
-    db_delete('rbk_money_simple')
+    db_delete('rbk_money')
       ->condition('pid', $pid, '=')
       ->execute();
   }
-  watchdog("rbk_money_simple", "Payment #%pid deleted", array('%pid' => $pid));
+  watchdog("rbk_money", "Payment #%pid deleted", array('%pid' => $pid));
 }

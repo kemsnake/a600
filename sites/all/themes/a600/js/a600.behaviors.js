@@ -112,7 +112,6 @@
         });
 
 
-        //$("a#load-more-link").die('click');
         $('a#load-more-link').die("click").live('click', function(){
             var href = $(this).attr("href");
             $.ajax({
@@ -129,6 +128,9 @@
             });
             return false;
         });
+
+        // отправляем форму создания оплаты в RBK Money
+        $('form#custom-a600-project-pay-send-rbk-form').submit();
 
     }
   };

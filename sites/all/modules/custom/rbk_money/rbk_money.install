@@ -1,9 +1,9 @@
 <?php
 
-function rbk_money_simple_schema() {
+function rbk_money_schema() {
 
-  $schema['rbk_money_simple'] = array(
-    'description' => 'rbk_money_simple table contains information about payments through RBK Money',
+  $schema['rbk_money'] = array(
+    'description' => 'rbk_money table contains information about payments through RBK Money',
 
     'fields' => array(
       'pid' => array(

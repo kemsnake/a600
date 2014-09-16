@@ -182,5 +182,60 @@ function feature_house_projects_strongarm() {
   $strongarm->value = 0;
   $export['node_submitted_house_project'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'rbk_money_eshopId';
+  $strongarm->value = '2029741';
+  $export['rbk_money_eshopId'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'rbk_money_hash';
+  $strongarm->value = 'md5';
+  $export['rbk_money_hash'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'rbk_money_ip';
+  $strongarm->value = '0';
+  $export['rbk_money_ip'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'rbk_money_language';
+  $strongarm->value = 'ru';
+  $export['rbk_money_language'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'rbk_money_log';
+  $strongarm->value = '1';
+  $export['rbk_money_log'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'rbk_money_recipientCurrency';
+  $strongarm->value = 'RUR';
+  $export['rbk_money_recipientCurrency'] = $strongarm;
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'rbk_money_secretKey';
+  $strongarm->value = 'Asdsee12';
+  $export['rbk_money_secretKey'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'rbk_money_send_hash';
+  $strongarm->value = '0';
+  $export['rbk_money_send_hash'] = $strongarm;
+
   return $export;
 }

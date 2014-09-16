@@ -1,0 +1,7 @@
+name = RBK Money
+description = Accepting payments through RBK Money payment system. Создано на основе rbk_money_simple.
+package = Payments
+core = 7.x
+configure = admin/config/rbk_money/settings
+files[] =  rbk_money.admin.inc
+project = rbk_money
