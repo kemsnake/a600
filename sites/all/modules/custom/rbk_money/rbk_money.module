@@ -93,7 +93,7 @@ function rbk_money_status() {
   if (isset($response['hash'])) {
     $order = rbk_money_payment_load($response['orderId']);
 
-    $string = variable_get('rbk_money_eshopId', '') . '::'
+    $string = variable_get('rbk_money_eshopId', '')
       . '::' . number_format($order['amount'], 2, '.', '')
       . '::' . variable_get('rbk_money_recipientCurrency', 'RUR')
       . '::' . $order['email']
