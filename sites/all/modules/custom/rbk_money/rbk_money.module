@@ -116,7 +116,7 @@ function rbk_money_status() {
       }
     }
     elseif ($response['hash'] !== $crc) {
-      watchdog("rbk_money", "Payment #%pid control hash error. Possible fraud. String @s", array('%pid' => $response['orderId'], '%s' => $string), WATCHDOG_WARNING);
+      watchdog("rbk_money", "Payment #%pid control hash error. Possible fraud. String %s", array('%pid' => $response['orderId'], '%s' => $string), WATCHDOG_WARNING);
     }
   }
 
