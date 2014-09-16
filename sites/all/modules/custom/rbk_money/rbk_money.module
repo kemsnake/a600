@@ -93,16 +93,16 @@ function rbk_money_status() {
   if (isset($response['hash'])) {
     $order = rbk_money_payment_load($response['orderId']);
 
-    $string = variable_get('rbk_money_simple_eshopId', '') .
+    $string = variable_get('rbk_money_eshopId', '') .
       '::' . $response['orderId'] .
       '::' . $response['serviceName'] .
       '::' . $response['eshopAccount'] .
       '::' . number_format($order['amount'], 2, '.', '') .
-      '::' . variable_get('rbk_money_simple_recipientCurrency', 'RUR') .
+      '::' . variable_get('rbk_money_recipientCurrency', 'RUR') .
       '::' . $response['paymentStatus'] . '::' . $response['userName'] .
       '::' . $response['userEmail'] .
       '::' . $response['paymentData'] .
-      '::' . variable_get('rbk_money_simple_secretKey', '');
+      '::' . variable_get('rbk_money_secretKey', '');
 
     $hash_algo = variable_get('rbk_money_hash', 'md5');
     $crc = hash($hash_algo, $string);
