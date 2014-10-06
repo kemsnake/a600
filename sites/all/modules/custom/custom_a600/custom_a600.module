@@ -899,7 +899,7 @@ function custom_a600_project_order_form_submit($form, &$form_state) {
     $params['type'] = 'standard';
     $params['count'] = $form_state['values']['count-standard'];
     // todo добавить расчет стоимости и описнаие платежа
-    $params['price'] = 5;
+    $params['price'] = $form_state['values']['price_value'];
     $params['amount'] = $params['price'] + (($params['count']-1)*500);
     $params['nid'] = $form_state['values']['nid'];
 
