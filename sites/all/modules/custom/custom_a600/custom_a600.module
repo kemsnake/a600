@@ -327,14 +327,14 @@ function custom_a600_project_search($form, &$form_state) {
     '#title' => '&nbsp;',
   );
 
-  $form['filters']['extra_filters'] = array(
+  $form['extra_filters'] = array(
     '#type' => 'fieldset',
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
     '#title' => 'Расширенный поиск',
   );
 
-  $form['filters']['extra_filters']['second_light'] = array(
+  $form['extra_filters']['second_light'] = array(
     '#title' => 'Второй свет',
     '#type' => 'radios',
     '#options' => array(
@@ -346,7 +346,7 @@ function custom_a600_project_search($form, &$form_state) {
     '#ajax' => $ajax,
   );
 
-  $form['filters']['extra_filters']['garage'] = array(
+  $form['extra_filters']['garage'] = array(
     '#title' => 'Гараж нужен?',
     '#type' => 'radios',
     '#options' => array(
@@ -357,7 +357,7 @@ function custom_a600_project_search($form, &$form_state) {
     '#ajax' => $ajax,
   );
 
-  $form['filters']['extra_filters']['balcony'] = array(
+  $form['extra_filters']['balcony'] = array(
     '#title' => 'Балкон нужен',
     '#type' => 'radios',
     '#options' => array(
@@ -369,7 +369,7 @@ function custom_a600_project_search($form, &$form_state) {
     '#ajax' => $ajax,
   );
 
-  $form['filters']['extra_filters']['terrace'] = array(
+  $form['extra_filters']['terrace'] = array(
     '#title' => 'Терраса есть?',
     '#type' => 'radios',
     '#options' => array(
@@ -381,7 +381,7 @@ function custom_a600_project_search($form, &$form_state) {
     '#ajax' => $ajax,
   );
 
-  $form['filters']['extra_filters']['erker'] = array(
+  $form['extra_filters']['erker'] = array(
     '#title' => 'Эркер нужен?',
     '#type' => 'radios',
     '#options' => array(
@@ -393,12 +393,12 @@ function custom_a600_project_search($form, &$form_state) {
     '#ajax' => $ajax,
   );
 
-  $form['filters']['extra_filters']['count_bedroom_group'] = array(
+  $form['extra_filters']['count_bedroom_group'] = array(
     '#type' => 'fieldset',
     '#collapsible' => FALSE,
   );
 
-  $form['filters']['extra_filters']['count_bedroom_group']['count_bedroom_floor1'] = array(
+  $form['extra_filters']['count_bedroom_group']['count_bedroom_floor1'] = array(
     '#title' => 'Сколько спален на первом этаже?',
     '#type' => 'textfield',
     '#size' => 3,
@@ -406,14 +406,14 @@ function custom_a600_project_search($form, &$form_state) {
     '#default_value' => $default_params['count_bedroom_floor1'],
   );
 
-  $form['filters']['extra_filters']['count_bedroom_group']['count_bedroom_floor1_all'] = array(
+  $form['extra_filters']['count_bedroom_group']['count_bedroom_floor1_all'] = array(
     '#title' => 'Не важно',
     '#type' => 'checkbox',
     '#ajax' => $ajax,
     '#default_value' => $default_params['count_bedroom_floor1_all'],
   );
 
-  $form['filters']['extra_filters']['count_bedroom_group']['count_bedroom_floor2'] = array(
+  $form['extra_filters']['count_bedroom_group']['count_bedroom_floor2'] = array(
     '#title' => 'Сколько спален на втором этаже?',
     '#type' => 'textfield',
     '#size' => 3,
@@ -421,14 +421,14 @@ function custom_a600_project_search($form, &$form_state) {
     '#default_value' => $default_params['count_bedroom_floor2'],
   );
 
-  $form['filters']['extra_filters']['count_bedroom_group']['count_bedroom_floor2_all'] = array(
+  $form['extra_filters']['count_bedroom_group']['count_bedroom_floor2_all'] = array(
     '#title' => 'Не важно',
     '#type' => 'checkbox',
     '#ajax' => $ajax,
     '#default_value' => $default_params['count_bedroom_floor2_all'],
   );
 
-  $form['filters']['extra_filters']['pool'] = array(
+  $form['extra_filters']['pool'] = array(
     '#title' => 'Может быть бассейн?',
     '#type' => 'radios',
     '#options' => array(

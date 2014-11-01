@@ -18,7 +18,7 @@ body {
     overflow: hidden;
 }
 .l-main {
-    overflow: visible;
+    overflow: hidden;
 }
 .l-footer {
     margin-top:30px;
@@ -103,21 +103,32 @@ body {
     background-size: contain;
 }
 #custom-a600-project-search #edit-filters {
-    background: url(../images/filters-background.png);
-    background-size: contain;
+    background: url(../images/filters-background.png) no-repeat;
+    background-size: cover;
     padding-top: 40px;
     padding-left: 10px;
     overflow: visible;
+    width: 100%;
 }
 
 #custom-a600-project-search #edit-extra-filters {
     background: white;
-    border-radius: 15px;
-    padding-top: 10px;
-    padding-left: 10px;
-    margin-bottom: 10px;
     width:100%;
     overflow: hidden;
+}
+#custom-a600-project-search #edit-extra-filters legend .fieldset-legend {
+    background-image: url('../images/advanced-search-arrow.png');
+    background-position: 135px 50%;
+    font-family: Tahoma;
+    text-decoration: underline;
+    padding: 0 15px 0 0;
+}
+#custom-a600-project-search #edit-extra-filters legend .fieldset-legend a {
+    color: #660000;
+}
+#custom-a600-project-search #edit-extra-filters legend {
+    margin: 0 70px 20px 0;
+    float: right;
 }
 
 #custom-a600-project-search fieldset {
@@ -172,9 +183,8 @@ body {
     background-size: contain;
     height:61px;
     width:52px;
-    position:relative;
-    top:30px;
-    left:28px;
+    position:absolute;
+    display:none;
 }
 #custom-a600-project-search #edit-select-group {
     width: 100%;
@@ -289,26 +299,6 @@ body {
 #custom-a600-project-search .form-type-slider .sliderfield label {
     padding:7px;
     display:block;
-}
-
-#custom-a600-project-search #edit-extra-filters {
-    margin-top: -10px;
-    padding-bottom: 10px;
-    overflow: visible;
-}
-#custom-a600-project-search #edit-extra-filters legend .fieldset-legend {
-    background-image: url('../images/advanced-search-arrow.png');
-    background-position: 135px 50%;
-    font-family: Tahoma;
-    text-decoration: underline;
-    padding: 0 15px 0 0;
-}
-#custom-a600-project-search #edit-extra-filters legend .fieldset-legend a {
-    color: #660000;
-}
-#custom-a600-project-search #edit-extra-filters legend {
-    margin: 0 70px 20px 0;
-    float: right;
 }
 
 #custom-a600-project-search #edit-garage .form-item {
