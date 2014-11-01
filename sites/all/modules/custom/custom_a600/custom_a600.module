@@ -158,16 +158,16 @@ function custom_a600_project_search($form, &$form_state) {
   drupal_set_title('');
   if (!isset($form_state['vales'])) {
     $default_params = array(
-      'square' => '100-200',
+      'square' => null,
       'width' => array('value' => 10, 'value2' => 15),
       'length' => array('value' => 10, 'value2' => 15),
       //'count_bedroom' => 'all',
       'all_dimensions' => TRUE,
       'garage' => 'all',
-      'floor' => '7',
+      'floor' => null,
       'attic_floor' => FALSE,
       'house_basement' => FALSE,
-      'price_slider' => array('value' => 10000, 'value2' => 150000),
+      'price_slider' => array('value' => 10000, 'value2' => 80000),
       'second_light' => 'all',
       'balcony' => 'all',
       'terrace' => 'all',
@@ -192,7 +192,12 @@ function custom_a600_project_search($form, &$form_state) {
   );
 
   $form['filters']['description'] = array(
-    '#markup' => '<div class="filters-title">Какой он - дом мечты?</div>',
+    '#markup' => '<div class="filters-title">
+    <div class="row row1">Какой он</div>
+    <div class="row row2">дом вашей</div>
+    <div class="row row3">мечты</div>
+    </div>
+    <div class="filters-title-arrow">&nbsp;</div>',
   );
 
   $ajax = array(
@@ -204,36 +209,28 @@ function custom_a600_project_search($form, &$form_state) {
 
   $options = explode(',', variable_get('custom_a600_square_options', ''));
   $options = array_combine($options, $options);
-  $form['filters']['square'] = array(
-    '#title' => 'Площадь',
-    '#type' => 'radios',
+
+  $form['filters']['col2'] = array(
+    '#type' => 'fieldset',
+    '#collapsible' => FALSE,
+  );
+
+  $form['filters']['col2']['select_group'] = array(
+    '#type' => 'fieldset',
+    '#collapsible' => FALSE,
+  );
+
+  $form['filters']['col2']['select_group']['square'] = array(
+    '#title' => 'Площадь м<sup>2</sup>',
+    '#type' => 'select',
     '#options' => $options,
     '#default_value' => $default_params['square'],
     '#ajax' => $ajax,
   );
 
-  /*$options = explode(',', variable_get('custom_a600_count_bedroom_options', ''));
-  $options = array_combine($options, $options);
-  $bedroom_options['all'] = t('Не важно');
-  foreach ($options as &$opt) {
-    $bedroom_options[(string) $opt] = (string) $opt;
-  }
-  $form['filters']['count_bedroom'] = array(
-    '#title' => 'Сколько спален?',
-    '#type' => 'radios',
-    '#options' => $bedroom_options,
-    '#default_value' => $default_params['count_bedroom'],
-    '#ajax' => $ajax,
-  );*/
-
-  $form['filters']['floor_group'] = array(
-    '#type' => 'fieldset',
-    '#collapsible' => FALSE,
-  );
-
-  $form['filters']['floor_group']['floor'] = array(
-    '#title' => 'Сколько этажей?',
-    '#type' => 'radios',
+  $form['filters']['col2']['select_group']['floor'] = array(
+    '#title' => 'Этажность',
+    '#type' => 'select',
     '#options' => array(
       6 => 'Одноэтажный',
       7 => 'Двухэтажный',
@@ -242,14 +239,19 @@ function custom_a600_project_search($form, &$form_state) {
     '#default_value' => $default_params['floor'],
   );
 
-  $form['filters']['floor_group']['attic_floor'] = array(
+  $form['filters']['col2']['floor_group'] = array(
+    '#type' => 'fieldset',
+    '#collapsible' => FALSE,
+  );
+
+  $form['filters']['col2']['floor_group']['attic_floor'] = array(
     '#title' => 'Мансардный этаж',
     '#type' => 'checkbox',
     '#ajax' => $ajax,
     '#default_value' => $default_params['attic_floor'],
   );
 
-  $form['filters']['floor_group']['house_basement'] = array(
+  $form['filters']['col2']['floor_group']['house_basement'] = array(
     '#title' => 'Подвал',
     '#type' => 'checkbox',
     '#ajax' => $ajax,
@@ -258,12 +260,12 @@ function custom_a600_project_search($form, &$form_state) {
 
   $form['filters']['dimensions_group'] = array(
     '#type' => 'fieldset',
-    '#title' => 'Габариты дома',
+    '#title' => 'Габариты',
     '#collapsible' => FALSE,
   );
 
   $form['filters']['dimensions_group']['length'] = array(
-    '#title' => 'H',
+    '#title' => 'В',
     '#type' => 'slider',
     '#slider_style' => 'orange',
     '#input_title' => '',
@@ -273,14 +275,14 @@ function custom_a600_project_search($form, &$form_state) {
     '#range' => TRUE,
     '#step' => 1,
     '#default_value' => $default_params['length'],
-    '#display_values' => TRUE,
-    '#display_values_format' => '%{value}%',
+    '#display_bubble' => 'TRUE',
+    '#display_bubble_format' => '%{value}%',
     '#display_inputs' => FALSE,
     '#ajax' => $ajax,
   );
 
   $form['filters']['dimensions_group']['width'] = array(
-    '#title' => 'W',
+    '#title' => 'Ш',
     '#type' => 'slider',
     '#slider_style' => 'orange',
     '#input_title' => '',
@@ -290,8 +292,8 @@ function custom_a600_project_search($form, &$form_state) {
     '#range' => TRUE,
     '#step' => 1,
     '#default_value' => $default_params['width'],
-    '#display_values' => TRUE,
-    '#display_values_format' => '%{value}%',
+    '#display_bubble' => 'TRUE',
+    '#display_bubble_format' => '%{value}%',
     '#display_inputs' => FALSE,
     '#ajax' => $ajax,
   );
@@ -310,19 +312,19 @@ function custom_a600_project_search($form, &$form_state) {
     '#input_title' => '',
     '#input2_title' => '',
     '#max' => 150000,
-    '#min' => 10000,
+    '#min' => 5000,
     '#range' => TRUE,
-    '#step' => 10000,
+    '#step' => 1000,
     '#default_value' => $default_params['price_slider'],
-    '#display_values' => TRUE,
-    '#display_values_format' => '%{value}%',
+    '#display_bubble' => 'TRUE',
+    '#display_bubble_format' => '%{value}%',
     '#display_inputs' => FALSE,
     '#ajax' => $ajax,
   );
 
-
-  $form['bottom_triangle'] = array(
-    '#markup' => '<div class="bottom-triangle-wrapper"><div class="bottom-triangle">&nbsp;</div></div>',
+  $form['filters']['search_image'] = array(
+    '#type' => 'fieldset',
+    '#title' => '&nbsp;',
   );
 
   $form['filters']['extra_filters'] = array(
@@ -1123,3 +1125,4 @@ function custom_a600_add_favorite_form($form, &$form_state) {
 function custom_a600_add_favorite_form_submit($form, &$form_state) {
   favorites_add_favorite($form_state['values']);
 }
+

@@ -61,14 +61,14 @@
   Drupal.behaviors.searchInit = {
     attach: function (context, settings) {
         //скрываем инпуты у фильтров поиска
-        $('#edit-filters .form-type-radio input').hide();
+       /* $('#edit-filters .form-type-radio input').hide();
         // раскрашиваем активные инпуты
         $('.form-type-radio:has(input)', context).each(function () {
             $(this).css('background', 'none');
         });
         $('.form-type-radio:has(input:checked)', context).each(function () {
             $(this).css('background', '#f2cda5');
-        });
+        });*/
 
         // убираем ненужную обертку от ajax в результатах поиска
         $('#results-wrapper div .search-result').unwrap();
@@ -111,6 +111,7 @@
             });
         });
 
+        //$('#custom-a600-project-search .form-item-square select').selectmenu();
 
         $('a#load-more-link').die("click").live('click', function(){
             var href = $(this).attr("href");
@@ -131,6 +132,8 @@
 
         // отправляем форму создания оплаты в RBK Money
         $('form#custom-a600-project-pay-send-rbk-form').submit();
+
+
 
     }
   };

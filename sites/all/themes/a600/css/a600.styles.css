@@ -1,21 +1,29 @@
 img, media {
   max-width: 100%;
 }
-
+@font-face {
+    font-family: "PT Sans"; /* Гарнитура шрифта */
+    src: url(../fonts/PTS55F.ttf); /* Путь к файлу со шрифтом */
+}
+@font-face {
+    font-family: "PT Sans Bold"; /* Гарнитура шрифта */
+    src: url(../fonts/PTS75F.ttf); /* Путь к файлу со шрифтом */
+}
 body {
     width: 1219px;
     margin: auto;
-    background: url(../images/fon.jpg);
+    background: url(../images/background.jpg);
 }
 .l-header {
     overflow: hidden;
 }
 .l-main {
-    overflow: hidden;
+    overflow: visible;
 }
 .l-footer {
     margin-top:30px;
     overflow: hidden;
+    background: url(../images/footer.jpg);
 }
 .footer-site-name:active,
 .footer-site-name:visited {
@@ -62,19 +70,44 @@ body {
 #custom-a600-project-search {
     font-size: 14px;
 }
+
 #custom-a600-project-search .filters-title {
     text-align: center;
-    width: 100%;
-    font-size: 24px;
+    width: 10%;
     font-weight: bold;
     margin-bottom: 10px;
+    float:left;
+    text-transform: uppercase;
+}
+
+#custom-a600-project-search .filters-title .row{
+    float: left;
+    width: 100%;
+    font-family: "PT Sans Bold";
+    color: #c82d25;
+}
+#custom-a600-project-search .filters-title .row1{
+    font-size: 20px;
+}
+#custom-a600-project-search .filters-title .row2{
+    font-size: 16px;
+}
+#custom-a600-project-search .filters-title .row3{
+    font-size: 26px;
+}
+#custom-a600-project-search .filters-title-arrow {
+    width: 5%;
+    height: 60px;
+    float: left;
+    background: url(../images/filters-title-arrow.png) no-repeat center;
+    background-size: contain;
 }
 #custom-a600-project-search #edit-filters {
-    background: white;
-    border-radius: 15px;
-    padding-top: 10px;
+    background: url(../images/filters-background.png);
+    background-size: contain;
+    padding-top: 40px;
     padding-left: 10px;
-    overflow: hidden;
+    overflow: visible;
 }
 
 #custom-a600-project-search #edit-extra-filters {
@@ -87,20 +120,6 @@ body {
     overflow: hidden;
 }
 
-#custom-a600-project-search .bottom-triangle-wrapper {
-    width: 100%;
-    text-align: center;
-    float: left;
-}
-#custom-a600-project-search .bottom-triangle {
-    border-color: white transparent transparent transparent;
-    border-style: solid;
-    border-width: 50px 90px 0 90px;
-    height: 0;
-    width: 0;
-    margin: auto;
-}
-
 #custom-a600-project-search fieldset {
     border: 0;
     padding: 0;
@@ -111,8 +130,31 @@ body {
     overflow: hidden;
 }
 
-#custom-a600-project-search .form-type-radios.form-item-square {
-    width: 24%;
+#custom-a600-project-search .form-item label{
+    font-family: Tahoma;
+    font-weight: normal;
+}
+#custom-a600-project-search .form-item-square label,
+#custom-a600-project-search .form-item-floor label{
+    margin-bottom: 10px;
+}
+
+#custom-a600-project-search .ui-selectmenu-dropdown {
+    background: none;
+}
+#custom-a600-project-search  .ui-state-default .ui-icon {
+    background-image: url(../images/select-arrow.png)/*{iconsDefault}*/;
+    background-position: 0;
+}
+
+#custom-a600-project-search .form-item-square{
+    width: 45%;
+    overflow: visible;
+    margin-right: 5%;
+}
+#custom-a600-project-search .form-item-floor {
+    width: 50%;
+    overflow: visible;
 }
 
 #custom-a600-project-search .form-type-radios.form-item-count-bedroom {
@@ -122,11 +164,29 @@ body {
 #custom-a600-project-search .form-type-radios.form-item-garage {
     width: 24%;
 }
-#custom-a600-project-search #edit-floor-group {
-    width: 24%;
+#custom-a600-project-search #edit-col2 {
+    width: 29%;
+}
+#custom-a600-project-search #edit-search-image {
+    background: url(../images/search-image-right.png);
+    background-size: contain;
+    height:61px;
+    width:52px;
+    position:relative;
+    top:30px;
+    left:28px;
+}
+#custom-a600-project-search #edit-select-group {
+    width: 100%;
 }
 #custom-a600-project-search #edit-dimensions-group {
     width: 24%;
+}
+#custom-a600-project-search #edit-dimensions-group legend {
+    margin-bottom: 5px;
+}
+#custom-a600-project-search .form-item-price-slider label {
+    margin-bottom: 8px;
 }
 #custom-a600-project-search #edit-count-bedroom-group {
     width: 24%;
@@ -140,19 +200,39 @@ body {
 #custom-a600-project-search #edit-count-bedroom-group input {
     float:left;
 }
+#custom-a600-project-search .form-item-price-slider,
 #custom-a600-project-search .form-item-length,
 #custom-a600-project-search .form-item-width {
-    width: 50%;
+    width: 100%;
+    margin-bottom: 0;
 }
 #custom-a600-project-search .form-item-length label,
 #custom-a600-project-search .form-item-width label {
     float: left;
-    padding-top: 20px;
+    padding-top: 5px;
     font-size: 20px;
+    width:15px;
 }
+#custom-a600-project-search .form-item-price-slider .sliderfield .sliderfield-bubble,
+#custom-a600-project-search .form-item-length .sliderfield .sliderfield-bubble,
+#custom-a600-project-search .form-item-width .sliderfield .sliderfield-bubble {
+    position: relative;
+    top: 15px;
+    color: black;
+    background: none;
+    border: none;
+    display: inline-block;
+    padding: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    width: 100%;
+    text-align: center;
+}
+#custom-a600-project-search .form-item-price-slider .sliderfield,
 #custom-a600-project-search .form-item-length .sliderfield,
 #custom-a600-project-search .form-item-width .sliderfield {
-    width: 70%;
+    width: 90%;
     float: left;
     padding: 15px;
 }
@@ -164,16 +244,16 @@ body {
     width: 17%;
 }
 
-#custom-a600-project-search .form-item-attic-floor,
 #custom-a600-project-search .form-item-house-basement {
     margin-left: 10px;
 }
 #custom-a600-project-search .form-item-price-slider {
-    width: 13%;
+    width: 25%;
 }
 
 #custom-a600-project-search .form-item-price-slider .sliderfield {
     padding:10px!important;
+    padding-left:0!important;
 }
 
 /*#custom-a600-project-search #edit-square .form-item,
@@ -184,12 +264,22 @@ body {
 #custom-a600-project-search .form-type-radio,
 #custom-a600-project-search .form-type-slider .sliderfield {
     float:left;
-    border: 3px dashed #f2cda5;
+    /*border: 3px dashed #f2cda5;
     border-radius: 5px;
     margin:10px;
-    text-align: center;
+    text-align: center;*/
 }
-
+.ui-slider-horizontal.orange {
+    height: .4em;
+}
+.orange .ui-slider-range {
+    background: #990000;
+}
+.orange .ui-slider-handle {
+    background: url(../images/slider-handle.png);
+    border:0!important;
+    margin-top:-.2em;
+}
 /*#custom-a600-project-search #edit-square .form-item label,
 #custom-a600-project-search #edit-garage .form-item label,
 #custom-a600-project-search #edit-floor .form-item label,
@@ -199,6 +289,26 @@ body {
 #custom-a600-project-search .form-type-slider .sliderfield label {
     padding:7px;
     display:block;
+}
+
+#custom-a600-project-search #edit-extra-filters {
+    margin-top: -10px;
+    padding-bottom: 10px;
+    overflow: visible;
+}
+#custom-a600-project-search #edit-extra-filters legend .fieldset-legend {
+    background-image: url('../images/advanced-search-arrow.png');
+    background-position: 135px 50%;
+    font-family: Tahoma;
+    text-decoration: underline;
+    padding: 0 15px 0 0;
+}
+#custom-a600-project-search #edit-extra-filters legend .fieldset-legend a {
+    color: #660000;
+}
+#custom-a600-project-search #edit-extra-filters legend {
+    margin: 0 70px 20px 0;
+    float: right;
 }
 
 #custom-a600-project-search #edit-garage .form-item {
