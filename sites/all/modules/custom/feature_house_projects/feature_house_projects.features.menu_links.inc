@@ -110,26 +110,6 @@ function feature_house_projects_menu_default_menu_links() {
     'weight' => -50,
     'customized' => 1,
   );
-  // Exported menu link: menu-footer-menu-2_:node/41
-  $menu_links['menu-footer-menu-2_:node/41'] = array(
-    'menu_name' => 'menu-footer-menu-2',
-    'link_path' => 'node/41',
-    'router_path' => 'node/%',
-    'link_title' => 'Оферта',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-      'identifier' => 'menu-footer-menu-2_:node/41',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => 0,
-    'customized' => 1,
-  );
   // Exported menu link: menu-top-menu_--:node/4
   $menu_links['menu-top-menu_--:node/4'] = array(
     'menu_name' => 'menu-top-menu',
@@ -196,7 +176,6 @@ function feature_house_projects_menu_default_menu_links() {
   t('Как заказать проект');
   t('Контакты и реквизиты');
   t('О компании');
-  t('Оферта');
   t('Частые вопросы');
   t('Что содержится в проекте');
 

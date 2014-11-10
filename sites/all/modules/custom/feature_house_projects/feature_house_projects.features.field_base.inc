@@ -552,7 +552,7 @@ function feature_house_projects_field_default_field_bases() {
     'locked' => 0,
     'module' => 'number',
     'settings' => array(
-      'decimal_separator' => '.',
+      'decimal_separator' => ',',
     ),
     'translatable' => 0,
     'type' => 'number_float',

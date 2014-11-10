@@ -223,6 +223,7 @@ function feature_house_projects_strongarm() {
   $strongarm->name = 'rbk_money_recipientCurrency';
   $strongarm->value = 'RUR';
   $export['rbk_money_recipientCurrency'] = $strongarm;
+
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;

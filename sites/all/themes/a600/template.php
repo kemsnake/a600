@@ -12,6 +12,10 @@ function a600_preprocess_node(&$vars) {
 
 function a600_page_alter(&$page) {
   drupal_set_breadcrumb(array());
+  // gide title from frontpage
+  if (drupal_is_front_page()) {
+    drupal_set_title('');
+  }
 }
 
 /*

@@ -110,7 +110,6 @@ features[menu_links][] = menu-footer-menu-1_--:node/4
 features[menu_links][] = menu-footer-menu-1_-:node/6
 features[menu_links][] = menu-footer-menu-2_--:node/8
 features[menu_links][] = menu-footer-menu-2_-:node/5
-features[menu_links][] = menu-footer-menu-2_:node/41
 features[menu_links][] = menu-top-menu_--:node/4
 features[menu_links][] = menu-top-menu_-:node/5
 features[menu_links][] = menu-top-menu_:favorites

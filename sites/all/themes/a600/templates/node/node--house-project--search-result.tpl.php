@@ -86,7 +86,8 @@
       $content['field_photo']['#items'] = array(array_shift($content['field_photo']['#items']));
       print render($content['field_photo']);
       print "<div class =\"node-title\">$title</div>";
-      print render($content['field_rooms_list']);
+      //print render($content['field_rooms_list']);
+      print '<div class="house-project-square-wrapper">' . render($content['field_square']) . '</div>';
       print '<div class="house-project-price-wrapper">' . render($content['field_price']) . '<div class="price-suffix">&nbsp;</div></div>';
     ?>
   </div>

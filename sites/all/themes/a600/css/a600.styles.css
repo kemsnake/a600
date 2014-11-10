@@ -19,6 +19,7 @@ body {
 }
 .l-main {
     overflow: hidden;
+    padding: 20px;
 }
 .l-footer {
     margin-top:30px;
@@ -318,15 +319,87 @@ body {
     margin-bottom: 10px;
 }
 
+
+/* search results */
+.view-main-page .view-header {
+  text-align: center;
+  font-family: PT Sans;
+  font-weight: bold;
+  font-size: 26px;
+}
+.view-main-page .view-header .sub-title {
+  font-weight: normal;
+  font-family: PT Sans;
+  font-size: 18px;
+}
+.view-main-page .views-view-grid {
+    width: 100%;
+}
+.view-main-page .views-view-grid .td {
+    width: 33%;
+}
+.view-main-page div.search-result.node {
+    margin-bottom: 20px;
+}
+.view-main-page div.search-result.node .node-title {
+    font-size: 18px;
+    font-family: Tahoma;
+    text-decoration: underline;
+    color: #9b0404;
+    margin:5px 0;
+    text-align: center;
+}
+.view-main-page .views-view-grid .field--name-field-photo,
+.view-main-page .views-view-grid .house-project-square-wrapper {
+    margin:0 55px 0 55px;
+    text-align: center;
+}
+.view-main-page .views-view-grid .house-project-square-wrapper {
+    background-color: #f6eddf;
+    overflow: hidden;
+    padding: 10px 0;
+
+}
+.view-main-page .views-view-grid .house-project-square-wrapper .field--name-field-square{
+    margin-left: 30%;
+    font-size: 28px;
+    float: left;
+}
+
+.view-main-page .views-view-grid .house-project-price-wrapper {
+    position: relative;
+    top: -140px;
+    left: 224px;
+    color: white;
+    background: url('../images/price_wrapper_background.png') no-repeat;
+    width: 120px;
+    height: 45px;
+
+}
+.view-main-page .views-view-grid .house-project-price-wrapper .field--name-field-price{
+    font-size: 20px;
+    float: left;
+    margin: 7px 0 0 22px;
+}
+.view-main-page .views-view-grid div.search-result.node .house-project-price-wrapper .price-suffix {
+    background: url('../images/ruble.gif') no-repeat;
+    background-size: contain;
+    opacity: 0.9;
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 7px 0 0 5px;
+}
+/* end search results */
+
+
+
 #custom-a600-project-search #results-wrapper {
     width: 100%;
     float:left;
     margin-top: 30px;
 }
 
-#custom-a600-project-search #results-wrapper .node__content{
-
-}
 
 #custom-a600-project-search #results-wrapper .search-text-block,
 #custom-a600-project-search div.search-result.node {
@@ -346,6 +419,7 @@ body {
     cursor: pointer;
 }
 
+/*
 #custom-a600-project-search div.spec-offer.node {
     width: 580px;
 }
@@ -381,7 +455,7 @@ body {
     padding-top: 10px;
     border-radius: 5px;
 }
-
+*/
 #custom-a600-project-search #results-wrapper .search-text-block {
     border : 5px dashed white;
     background: none;
@@ -606,7 +680,7 @@ body {
     margin-left:5px;
     margin-top:2px;
 }
-.field--name-field-price{
+.node-house-project-full .field--name-field-price{
     float: left;
     font-size: 28px;
 }
