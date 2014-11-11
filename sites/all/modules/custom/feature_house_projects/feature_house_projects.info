@@ -145,3 +145,4 @@ features[variable][] = rbk_money_recipientCurrency
 features[variable][] = rbk_money_secretKey
 features[variable][] = rbk_money_send_hash
 features[views_view][] = find_project
+features[views_view][] = main_page
