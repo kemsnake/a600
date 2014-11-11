@@ -88,7 +88,7 @@
       print "<div class =\"node-title\">$title</div>";
       //print render($content['field_rooms_list']);
       print '<div class="house-project-square-wrapper">' . render($content['field_square']) . '</div>';
-      print '<div class="house-project-price-wrapper">' . render($content['field_price']) . '<div class="price-suffix">&nbsp;</div></div>';
+      print '<div class="house-project-price-wrapper">' . render($content['field_price']) . '</div>';
     ?>
   </div>
 

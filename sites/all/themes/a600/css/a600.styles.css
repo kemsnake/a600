@@ -20,6 +20,8 @@ body {
 .l-main {
     overflow: hidden;
     padding: 20px;
+    //background: url(../images/main-section-bg.png);
+    background: white;
 }
 .l-footer {
     margin-top:30px;
@@ -55,10 +57,10 @@ body {
     margin-top: 60px;
 }
 .site-logo {
-    width: 150px;
+    width: 12%;
     float: left;
     margin-top: 10px;
-    margin-right: 20px;
+    margin-right: 1%;
 }
 .site-slogan {
     width: 200px;
@@ -324,13 +326,15 @@ body {
 .view-main-page .view-header {
   text-align: center;
   font-family: PT Sans;
-  font-weight: bold;
-  font-size: 26px;
+  margin-bottom: 1em;
 }
-.view-main-page .view-header .sub-title {
+.view-main-page .view-header .sub-title1 {
+  font-weight: bold;
+    font-size: 32px;
+}
+.view-main-page .view-header .sub-title2 {
   font-weight: normal;
-  font-family: PT Sans;
-  font-size: 18px;
+  font-size: 24px;
 }
 .view-main-page .views-view-grid {
     width: 100%;
@@ -354,6 +358,9 @@ body {
     margin:0 55px 0 55px;
     text-align: center;
 }
+.view-main-page .views-view-grid .field--name-field-photo img{
+    border-radius: 10px 10px 0 0;
+}
 .view-main-page .views-view-grid .house-project-square-wrapper {
     background-color: #f6eddf;
     overflow: hidden;
@@ -376,19 +383,15 @@ body {
     height: 45px;
 
 }
+
+.view-main-page .views-view-grid .house-project-price-wrapper .price-symbol{
+    text-decoration: line-through;
+    padding-left: 5px;
+}
 .view-main-page .views-view-grid .house-project-price-wrapper .field--name-field-price{
     font-size: 20px;
     float: left;
     margin: 7px 0 0 22px;
-}
-.view-main-page .views-view-grid div.search-result.node .house-project-price-wrapper .price-suffix {
-    background: url('../images/ruble.gif') no-repeat;
-    background-size: contain;
-    opacity: 0.9;
-    float: left;
-    width: 20px;
-    height: 20px;
-    margin: 7px 0 0 5px;
 }
 /* end search results */
 
@@ -521,7 +524,57 @@ body {
 }
 
 /* top region */
-.l-header {
+.l-branding {
+   overflow: hidden;
+    background: black;
+    opacity: 0.5;
+}
+.l-region--branding {
+    overflow: hidden;
+    float: left;
+    width: 87%;
+}
+#block-menu-menu-top-menu ul.menu {
+    width: 100%;
+    display: block;
+
+}
+#block-menu-menu-top-menu ul.menu li {
+    list-style: none;
+    display: block;
+    width: 18%;
+    float: left;
+}
+#block-menu-menu-top-menu ul.menu li.last {
+    width: 10%;
+}
+#block-custom-a600-site-top-phone {
+    background: #b6463a;
+    opacity: 0.8;
+    float: right;
+    color:white;
+    padding: 5px 50px 20px 50px;
+}
+#block-custom-a600-site-top-phone .top-phone-prefix{
+    position:absolute;
+    background: none;
+    width: 0;
+    height: 0;
+    border-bottom: 30px solid #b6463a;
+    border-left: 30px solid transparent;
+    top: -30px;
+    left: 235px;
+    opacity: 0.8;
+}
+#block-custom-a600-site-top-phone .top-phone-code{
+    font-size: 24px;
+}
+#block-custom-a600-site-top-phone .top-phone-number{
+    font-size: 36px;
+    font-weight: bold;
+
+}
+/*.l-header {
     margin-bottom: 25px;
 }
 .l-region--branding {
@@ -554,7 +607,7 @@ body {
 .l-region--footer ul.menu li{
     list-style: none;
     margin-bottom: 10px;
-}
+}*/
 /* end top region */
 
 /* throbber */

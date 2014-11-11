@@ -144,7 +144,12 @@ function custom_a600_block_view($delta) {
   switch ($delta) {
     case 'site_top_phone':
       $number = variable_get('custom_a600_site_phone', '');
-      $block['content'] = '<div class="top-phone-title">Звоните:</div><div class="top-phone-number">'. $number . '</div>';
+      $block['content'] = '<div class="top-phone-prefix">&nbsp;</div>
+      <div class="top-phone-wrapper">
+      <div class="top-phone-title">Звоните</div>
+      <div class="top-phone-code">+7 495</div>
+      <div class="top-phone-number">'. $number . '</div>
+      </div>';
       break;
     case 'favorites_projects':
       $block['content'] = '<div id="favorites-list">' . favorites_list() . '</div>';
