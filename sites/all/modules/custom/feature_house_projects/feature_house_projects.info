@@ -114,6 +114,7 @@ features[image][] = house_project_thumb
 features[image][] = house_project_variant
 features[image][] = search_result_small
 features[image][] = search_result_spec_offer
+features[image][] = slideshow_img
 features[menu_custom][] = menu-footer-menu-1
 features[menu_custom][] = menu-footer-menu-2
 features[menu_custom][] = menu-top-menu
