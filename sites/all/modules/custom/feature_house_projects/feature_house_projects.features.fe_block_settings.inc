@@ -12,6 +12,120 @@ function feature_house_projects_default_fe_block_settings() {
 
   $export['version'] = '2.0';
 
+  $export['block-frontpage_block1'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'machine_name' => 'frontpage_block1',
+    'module' => 'block',
+    'node_types' => array(),
+    'pages' => '<front>',
+    'roles' => array(),
+    'themes' => array(
+      'a600' => array(
+        'region' => 'highlighted',
+        'status' => 1,
+        'theme' => 'a600',
+        'weight' => -19,
+      ),
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'omega' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'omega',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 1,
+  );
+
+  $export['block-frontpage_block2'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'machine_name' => 'frontpage_block2',
+    'module' => 'block',
+    'node_types' => array(),
+    'pages' => '<front>',
+    'roles' => array(),
+    'themes' => array(
+      'a600' => array(
+        'region' => 'highlighted',
+        'status' => 1,
+        'theme' => 'a600',
+        'weight' => -18,
+      ),
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'omega' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'omega',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 1,
+  );
+
+  $export['block-frontpage_block3'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'machine_name' => 'frontpage_block3',
+    'module' => 'block',
+    'node_types' => array(),
+    'pages' => '<front>',
+    'roles' => array(),
+    'themes' => array(
+      'a600' => array(
+        'region' => 'highlighted',
+        'status' => 1,
+        'theme' => 'a600',
+        'weight' => -17,
+      ),
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'omega' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'omega',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 1,
+  );
+
   $export['block-search_text_block_1'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -50,6 +164,82 @@ function feature_house_projects_default_fe_block_settings() {
     'visibility' => 0,
   );
 
+  $export['custom_a600-favorites_projects'] = array(
+    'cache' => 8,
+    'custom' => 0,
+    'delta' => 'favorites_projects',
+    'module' => 'custom_a600',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'a600' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'a600',
+        'weight' => 0,
+      ),
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'omega' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'omega',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
+  $export['custom_a600-search_form'] = array(
+    'cache' => 8,
+    'custom' => 0,
+    'delta' => 'search_form',
+    'module' => 'custom_a600',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'a600' => array(
+        'region' => 'highlighted',
+        'status' => 1,
+        'theme' => 'a600',
+        'weight' => -20,
+      ),
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'omega' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'omega',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
   $export['custom_a600-site_top_phone'] = array(
     'cache' => 8,
     'custom' => 0,
@@ -60,10 +250,10 @@ function feature_house_projects_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'a600' => array(
-        'region' => 'branding',
+        'region' => 'header',
         'status' => 1,
         'theme' => 'a600',
-        'weight' => -11,
+        'weight' => -17,
       ),
       'bartik' => array(
         'region' => '',
@@ -215,7 +405,7 @@ function feature_house_projects_default_fe_block_settings() {
         'region' => 'branding',
         'status' => 1,
         'theme' => 'a600',
-        'weight' => -10,
+        'weight' => -19,
       ),
       'bartik' => array(
         'region' => '',
@@ -580,6 +770,44 @@ function feature_house_projects_default_fe_block_settings() {
     ),
     'title' => '',
     'visibility' => 0,
+  );
+
+  $export['views-frontpage_slideshow-block'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'frontpage_slideshow-block',
+    'module' => 'views',
+    'node_types' => array(),
+    'pages' => '<front>',
+    'roles' => array(),
+    'themes' => array(
+      'a600' => array(
+        'region' => 'slideshow',
+        'status' => 1,
+        'theme' => 'a600',
+        'weight' => -20,
+      ),
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'omega' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'omega',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 1,
   );
 
   return $export;

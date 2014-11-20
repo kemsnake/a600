@@ -10,6 +10,72 @@
 function feature_house_projects_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'node-article-field_image'
+  $field_instances['node-article-field_image'] = array(
+    'bundle' => 'article',
+    'deleted' => 0,
+    'description' => 'Upload an image to go with this article.',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => 'large',
+        ),
+        'type' => 'image',
+        'weight' => -1,
+      ),
+      'order' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_result_special_offer' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => 'content',
+          'image_style' => 'medium',
+        ),
+        'type' => 'image',
+        'weight' => -1,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_image',
+    'label' => 'Слайды',
+    'required' => 0,
+    'settings' => array(
+      'alt_field' => 1,
+      'default_image' => 0,
+      'file_directory' => 'field/image',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'image',
+      'settings' => array(
+        'preview_image_style' => 'thumbnail',
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'image_image',
+      'weight' => -1,
+    ),
+  );
+
   // Exported field_instance: 'node-house_project-body'
   $field_instances['node-house_project-body'] = array(
     'bundle' => 'house_project',
@@ -1191,7 +1257,7 @@ function feature_house_projects_field_default_field_instances() {
       'max' => '',
       'min' => '',
       'prefix' => '',
-      'suffix' => '',
+      'suffix' => '<span class="price-symbol">P</span>',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1738,6 +1804,7 @@ function feature_house_projects_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Upload an image to go with this article.');
   t('Балкон');
   t('Бассейн');
   t('Второй свет');
@@ -1751,6 +1818,7 @@ function feature_house_projects_field_default_field_instances() {
   t('Планировки');
   t('Площадь');
   t('Подвал');
+  t('Слайды');
   t('Спальни 1 этаж');
   t('Спальни 2 этаж');
   t('Специальное предложение');

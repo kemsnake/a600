@@ -70,8 +70,12 @@
  * @see omega_preprocess_page()
  */
 ?>
+<div class="page-wrapper">
 <div class="l-page">
   <header class="l-header" role="banner">
+    <div class="l-slideshow">
+      <?php print render($page['slideshow']); ?>
+    </div>
     <div class="l-branding">
       <?php if ($logo): ?>
         <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="site-logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
@@ -92,6 +96,7 @@
 
   <div class="l-main">
     <div class="l-content" role="main">
+      <div class="l-highlighted-prefix">&nbsp;</div>
       <?php print render($page['highlighted']); ?>
       <?php print $breadcrumb; ?>
       <a id="main-content"></a>
@@ -114,6 +119,10 @@
     <?php print render($page['sidebar_second']); ?>
   </div>
 
+
+</div>
+</div>
+<div class="footer-wrapper">
   <footer class="l-footer" role="contentinfo">
 
     <?php if ($site_name): ?>

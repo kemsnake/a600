@@ -115,7 +115,7 @@ function feature_house_projects_menu_default_menu_links() {
     'menu_name' => 'menu-top-menu',
     'link_path' => 'node/4',
     'router_path' => 'node/%',
-    'link_title' => 'Как заказать проект',
+    'link_title' => 'Как купить проект',
     'options' => array(
       'attributes' => array(
         'title' => '',
@@ -127,7 +127,7 @@ function feature_house_projects_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -50,
+    'weight' => -49,
     'customized' => 1,
   );
   // Exported menu link: menu-top-menu_-:node/5
@@ -147,7 +147,7 @@ function feature_house_projects_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -49,
+    'weight' => -50,
     'customized' => 1,
   );
   // Exported menu link: menu-top-menu_:favorites
@@ -163,7 +163,7 @@ function feature_house_projects_menu_default_menu_links() {
       'identifier' => 'menu-top-menu_:favorites',
     ),
     'module' => 'menu',
-    'hidden' => 0,
+    'hidden' => 1,
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
@@ -174,6 +174,7 @@ function feature_house_projects_menu_default_menu_links() {
   // Included for use with string extractors like potx.
   t('Избранное');
   t('Как заказать проект');
+  t('Как купить проект');
   t('Контакты и реквизиты');
   t('О компании');
   t('Частые вопросы');

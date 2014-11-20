@@ -11,6 +11,42 @@ function feature_house_projects_default_fe_block_boxes() {
   $export = array();
 
   $fe_block_boxes = new stdClass();
+  $fe_block_boxes->info = 'Блок на главной 1';
+  $fe_block_boxes->format = 'full_html';
+  $fe_block_boxes->machine_name = 'frontpage_block1';
+  $fe_block_boxes->body = '<div class="title">
+	Никакой переплаты</div>
+<div class="text">
+	Это не проекты, адаптированные под минимальную стоимость. Это проекты готовых для жизни домов, не требующие переплаты.</div>
+';
+
+  $export['frontpage_block1'] = $fe_block_boxes;
+
+  $fe_block_boxes = new stdClass();
+  $fe_block_boxes->info = 'Блок на главной 2';
+  $fe_block_boxes->format = 'full_html';
+  $fe_block_boxes->machine_name = 'frontpage_block2';
+  $fe_block_boxes->body = '<div class="title">
+	Внести изменения</div>
+<div class="text">
+	Вы можете вносить изменения в любой выбранный проект. Наши архитекторы готовы это сделать быстро и качественно.</div>
+';
+
+  $export['frontpage_block2'] = $fe_block_boxes;
+
+  $fe_block_boxes = new stdClass();
+  $fe_block_boxes->info = 'Блок на главной 3';
+  $fe_block_boxes->format = 'full_html';
+  $fe_block_boxes->machine_name = 'frontpage_block3';
+  $fe_block_boxes->body = '<div class="title">
+	Оригинальные решения</div>
+<div class="text">
+	Каждый проект будет сделан по индивидуальному заказу, точно по вашим требованиям и с учетом всех ваших пожеланий.</div>
+';
+
+  $export['frontpage_block3'] = $fe_block_boxes;
+
+  $fe_block_boxes = new stdClass();
   $fe_block_boxes->info = 'Search text block 1';
   $fe_block_boxes->format = 'full_html';
   $fe_block_boxes->machine_name = 'search_text_block_1';

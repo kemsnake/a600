@@ -21,6 +21,7 @@ scripts[] = js/a600.behaviors.js
 ; ========================================
 ; Regions
 ; ========================================
+regions[slideshow] = Slideshow
 regions[branding] = Branding
 regions[header] = Header
 regions[navigation] = Navigation
