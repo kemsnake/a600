@@ -26,6 +26,7 @@ img, media {
     left:0;
     padding-left: 36px;
     width: 100%;
+    z-index: 100;
 }
 .page-wrapper {
     width: 100%;
@@ -40,6 +41,7 @@ img, media {
     position: absolute;
     top: 73px;
     right: 0;
+    z-index: 100;
 }
 .l-region--slideshow {
     padding: 0 0 0 30px;
@@ -401,6 +403,26 @@ img, media {
     width: 1090px;
     height:468px;
     padding-left: 16px;
+}
+.views-slideshow-controls-bottom {
+    position: absolute;
+    top:400px;
+    left:545px;
+    z-index: 100;
+}
+.views-slideshow-controls-bottom .views-slideshow-pager-field-item:hover {
+    cursor: pointer;
+}
+.views-slideshow-controls-bottom .views-slideshow-pager-field-item {
+    float: left;
+    background-color: #b2b2b2;
+    border-radius: 20px;
+    width:20px;
+    height: 20px;
+    margin: 5px;
+}
+.views-slideshow-controls-bottom .views-slideshow-pager-field-item.active {
+    background-color: #bd4420;
 }
 /* end slideshow */
 

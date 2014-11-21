@@ -240,7 +240,8 @@ function feature_house_projects_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '1';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '3';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'slideshow';
   $handler->display->display_options['style_options']['row_class_special'] = FALSE;
   $handler->display->display_options['style_options']['slideshow_type'] = 'views_slideshow_cycle';
@@ -256,6 +257,7 @@ function feature_house_projects_views_default_views() {
   $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_pager']['type'] = 'views_slideshow_pager_fields';
   $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_pager']['views_slideshow_pager_fields_fields'] = array(
     'field_image' => 0,
+    'counter' => 0,
   );
   $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_controls']['weight'] = '1';
   $handler->display->display_options['style_options']['widgets']['top']['views_slideshow_controls']['type'] = 'views_slideshow_controls_text';
@@ -264,6 +266,7 @@ function feature_house_projects_views_default_views() {
   $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_pager']['weight'] = '1';
   $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_pager']['type'] = 'views_slideshow_pager_fields';
   $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_pager']['views_slideshow_pager_fields_fields'] = array(
+    'counter' => 'counter',
     'field_image' => 0,
   );
   $handler->display->display_options['style_options']['widgets']['bottom']['views_slideshow_controls']['weight'] = '1';
@@ -291,6 +294,18 @@ function feature_house_projects_views_default_views() {
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_image']['delta_offset'] = '0';
+  /* Field: Global: View result counter */
+  $handler->display->display_options['fields']['counter']['id'] = 'counter';
+  $handler->display->display_options['fields']['counter']['table'] = 'views';
+  $handler->display->display_options['fields']['counter']['field'] = 'counter';
+  $handler->display->display_options['fields']['counter']['label'] = '';
+  $handler->display->display_options['fields']['counter']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['counter']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['counter']['alter']['text'] = '<div class="pager-item"></div>';
+  $handler->display->display_options['fields']['counter']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['counter']['alter']['path'] = '#pager';
+  $handler->display->display_options['fields']['counter']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['counter']['counter_start'] = '1';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -317,6 +332,7 @@ function feature_house_projects_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('<div class="pager-item"></div>'),
     t('Block'),
   );
   $export['frontpage_slideshow'] = $view;
