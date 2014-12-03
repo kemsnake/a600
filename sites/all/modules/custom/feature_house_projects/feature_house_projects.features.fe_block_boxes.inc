@@ -11,6 +11,42 @@ function feature_house_projects_default_fe_block_boxes() {
   $export = array();
 
   $fe_block_boxes = new stdClass();
+  $fe_block_boxes->info = 'Мы принимаем';
+  $fe_block_boxes->format = 'full_html';
+  $fe_block_boxes->machine_name = 'accepted_payments';
+  $fe_block_boxes->body = '<p><img alt="" src="/sites/all/themes/a600/images/payments.png" title="Мы принимаем" /></p>
+';
+
+  $export['accepted_payments'] = $fe_block_boxes;
+
+  $fe_block_boxes = new stdClass();
+  $fe_block_boxes->info = 'Частые вопросы';
+  $fe_block_boxes->format = 'full_html';
+  $fe_block_boxes->machine_name = 'faq_block';
+  $fe_block_boxes->body = '<div class="question first">
+	<div class="title">
+		Это пример вопроса от посетителя за номером 1</div>
+	<div class="text">
+		Пример ответа на вопрос, но может быть длиннее</div>
+</div>
+<div class="question second">
+	<div class="title">
+		Это пример вопроса от посетителя за номером 2</div>
+	<div class="text">
+		Пример ответа на вопрос, но может быть длиннее</div>
+</div>
+<div class="question third">
+	<div class="title">
+		Это пример вопроса от посетителя за номером 3</div>
+	<div class="text">
+		Пример ответа на вопрос, но может быть длиннее</div>
+</div>
+<div class="all-question-link"><a href="/faq">Все вопросы &gt;</div>
+';
+
+  $export['faq_block'] = $fe_block_boxes;
+
+  $fe_block_boxes = new stdClass();
   $fe_block_boxes->info = 'Блок на главной 1';
   $fe_block_boxes->format = 'full_html';
   $fe_block_boxes->machine_name = 'frontpage_block1';
@@ -45,6 +81,15 @@ function feature_house_projects_default_fe_block_boxes() {
 ';
 
   $export['frontpage_block3'] = $fe_block_boxes;
+
+  $fe_block_boxes = new stdClass();
+  $fe_block_boxes->info = 'Логотип';
+  $fe_block_boxes->format = 'full_html';
+  $fe_block_boxes->machine_name = 'logo_info';
+  $fe_block_boxes->body = '<a class="site-logo" href="/" rel="home" title="Главная"><img alt="Главная" src="/sites/all/themes/a600/logo.png" /></a>
+';
+
+  $export['logo_info'] = $fe_block_boxes;
 
   $fe_block_boxes = new stdClass();
   $fe_block_boxes->info = 'Search text block 1';
@@ -138,6 +183,19 @@ function feature_house_projects_default_fe_block_boxes() {
 <div class="text">Это не проекты, адаптированные под минимальную стоимость. Это проекты готовых для жизни домов, не требующие переплаты.</div>';
 
   $export['search_text_block_9'] = $fe_block_boxes;
+
+  $fe_block_boxes = new stdClass();
+  $fe_block_boxes->info = 'Соц сети';
+  $fe_block_boxes->format = 'full_html';
+  $fe_block_boxes->machine_name = 'social_links';
+  $fe_block_boxes->body = '<div class="social">
+	<a href="vk.com">&nbsp;</a> <a href="facebook.com">&nbsp;</a> <a href="twitter.com">&nbsp;</a> <a href="google.com" class="last">&nbsp;</a></div>
+<div class="copyright">
+	Copyright 2014<br />
+	Все права защищены</div>
+';
+
+  $export['social_links'] = $fe_block_boxes;
 
   return $export;
 }

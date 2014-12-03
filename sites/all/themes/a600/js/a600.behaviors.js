@@ -134,7 +134,7 @@
         var rect = filters_fieldset.getBoundingClientRect();
         console.log(rect);
 
-        $('#block-custom-a600-search-form #edit-search-image').attr('style', 'display:block;top:' + (rect.top + 65) + 'px;left:' + (rect.right - 50) + 'px;');
+        //$('#block-custom-a600-search-form #edit-search-image').attr('style', 'display:block;top:' + (rect.top + 65) + 'px;left:' + (rect.right - 50) + 'px;');
         // отправляем форму создания оплаты в RBK Money
         $('form#custom-a600-project-pay-send-rbk-form').submit();
 

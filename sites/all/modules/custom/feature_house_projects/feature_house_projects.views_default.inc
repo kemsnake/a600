@@ -110,21 +110,6 @@ function feature_house_projects_views_default_views() {
   );
   $handler->display->display_options['filters']['field_house_category_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_house_category_tid']['vocabulary'] = 'house_category';
-  /* Filter criterion: Broken/missing handler */
-  $handler->display->display_options['filters']['field_house_collection_tid']['id'] = 'field_house_collection_tid';
-  $handler->display->display_options['filters']['field_house_collection_tid']['table'] = 'field_data_field_house_collection';
-  $handler->display->display_options['filters']['field_house_collection_tid']['field'] = 'field_house_collection_tid';
-  $handler->display->display_options['filters']['field_house_collection_tid']['operator'] = 'or';
-  $handler->display->display_options['filters']['field_house_collection_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_house_collection_tid']['expose']['operator_id'] = 'field_house_collection_tid_op';
-  $handler->display->display_options['filters']['field_house_collection_tid']['expose']['label'] = 'Коллекция';
-  $handler->display->display_options['filters']['field_house_collection_tid']['expose']['operator'] = 'field_house_collection_tid_op';
-  $handler->display->display_options['filters']['field_house_collection_tid']['expose']['identifier'] = 'field_house_collection_tid';
-  $handler->display->display_options['filters']['field_house_collection_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-  );
   /* Filter criterion: Content: Площадь (field_square) */
   $handler->display->display_options['filters']['field_square_value']['id'] = 'field_square_value';
   $handler->display->display_options['filters']['field_square_value']['table'] = 'field_data_field_square';
@@ -136,21 +121,6 @@ function feature_house_projects_views_default_views() {
   $handler->display->display_options['filters']['field_square_value']['expose']['operator'] = 'field_square_value_op';
   $handler->display->display_options['filters']['field_square_value']['expose']['identifier'] = 'field_square_value';
   $handler->display->display_options['filters']['field_square_value']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-  );
-  /* Filter criterion: Broken/missing handler */
-  $handler->display->display_options['filters']['field_house_style_tid']['id'] = 'field_house_style_tid';
-  $handler->display->display_options['filters']['field_house_style_tid']['table'] = 'field_data_field_house_style';
-  $handler->display->display_options['filters']['field_house_style_tid']['field'] = 'field_house_style_tid';
-  $handler->display->display_options['filters']['field_house_style_tid']['operator'] = 'or';
-  $handler->display->display_options['filters']['field_house_style_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_house_style_tid']['expose']['operator_id'] = 'field_house_style_tid_op';
-  $handler->display->display_options['filters']['field_house_style_tid']['expose']['label'] = 'Стиль';
-  $handler->display->display_options['filters']['field_house_style_tid']['expose']['operator'] = 'field_house_style_tid_op';
-  $handler->display->display_options['filters']['field_house_style_tid']['expose']['identifier'] = 'field_house_style_tid';
-  $handler->display->display_options['filters']['field_house_style_tid']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     3 => 0,
@@ -212,9 +182,7 @@ function feature_house_projects_views_default_views() {
     t('[title] ([field_price])'),
     t('Категория дома'),
     t('Категория дома (field_house_category)'),
-    t('Коллекция'),
     t('Площадь'),
-    t('Стиль'),
     t('Цена'),
     t('Этажность'),
     t('Page'),
@@ -226,7 +194,7 @@ function feature_house_projects_views_default_views() {
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'Слайдшоу на главной';
+  $view->human_name = 'Слайдшоу';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */

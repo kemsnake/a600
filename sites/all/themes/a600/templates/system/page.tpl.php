@@ -96,8 +96,10 @@
 
   <div class="l-main">
     <div class="l-content" role="main">
-      <div class="l-highlighted-prefix">&nbsp;</div>
-      <?php print render($page['highlighted']); ?>
+      <?php if ($page['highlighted']) : ?>
+        <div class="l-highlighted-prefix">&nbsp;</div>
+        <?php print render($page['highlighted']); ?>
+      <?php endif; ?>
       <?php print $breadcrumb; ?>
       <a id="main-content"></a>
       <?php print render($title_prefix); ?>
@@ -111,12 +113,15 @@
       <?php if ($action_links): ?>
         <ul class="action-links"><?php print render($action_links); ?></ul>
       <?php endif; ?>
-      <?php print render($page['content']); ?>
+      <div class="l-content-inner">
+        <?php print render($page['content']); ?>
+      </div>
       <?php print $feed_icons; ?>
     </div>
 
     <?php print render($page['sidebar_first']); ?>
     <?php print render($page['sidebar_second']); ?>
+    <?php print render($page['bottom_content']); ?>
   </div>
 
 
@@ -124,14 +129,6 @@
 </div>
 <div class="footer-wrapper">
   <footer class="l-footer" role="contentinfo">
-
-    <?php if ($site_name): ?>
-      <a href="<?php print $front_page; ?>" class="footer-site-name">
-        <?php print '&#169;' . date('Y') . ' ' . $site_name; ?>
-      </a>
-    <?php endif; ?>
     <?php print render($page['footer']); ?>
-    <div class="footer-payments">
-    </div>
   </footer>
 </div>

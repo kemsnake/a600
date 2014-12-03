@@ -12,6 +12,82 @@ function feature_house_projects_default_fe_block_settings() {
 
   $export['version'] = '2.0';
 
+  $export['block-accepted_payments'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'machine_name' => 'accepted_payments',
+    'module' => 'block',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'a600' => array(
+        'region' => 'footer',
+        'status' => 1,
+        'theme' => 'a600',
+        'weight' => -20,
+      ),
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'omega' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'omega',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => 'Мы принимаем',
+    'visibility' => 0,
+  );
+
+  $export['block-faq_block'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'machine_name' => 'faq_block',
+    'module' => 'block',
+    'node_types' => array(),
+    'pages' => '<front>',
+    'roles' => array(),
+    'themes' => array(
+      'a600' => array(
+        'region' => 'bottom_content',
+        'status' => 1,
+        'theme' => 'a600',
+        'weight' => -21,
+      ),
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'omega' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'omega',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => 'Частые вопросы',
+    'visibility' => 1,
+  );
+
   $export['block-frontpage_block1'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -126,6 +202,44 @@ function feature_house_projects_default_fe_block_settings() {
     'visibility' => 1,
   );
 
+  $export['block-logo_info'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'machine_name' => 'logo_info',
+    'module' => 'block',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'a600' => array(
+        'region' => 'footer',
+        'status' => 1,
+        'theme' => 'a600',
+        'weight' => -21,
+      ),
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'omega' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'omega',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 0,
+  );
+
   $export['block-search_text_block_1'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -161,6 +275,44 @@ function feature_house_projects_default_fe_block_settings() {
       ),
     ),
     'title' => 'Никакой переплаты',
+    'visibility' => 0,
+  );
+
+  $export['block-social_links'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'machine_name' => 'social_links',
+    'module' => 'block',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'a600' => array(
+        'region' => 'footer',
+        'status' => 1,
+        'theme' => 'a600',
+        'weight' => -18,
+      ),
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'omega' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'omega',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
     'visibility' => 0,
   );
 
@@ -202,6 +354,44 @@ function feature_house_projects_default_fe_block_settings() {
     'visibility' => 0,
   );
 
+  $export['custom_a600-footer_menu'] = array(
+    'cache' => 8,
+    'custom' => 0,
+    'delta' => 'footer_menu',
+    'module' => 'custom_a600',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'a600' => array(
+        'region' => 'footer',
+        'status' => 1,
+        'theme' => 'a600',
+        'weight' => -22,
+      ),
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'omega' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'omega',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
   $export['custom_a600-search_form'] = array(
     'cache' => 8,
     'custom' => 0,
@@ -216,6 +406,44 @@ function feature_house_projects_default_fe_block_settings() {
         'status' => 1,
         'theme' => 'a600',
         'weight' => -20,
+      ),
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'omega' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'omega',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
+  $export['custom_a600-site_footer_phone'] = array(
+    'cache' => 8,
+    'custom' => 0,
+    'delta' => 'site_footer_phone',
+    'module' => 'custom_a600',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'a600' => array(
+        'region' => 'footer',
+        'status' => 1,
+        'theme' => 'a600',
+        'weight' => -19,
       ),
       'bartik' => array(
         'region' => '',
@@ -313,82 +541,6 @@ function feature_house_projects_default_fe_block_settings() {
       ),
     ),
     'title' => '',
-    'visibility' => 0,
-  );
-
-  $export['menu-menu-footer-menu-1'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'delta' => 'menu-footer-menu-1',
-    'module' => 'menu',
-    'node_types' => array(),
-    'pages' => '',
-    'roles' => array(),
-    'themes' => array(
-      'a600' => array(
-        'region' => 'footer',
-        'status' => 1,
-        'theme' => 'a600',
-        'weight' => 0,
-      ),
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => 0,
-      ),
-      'omega' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'omega',
-        'weight' => 0,
-      ),
-      'seven' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'seven',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '<none>',
-    'visibility' => 0,
-  );
-
-  $export['menu-menu-footer-menu-2'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'delta' => 'menu-footer-menu-2',
-    'module' => 'menu',
-    'node_types' => array(),
-    'pages' => '',
-    'roles' => array(),
-    'themes' => array(
-      'a600' => array(
-        'region' => 'footer',
-        'status' => 1,
-        'theme' => 'a600',
-        'weight' => 0,
-      ),
-      'bartik' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bartik',
-        'weight' => 0,
-      ),
-      'omega' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'omega',
-        'weight' => 0,
-      ),
-      'seven' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'seven',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '<none>',
     'visibility' => 0,
   );
 
@@ -519,7 +671,7 @@ function feature_house_projects_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'a600',
-        'weight' => 0,
+        'weight' => -22,
       ),
       'bartik' => array(
         'region' => 'content',
@@ -778,7 +930,7 @@ function feature_house_projects_default_fe_block_settings() {
     'delta' => 'frontpage_slideshow-block',
     'module' => 'views',
     'node_types' => array(),
-    'pages' => '<front>',
+    'pages' => '',
     'roles' => array(),
     'themes' => array(
       'a600' => array(
@@ -807,7 +959,7 @@ function feature_house_projects_default_fe_block_settings() {
       ),
     ),
     'title' => '<none>',
-    'visibility' => 1,
+    'visibility' => 0,
   );
 
   return $export;

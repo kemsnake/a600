@@ -50,6 +50,9 @@ img, media {
     overflow: hidden;
     padding: 20px;
 }
+.l-content {
+    border-bottom: 1px #808080 dashed;
+}
 .l-highlighted-prefix{
     background: url(../images/top-filters-background.png) no-repeat;
     background-size: 100% auto;
@@ -62,10 +65,14 @@ img, media {
     padding: 0 10px;
     overflow: hidden;
 }
+.l-region--bottom-content{
+    background: white;
+}
 .footer-wrapper {
     overflow: hidden;
-    background: url(../images/footer.jpg);
+    background: url(../images/footer.png);
     width: 100%;
+    background-size: contain;
 }
 .footer-site-name:active,
 .footer-site-name:visited {
@@ -86,14 +93,8 @@ img, media {
 #block-menu-menu-footer-menu-2{
     float: left;
 }
-.footer-payments {
-    background: url('../images/payments.jpg');
-    background-size: contain;
-    overflow: hidden;
-    float: right;
-    width: 200px;
-    height: 45px;
-    margin-top: 60px;
+.l-footer .site-logo {
+    width:100%;
 }
 .site-logo {
     width: 12%;
@@ -118,7 +119,7 @@ img, media {
     text-align: center;
     width: 10%;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-top: 3px;
     float:left;
     text-transform: uppercase;
 }
@@ -130,13 +131,13 @@ img, media {
     color: #c82d25;
 }
 #block-custom-a600-search-form .filters-title .row1{
-    font-size: 20px;
+    font-size: 22px;
 }
 #block-custom-a600-search-form .filters-title .row2{
-    font-size: 16px;
+    font-size: 18px;
 }
 #block-custom-a600-search-form .filters-title .row3{
-    font-size: 26px;
+    font-size: 32px;
 }
 #block-custom-a600-search-form .filters-title-arrow {
     width: 5%;
@@ -144,6 +145,7 @@ img, media {
     float: left;
     background: url(../images/filters-title-arrow.png) no-repeat center;
     background-size: contain;
+    margin-top:15px;
 }
 #block-custom-a600-search-form #edit-filters {
     padding-left: 10px;
@@ -218,13 +220,15 @@ img, media {
 #block-custom-a600-search-form #edit-col2 {
     width: 29%;
 }
-#block-custom-a600-search-form #edit-search-image {
+#block-custom-a600-search-form .search-img {
     background: url(../images/search-image-right.png);
     background-size: contain;
     height:61px;
-    width:52px;
+    width:60px;
     position:absolute;
-    display:none;
+    top: 20px;
+    left: 1130px;
+    z-index: 100;
 }
 #block-custom-a600-search-form #edit-select-group {
     width: 100%;
@@ -407,7 +411,7 @@ img, media {
 .views-slideshow-controls-bottom {
     position: absolute;
     top:400px;
-    left:545px;
+    left:575px;
     z-index: 100;
 }
 .views-slideshow-controls-bottom .views-slideshow-pager-field-item:hover {
@@ -453,7 +457,7 @@ img, media {
 .view-main-page .views-view-grid .td {
     width: 33%;
 }
-.view-main-page div.search-result.node .node-title {
+.page-main div.search-result.node .node-title {
     font-size: 18px;
     font-family: Tahoma;
     text-decoration: underline;
@@ -461,27 +465,27 @@ img, media {
     margin:5px 0;
     text-align: center;
 }
-.view-main-page .views-view-grid .field--name-field-photo,
-.view-main-page .views-view-grid .house-project-square-wrapper {
+.page-main  .field--name-field-photo,
+.page-main  .house-project-square-wrapper {
     margin:0 55px 0 55px;
     text-align: center;
 }
-.view-main-page .views-view-grid .field--name-field-photo img{
+.page-main  .field--name-field-photo img{
     border-radius: 10px 10px 0 0;
 }
-.view-main-page .views-view-grid .house-project-square-wrapper {
+.page-main  .house-project-square-wrapper {
     background-color: #f6eddf;
     overflow: hidden;
     padding: 10px 0;
 
 }
-.view-main-page .views-view-grid .house-project-square-wrapper .field--name-field-square{
+.page-main  .house-project-square-wrapper .field--name-field-square{
     margin-left: 30%;
     font-size: 28px;
     float: left;
 }
 
-.view-main-page .views-view-grid .house-project-price-wrapper {
+.page-main  .house-project-price-wrapper {
     position: relative;
     top: -140px;
     left: 224px;
@@ -492,32 +496,31 @@ img, media {
 
 }
 
-.view-main-page .views-view-grid .house-project-price-wrapper .price-symbol{
+.page-main  .house-project-price-wrapper .price-symbol{
     text-decoration: line-through;
     padding-left: 5px;
 }
-.view-main-page .views-view-grid .house-project-price-wrapper .field--name-field-price{
+.page-main  .house-project-price-wrapper .field--name-field-price{
     font-size: 20px;
     float: left;
     margin: 7px 0 0 22px;
 }
 /* end search results */
 
-
-
-#block-custom-a600-search-form #results-wrapper {
+.page-project-search .l-content-inner {
     width: 100%;
-    float:left;
-    margin-top: 30px;
+    overflow: hidden;
+    //background: #ffffff;
+    padding:10px;
 }
 
 
-#block-custom-a600-search-form #results-wrapper .search-text-block,
-#block-custom-a600-search-form div.search-result.node {
+.page-project-search .search-text-block,
+.page-project-search div.search-result.node {
     display: block;
     overflow: hidden;
     background: white;
-    width: 280px;
+    width: 267px;
     height:370px;
     margin-right: 22px;
     margin-bottom: 30px;
@@ -526,35 +529,34 @@ img, media {
     text-align: center;
 }
 
-#block-custom-a600-search-form div.search-result.node:hover {
+.page-project-search div.search-result.node:hover {
     cursor: pointer;
 }
 
-/*
-#block-custom-a600-search-form div.spec-offer.node {
+.page-project-search div.spec-offer.node {
     width: 580px;
 }
-#block-custom-a600-search-form div.spec-offer.node .node__content {
+.page-project-search div.spec-offer.node .node__content {
     position:relative;
 }
-#block-custom-a600-search-form div.spec-offer.node .field--name-field-photo {
+.page-project-search div.spec-offer.node .field--name-field-photo {
     position: absolute;
     top:0;
     left:0;
 }
 
-#block-custom-a600-search-form div.spec-offer.node .field--name-field-rooms-list {
+.page-project-search div.spec-offer.node .field--name-field-rooms-list {
     margin-top: 10px;
     width:60%;
     float: left;
     margin-right:20px;
 }
-#block-custom-a600-search-form div.spec-offer.node .house-project-price-wrapper {
+.page-project-search div.spec-offer.node .house-project-price-wrapper {
     float: left;
     margin: 20px 0 0 0!important;
 }
 
-#block-custom-a600-search-form div.spec-offer-text {
+.page-project-search div.spec-offer-text {
     background-color: white;
     opacity: 0.8;
     position:absolute;
@@ -566,39 +568,39 @@ img, media {
     padding-top: 10px;
     border-radius: 5px;
 }
-*/
-#block-custom-a600-search-form #results-wrapper .search-text-block {
+
+.page-project-search .search-text-block {
     border : 5px dashed white;
     background: none;
     padding: 15px;
     height:370px
 }
-#block-custom-a600-search-form #results-wrapper .search-text-block .title {
+.page-project-search .search-text-block .title {
     font-size: 38px;
     margin:10px 0 10px 0;
     text-align: left;
 }
-#block-custom-a600-search-form #results-wrapper .search-text-block .text {
+.page-project-search .search-text-block .text {
     font-size: 24px;
     text-align: left;
 }
 
-#block-custom-a600-search-form div.search-result.node .node-title {
+.page-project-search div.search-result.node .node-title {
     text-align: center;
 }
 
-#block-custom-a600-search-form div.search-result.node .node-title {
+.page-project-search div.search-result.node .node-title {
     text-transform: uppercase;
     font-size: 14px;
     letter-spacing: 5px;
     margin-top:1px;
 }
 
-#block-custom-a600-search-form div.search-result.node .field--name-body {
+.page-project-search div.search-result.node .field--name-body {
     height: 50px;
 }
 
-#block-custom-a600-search-form div.search-result.node .house-project-price-wrapper {
+.page-project-search div.search-result.node .house-project-price-wrapper {
     padding: 10px;
     background: #ffe6c9;
     margin: 10px 30% 10px 30%;
@@ -607,11 +609,11 @@ img, media {
     border-radius: 10px;
 }
 
-#block-custom-a600-search-form div.search-result.node .house-project-price-wrapper .field--name-field-price {
+.page-project-search div.search-result.node .house-project-price-wrapper .field--name-field-price {
     float: left;
     font-size: 20px;
 }
-#block-custom-a600-search-form div.search-result.node .house-project-price-wrapper .price-suffix {
+.page-project-search div.search-result.node .house-project-price-wrapper .price-suffix {
     background: url('../images/ruble.gif') no-repeat;
     background-size: contain;
     opacity:0.9;
@@ -620,7 +622,7 @@ img, media {
     height:20px;
     margin-left:5px;
 }
-#block-custom-a600-search-form .more-wrapper{
+.page-project-search .more-wrapper{
     width:100%;
     text-align: center;
     float: left;
@@ -663,6 +665,11 @@ img, media {
     margin-right:0;
     background: none;
 }
+#block-custom-a600-site-footer-phone .phone-wrapper {
+    float: right;
+    color:white;
+    padding: 5px 50px 20px 50px;
+}
 #block-custom-a600-site-top-phone {
     background: rgb(182, 70, 58);
     opacity: 0.8;
@@ -670,7 +677,7 @@ img, media {
     color:white;
     padding: 5px 50px 20px 50px;
 }
-#block-custom-a600-site-top-phone .top-phone-prefix{
+#block-custom-a600-site-top-phone .phone-prefix{
     position:absolute;
     width: 0;
     height: 0;
@@ -679,16 +686,19 @@ img, media {
     top: -30px;
     left: 216px;
 }
-#block-custom-a600-site-top-phone .top-phone-title {
+#block-custom-a600-site-footer-phone .phone-title,
+#block-custom-a600-site-top-phone .phone-title {
     font-size: 12px;
     float: right;
     background: #660000;
     padding:4px;
 }
-#block-custom-a600-site-top-phone .top-phone-code {
+#block-custom-a600-site-footer-phone .phone-code,
+#block-custom-a600-site-top-phone .phone-code {
     font-size: 22px;
 }
-#block-custom-a600-site-top-phone .top-phone-number {
+#block-custom-a600-site-footer-phone .phone-number,
+#block-custom-a600-site-top-phone .phone-number {
     font-size: 32px;
     font-weight: bold;
 
@@ -708,10 +718,10 @@ img, media {
 #block-custom-a600-site-top-phone {
     margin-top:1em;
 }
-#block-custom-a600-site-top-phone .top-phone-title {
+#block-custom-a600-site-top-phone .phone-title {
     font-size: 18px;
 }
-#block-custom-a600-site-top-phone .top-phone-number {
+#block-custom-a600-site-top-phone .phone-number {
     font-size: 22px;
 }
 
@@ -1042,3 +1052,132 @@ fieldset#edit-prices .price-suffix {
     float: left;
 }
 /* end order house project view */
+
+/* footer */
+.l-footer .block {
+    float:left;
+}
+#block-custom-a600-footer-menu {
+    width:80%;
+}
+#block-block-14 {
+    width:15%;
+    margin-right: 5%;
+}
+#block-block-15 {
+    width:25%;
+    margin-left: 3%;
+}
+#block-block-15 h2 {
+    margin:0 0 10px 0;
+    color: #ffffff;
+    font-size: 16px;
+    font-family: "PT Sans Bold";
+    text-transform: uppercase;
+}
+#block-custom-a600-site-footer-phone {
+    width:45%;
+    padding-left: 90px;
+    padding-bottom: 5px;
+}
+#block-block-16 {
+    width:15%;
+    margin-left: 7%;
+}
+#block-custom-a600-footer-menu ul li {
+    float: left;
+    list-style-type: disc;
+    width: 33%;
+    text-align: left;
+    margin-bottom: 10px;
+}
+#block-custom-a600-footer-menu ul li a {
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: "PT Sans Bold";
+}
+.l-region--footer p {
+    margin: 0;
+}
+#block-block-14 img {
+    width: 150%;
+}
+#block-custom-a600-site-footer-phone img,
+#block-custom-a600-site-footer-phone .phone-wrapper {
+    float: left;
+}
+#block-block-16 .social {
+    background: url(../images/social-links.png) no-repeat;
+    background-size: cover;
+    width: 175px;
+    height: 35px;
+    margin-top: 15px;
+}
+#block-block-16 .social a {
+    width: 40px;
+    height: 35px;
+    margin: 0 6px 0 0;
+    float: left;
+    overflow: hidden;
+    text-decoration: none;
+}
+#block-block-16 .social a.last {
+    margin: 0;
+    width:37px;
+}
+#block-block-16 .copyright {
+    color: #ffffff;
+    margin-top: 15px;
+    font-size: 12px;
+}
+/* end footer */
+
+/* faq */
+#block-block-17 {
+    overflow: hidden;
+    padding: 0 20px 20px 20px;
+}
+#block-block-17 .block__content {
+    margin-left:20px;
+}
+#block-block-17 .block__title {
+    font-weight: bold;
+    font-size: 32px;
+    width: 24%;
+    text-align: center;
+    font-family: PT Sans;
+    margin: auto;
+    padding-bottom: 20px;
+    border-top: 5px solid #c82d25;
+    text-transform: uppercase;
+    color: #666666;
+}
+#block-block-17 .question {
+    width: 28%;
+    margin-right: 5%;
+    float: left;
+    border-left: grey 2px solid;
+    padding-left: 20px;
+}
+#block-block-17 .question .title {
+    color: #990000;
+    font-family: Tahoma;
+    padding-bottom: 10px;
+}
+#block-block-17 .question .text {
+    color: #666666;
+    font-family: Tahoma;
+    padding-bottom: 10px;
+}
+#block-block-17 .all-question-link {
+    padding-bottom: 10px;
+    float: right;
+    display: block;
+    margin: 15px 20px 0 0;
+}
+#block-block-17 .all-question-link a {
+    color: #660000;
+    font-family: Tahoma;
+}
+/* end faq */

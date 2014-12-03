@@ -98,8 +98,7 @@ function custom_a600_menu() {
 
   $items['project-search'] = array(
     'title' => 'Project search',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('custom_a600_project_search'),
+    'page callback' => 'custom_a600_search_page',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
@@ -128,6 +127,10 @@ function custom_a600_block_info() {
     'info' => t('Телефон сайта(шапка)'),
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
+  $blocks['site_footer_phone'] = array(
+    'info' => t('Телефон сайта(футер)'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
   $blocks['favorites_projects'] = array(
     'info' => t('Избранные проекты'),
     'cache' => DRUPAL_CACHE_GLOBAL,
@@ -136,9 +139,12 @@ function custom_a600_block_info() {
     'info' => t('Форма поиска'),
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
+  $blocks['footer_menu'] = array(
+    'info' => t('Нижнее меню'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
   return $blocks;
 }
-
 
 /**
  * Implements hook_block_view().
@@ -147,56 +153,74 @@ function custom_a600_block_view($delta) {
   $block = array();
   switch ($delta) {
     case 'site_top_phone':
+    case 'site_footer_phone':
       $number = variable_get('custom_a600_site_phone', '');
-      $block['content'] = '<div class="top-phone-prefix">&nbsp;</div>
-      <div class="top-phone-wrapper">
-      <div class="top-phone-title">звоните</div>
-      <div class="top-phone-code">+7 495</div>
-      <div class="top-phone-number">'. $number . '</div>
+      if ($delta == 'site_top_phone') {
+        $block['content'] = '<div class="phone-prefix">&nbsp;</div>';
+      }
+      else {
+        $block['content'] = '<img src="' . drupal_get_path('theme', 'a600') . '/images/footer-tablet.png" class="footer-tablet-img">';
+      }
+      $block['content'] .= '<div class="phone-wrapper">
+      <div class="phone-title">звоните</div>
+      <div class="phone-code">+7 495</div>
+      <div class="phone-number">'. $number . '</div>
       </div>';
       break;
     case 'search_form':
-      $form = drupal_get_form('custom_a600_project_search');
+      $form = drupal_get_form('custom_a600_search_filters_form', drupal_is_front_page());
       $block['content'] = drupal_render($form);
       break;
     case 'favorites_projects':
       $block['content'] = '<div id="favorites-list">' . favorites_list() . '</div>';
       break;
+    case 'footer_menu':
+      $menu_block = module_invoke('menu', 'block_view', 'menu-top-menu');
+      $block['content'] = $menu_block['content'];
+      break;
   }
   return $block;
 }
 
-function custom_a600_project_search($form, &$form_state = NULL) {
+function _custom_a600_default_search_params() {
+  return array(
+    'square' => null,
+    'width' => array('value' => 10, 'value2' => 15),
+    'length' => array('value' => 10, 'value2' => 15),
+    //'count_bedroom' => 'all',
+    'all_dimensions' => TRUE,
+    'garage' => 'all',
+    'floor' => 6,
+    'attic_floor' => FALSE,
+    'house_basement' => FALSE,
+    'price_slider' => array('value' => 10000, 'value2' => 80000),
+    'second_light' => 'all',
+    'balcony' => 'all',
+    'terrace' => 'all',
+    'erker' => 'all',
+    'count_bedroom_floor1' => 3,
+    'count_bedroom_floor1_all' => TRUE,
+    'count_bedroom_floor2' => 3,
+    'count_bedroom_floor2_all' => TRUE,
+    'pool' => 'all',
+    'page' => 0,
+    'count_search' => 0,
+    'count_projects' => FALSE,
+  );
+}
+
+function custom_a600_search_filters_form($form, &$form_state = NULL, $is_front = false) {
   $form = array();
   drupal_set_title('');
-  if (!isset($form_state['vales'])) {
-    $default_params = array(
-      'square' => null,
-      'width' => array('value' => 10, 'value2' => 15),
-      'length' => array('value' => 10, 'value2' => 15),
-      //'count_bedroom' => 'all',
-      'all_dimensions' => TRUE,
-      'garage' => 'all',
-      'floor' => null,
-      'attic_floor' => FALSE,
-      'house_basement' => FALSE,
-      'price_slider' => array('value' => 10000, 'value2' => 80000),
-      'second_light' => 'all',
-      'balcony' => 'all',
-      'terrace' => 'all',
-      'erker' => 'all',
-      'count_bedroom_floor1' => 3,
-      'count_bedroom_floor1_all' => TRUE,
-      'count_bedroom_floor2' => 3,
-      'count_bedroom_floor2_all' => TRUE,
-      'pool' => 'all',
-      'page' => 0,
-      'count_search' => 0,
-      'count_projects' => FALSE,
-    );
+  if (isset($form_state['values'])) {
+    $default_params = $form_state['values'];
+    unset($_SESSION['search_params']);
+  }
+  elseif (isset($_SESSION['search_params'])) {
+    $default_params = $_SESSION['search_params'];
   }
   else {
-    $default_params = $form_state['values'];
+    $default_params = _custom_a600_default_search_params();
   }
 
   $form['filters'] = array(
@@ -213,12 +237,18 @@ function custom_a600_project_search($form, &$form_state = NULL) {
     <div class="filters-title-arrow">&nbsp;</div>',
   );
 
-  $ajax = array(
-    'callback' => '_custom_a600_search_projects_ajax',
-    'wrapper' => 'results-wrapper',
-    'method' => 'replace',
-    'effect' => 'fade',
-  );
+  // не используем ajax на главной странице
+  if (!$is_front) {
+    $ajax = array(
+      'callback' => '_custom_a600_search_projects_ajax',
+      'wrapper' => 'results-wrapper',
+      'method' => 'replace',
+      'effect' => 'fade',
+    );
+  }
+  else {
+    $ajax = array();
+  }
 
   $options = explode(',', variable_get('custom_a600_square_options', ''));
   $options = array_combine($options, $options);
@@ -336,9 +366,15 @@ function custom_a600_project_search($form, &$form_state = NULL) {
   );
 
   $form['filters']['search_image'] = array(
-    '#type' => 'fieldset',
-    '#title' => '&nbsp;',
+    '#markup' => '<div class="search-img">&nbsp;</div>',
   );
+
+  if (empty($ajax)) {
+    $form['filters']['search'] = array(
+      '#type' => 'submit',
+      '#value' => 'Поиск',
+    );
+  }
 
   $form['extra_filters'] = array(
     '#type' => 'fieldset',
@@ -456,55 +492,37 @@ function custom_a600_project_search($form, &$form_state = NULL) {
   return $form;
 }
 
-function _custom_a600_search_render_results($params) {
-  $form['results-wrapper'] = array(
-    '#type' => 'fieldset',
-    '#collapsible' => FALSE,
-    '#attributes' => array('id' => array('results-wrapper')),
-  );
+function custom_a600_search_filters_form_submit($form, $form_state) {
+  drupal_session_initialize();
+  $_SESSION['search_params'] = $form_state['values'];
+  drupal_goto('project-search');
+}
 
-  $form['results-wrapper']['results'] = array(
-    '#markup' => _custom_a600_find_projects($default_params),
-  );
-
-  $form['results-wrapper']['count_projects'] = array(
-    '#type' => 'hidden',
-    '#value' => $default_params['count_projects'],
-  );
-  $form['results-wrapper']['count_search'] = array(
-    '#type' => 'hidden',
-    '#value' => $default_params['count_search'],
-  );
-  $form['results-wrapper']['page'] = array(
-    '#type' => 'hidden',
-    '#value' => $default_params['page'],
-  );
-
-  $more_href = 'house_projects/search/' . urlencode(serialize($default_params));
-  $form['results-wrapper']['more_text'] = array(
-    '#markup' => '<div class ="more-wrapper"><a id="load-more-link" href="' . $more_href . '"> Загрузить ещё </a></div>',
-  );
+function custom_a600_search_page() {
+  if (isset($_SESSION['search_params'])) {
+    $params = $_SESSION['search_params'];
+    $params['page'] = 0;
+    $params['count_search'] = 0;
+    $params['count_projects'] = 0;
+  }
+  else {
+    $params = _custom_a600_default_search_params();
+  }
+  return _custom_a600_find_projects($params);
 }
 
 function _custom_a600_search_projects_ajax($form, &$form_state) {
-  $form['results-wrapper'] = array(
-    '#type' => 'fieldset',
-    '#collapsible' => FALSE,
-    '#attributes' => array('id' => array('results-wrapper')),
-  );
   $form_state['values']['page'] = 0;
   $form_state['values']['count_search'] = 0;
   $form_state['values']['count_projects'] = 0;
-  $form['results-wrapper']['results'] = array(
-    '#markup' => _custom_a600_find_projects($form_state['values']),
-  );
+  $commands[] = ajax_command_html('.l-content-inner', _custom_a600_find_projects($form_state['values']));
   if ($form_state['values']['count_projects'] >= $form_state['values']['count_search']) {
     $more_href = 'house_projects/search/' . urlencode(serialize($form_state['values']));
-    $form['results-wrapper']['more_text'] = array(
-      '#markup' => '<div class ="more-wrapper"><a id="load-more-link" href="' . $more_href . '"> Загрузить ещё </a></div>',
-    );
+    //$form['results-wrapper']['more_text'] = array(
+    //  '#markup' => '<div class ="more-wrapper"><a id="load-more-link" href="' . $more_href . '"> Загрузить ещё </a></div>',
+    //);
   }
-  return $form['results-wrapper'];
+  return array('#type' => 'ajax', '#commands' => $commands);
 }
 
 function _custom_a600_search_projects_append_ajax($params) {
@@ -663,10 +681,15 @@ function _custom_a600_find_projects(&$params = NULL) {
   $current_text_block = 1;
   if (isset($result['node'])) {
     $i = 0;
+    $col = 0;
     $nids = array_keys($result['node']);
     foreach ($nids as $nid) {
+      if ($col == 0 ) {
+        //$output .= '<div class="sear';
+      }
       $output .= _custom_a600_render_project($nid);
       $i++;
+      $col++;
       // выводим тектсовые блоки
       if ($i==2 || $i==10-$so_offset) {
         $block_id = $params['page']*2 + $current_text_block;
