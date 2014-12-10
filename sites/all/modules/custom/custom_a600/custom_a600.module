@@ -499,6 +499,7 @@ function custom_a600_search_filters_form_submit($form, $form_state) {
 }
 
 function custom_a600_search_page() {
+  drupal_set_title('');
   if (isset($_SESSION['search_params'])) {
     $params = $_SESSION['search_params'];
     $params['page'] = 0;

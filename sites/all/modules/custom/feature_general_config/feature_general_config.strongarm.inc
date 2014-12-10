@@ -65,7 +65,9 @@ function feature_general_config_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'path_alias_whitelist';
-  $strongarm->value = array();
+  $strongarm->value = array(
+    'node' => TRUE,
+  );
   $export['path_alias_whitelist'] = $strongarm;
 
   $strongarm = new stdClass();

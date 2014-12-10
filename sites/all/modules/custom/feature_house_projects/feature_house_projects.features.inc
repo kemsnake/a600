@@ -41,7 +41,7 @@ function feature_house_projects_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => 780,
+          'width' => 1000,
           'height' => '',
           'upscale' => 1,
         ),
@@ -57,8 +57,8 @@ function feature_house_projects_image_default_styles() {
         'module' => 'image',
         'name' => 'image_crop',
         'data' => array(
-          'width' => 780,
-          'height' => 450,
+          'width' => 1000,
+          'height' => 575,
           'anchor' => 'center-center',
         ),
         'weight' => 2,
@@ -98,7 +98,7 @@ function feature_house_projects_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => 130,
+          'width' => 240,
           'height' => '',
           'upscale' => 1,
         ),
@@ -114,8 +114,8 @@ function feature_house_projects_image_default_styles() {
         'module' => 'image',
         'name' => 'image_crop',
         'data' => array(
-          'width' => 130,
-          'height' => 76,
+          'width' => 240,
+          'height' => 137,
           'anchor' => 'center-center',
         ),
         'weight' => 2,
@@ -128,7 +128,7 @@ function feature_house_projects_image_default_styles() {
     'name' => 'house_project_variant',
     'label' => 'house_project_variant',
     'effects' => array(
-      10 => array(
+      15 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -138,7 +138,7 @@ function feature_house_projects_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => 1150,
+          'width' => 550,
           'height' => '',
           'upscale' => 1,
         ),

@@ -77,50 +77,71 @@
  * @see template_preprocess_node()
  * @see template_process()
  */
-?>
-<article<?php print $attributes;?>>
-<div class="node-house-project-full">
 
-  <div<?php print $content_attributes; ?>>
-    <?php
-      print "<div class =\"top-section\">";
-        print render($content['field_photo']);
-        print "<div class =\"node-right-section\">";
-          print "<div class =\"node-title\">$title</div>";
-          print render($content['body']);
-          print render($content['field_rooms_list']);
-          if (module_exists('favorites')) {
-            $add_to_fav_form = drupal_get_form('custom_a600_add_favorite_form');
-            $add_to_fav = drupal_render($add_to_fav_form);
-          }
-          print '<div class="house-project-price-wrapper">' . render($content['field_price']) . '<div class="price-suffix">&nbsp;</div><div>' . $add_to_fav . '</div></div>';
+/* code for favourites
+if (module_exists('favorites')) {
+  $add_to_fav_form = drupal_get_form('custom_a600_add_favorite_form');
+  $add_to_fav = drupal_render($add_to_fav_form);
+}
+ print '<div class="house-project-price-wrapper">' . render($content['field_price']) . '<div class="price-suffix">&nbsp;</div><div>' . $add_to_fav . '</div></div>';
           print '<div class="create-order-wrapper">';
             print '<div class="create-order"><a href="/order/' . $node->nid . '">Сформировать заказ</a></div>';
             print '<div class="create-order-suffix">&nbsp;</div>';
           print "</div>";
         print "</div>";
-      print "</div>";
-      print "<div class =\"main-section\">";
-        print render($content['field_plans']);
-      print "</div>";
-      print "<div class =\"footer-section\">";
-        print '<div class="create-order-wrapper">';
-          print '<div class="create-order"><a href="/order/' . $node->nid . '">Сформировать заказ</a></div>';
-          print '<div class="create-order-suffix">&nbsp;</div>';
-        print "</div>";
+*/
+?>
+<article<?php print $attributes;?>>
+<div class="node-house-project-full">
+    <h1 class="node-title"><?php print $title; ?></h1>
+    <div class="house-project-price">
+      <div class="house-project-price-wrapper">
+        <?php print render($content['field_price']); ?>
+      </div>
+    </div>
+    <div class ="image-section">
+      <?php print render($content['field_photo']); ?>
+    </div>
+    <h2 class="description-title">О проекте</h2>
+    <div class ="description-section">
+      <div class ="description">
+        <div class ="description-top">
+          <?php print render($content['body']); ?>
+          <?php print render($content['field_additional_body']); ?>
+        </div>
+        <div class ="description-bottom">
+          <div class ="description-bottom-left">
+            <h3>Высота этажей в чистоте</h3>
+            <?php print render($content['field_1_floor_height']); ?>
+            <?php print render($content['field_2_floor_height']); ?>
+            <?php print render($content['field_attic_height']); ?>
+          </div>
+          <div class ="description-bottom-right">
+            <?php print render($content['field_house_floors']); ?>
+            <?php print render($content['field_attic_floor']); ?>
+            <?php print render($content['field_height']); ?>
+          </div>
+        </div>
+      </div>
+      <div class ="dimensions-section">
+        <?php print render($content['field_square']); ?>
+        <?php print render($content['field_live_square']); ?>
+        <?php print render($content['field_built_square']); ?>
+        <?php print render($content['field_dimensions']); ?>
+      </div>
+    </div>
+    <div class ="plans-section">
+      <h2 class="plans-section-title">Планы этажей</h2>
+      <?php print render($content['field_plans']); ?>
+    </div>
 
-        print '<div class="order-steps-wrapper">';
-        print '<div class="order-steps">';
-          print '<div class="step1 active">Описание</div>';
-          print '<div class="step-separator">&mdash;</div>';
-          print '<div class="step2">Формирование</div>';
-          print '<div class="step-separator">&mdash;</div>';
-          print '<div class="step3">Оплата</div>';
-        print "</div>";
-        print "</div>";
-      print "</div>";
-    ?>
-  </div>
-
-</div>
+    <div class ="order-section">
+      <div class="house-project-price-footer">
+        <?php print render($content['field_price']); ?>
+      </div>
+      <div class="create-order">
+        <a href="/order/<?php print $node->nid; ?>">Оформить заказ</a>
+      </div>
+    </div>
+ </div>
 </article>

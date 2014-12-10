@@ -110,7 +110,7 @@ function feature_house_projects_views_default_views() {
   );
   $handler->display->display_options['filters']['field_house_category_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_house_category_tid']['vocabulary'] = 'house_category';
-  /* Filter criterion: Content: Площадь (field_square) */
+  /* Filter criterion: Content: Общая площадь (field_square) */
   $handler->display->display_options['filters']['field_square_value']['id'] = 'field_square_value';
   $handler->display->display_options['filters']['field_square_value']['table'] = 'field_data_field_square';
   $handler->display->display_options['filters']['field_square_value']['field'] = 'field_square_value';
