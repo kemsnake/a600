@@ -892,11 +892,7 @@ img, media {
     background: #ffffff;
     box-shadow: 2px 2px;
 }
-fieldset#edit-prices {
-    border: 0;
-    margin:0;
-    padding-top: 20px;
-}
+
 fieldset#edit-contacts {
     border: 0;
 }
@@ -909,10 +905,6 @@ fieldset#edit-contacts .form-type-textfield label{
     float: left;
     text-align: left;
     width: 140px;
-}
-fieldset#edit-prices .order-option-description,
-fieldset#edit-prices .order-option-all-options {
-    margin-top:10px;
 }
 fieldset#edit-prices .order-option-col1 {
     width:30%;
@@ -1329,25 +1321,40 @@ fieldset#edit-prices .price-suffix {
 
 #edit-standard-price {
     border: 0;
+    padding: 0;
+    margin: 0 0 20px 0;
 }
 #edit-standard-price .order-option-title {
     text-align: center;
     font-size: 24px;
     font-family: "PT Sans";
     color: #c82d25;
+    margin-bottom: 20px;
+    margin-left: -90px;
 }
-#edit-standard-price .order-option-description,
+fieldset#edit-prices .order-options-wrapper {
+    display: table;
+    height: 100px;
+}
+fieldset#edit-prices .order-option-description,
 fieldset#edit-prices .order-option-all-options,
 fieldset#edit-prices .price-options-col3 {
-    margin-left:2%;
     padding-left:20px;
-    width:30%;
+    width:35%;
     float: left;
     border: none;
+    display: table-cell;
+    height:100%;
 }
 fieldset#edit-prices .order-option-all-options,
 #edit-standard-price .order-option-description {
-    border-left: 2px solid #c82d25;
+    border-left: 2px solid #c82d25!important;
+}
+fieldset#edit-prices .order-option-description-inner,
+fieldset#edit-prices .order-option-all-options-inner {
+    padding-top: 15px;
+}
+#edit-standard-price .order-option-description{
 }
 #edit-standard-price .form-item-count-standard {
     margin-top: 10px;
@@ -1359,16 +1366,20 @@ fieldset#edit-prices .order-option-all-options,
     font-weight: normal;
 }
 fieldset#edit-prices .price-options-col3 {
-    margin-left: 5%;
+    margin: 0;
+    padding: 0;
     width: 25%;
 }
 #edit-standard-price .price-wrapper {
     font-family: "Tahoma";
     color: #c82d25;
-    font-size: 48px;
+    font-size: 34px;
 }
 #edit-standard-price .price-options-col3 {
     padding-top: 0;
+}
+#edit-standard-price  .form-item-count-standard{
+    margin-bottom: 0;
 }
 #edit-standard-price .price {
     float:left;
@@ -1384,5 +1395,10 @@ fieldset#edit-prices .price-options-col3 {
     text-decoration: none;
     font-size: 20px;
     font-family: "PT Sans";
+}
+fieldset#edit-prices {
+    border: 0;
+    margin:0;
+    padding: 20px 0 0 90px;
 }
 /* end house project order page */

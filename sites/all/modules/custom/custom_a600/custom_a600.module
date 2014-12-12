@@ -792,7 +792,7 @@ function custom_a600_project_order_form($form, &$form_state, $nid) {
     '#markup' => '<div class="order-option-title">Стандартный пакет документов</div>',
   );
   $form['prices']['standard_price']['description'] = array(
-    '#markup' => '<div class="order-option-description">' . variable_get('custom_a600_standard_price_description', '') . '</div>',
+    '#markup' => '<div class="order-options-wrapper"><div class="order-option-description"><div class="order-option-description-inner">' . variable_get('custom_a600_standard_price_description', '') . '</div></div>',
   );
 
   $options = explode(',', variable_get('custom_a600_standard_price_options', ''));
@@ -801,8 +801,8 @@ function custom_a600_project_order_form($form, &$form_state, $nid) {
     $output .= ' &mdash; ' . trim($opt) . '<br>';
   }
   $form['prices']['standard_price']['options'] = array(
-    '#prefix' => '<div class="order-option-all-options">',
-    '#markup' => '<div class="order-option-options">' . $output . '</div>',
+    '#prefix' => '<div class="order-option-all-options"><div class="order-option-all-options-inner">',
+    '#markup' => '<div class="order-option-options">' . $output . '</div></div>',
   );
   $form['prices']['standard_price']['count-standard'] = array(
     '#title' => 'Кол-во экземпляров',
@@ -829,7 +829,7 @@ function custom_a600_project_order_form($form, &$form_state, $nid) {
     '#type' => 'submit',
     '#name' => 'standard-price',
     '#value' => 'Оформить заказ',
-    '#suffix' => '<div class="create-order-suffix">&nbsp;</div></div>'
+    '#suffix' => '<div class="create-order-suffix">&nbsp;</div></div></div>'
   );
 
   if (variable_get('custom_a600_full_price_enabled', FALSE)) {
