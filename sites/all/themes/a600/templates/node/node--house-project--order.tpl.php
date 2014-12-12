@@ -78,29 +78,41 @@
  * @see template_process()
  */
 ?>
-<div class="node-house-project-order">
+<div class="node-house-project node-house-project-order">
 
-  <div<?php print $content_attributes; ?>>
+  <h1 class="node-title"><?php print $title; ?></h1>
+  <div class ="image-section">
     <?php
-      print "<div class =\"top-section\">";
-        print "<div class =\"top-left-section\">";
-          // Render only first image
-          $content['field_photo']['#items'] = array(array_shift($content['field_photo']['#items']));
-          print render($content['field_photo']);
-        print "</div>";
-
-        print "<div class =\"top-right-section\">";
-          if (!isset($delete_favorite_link)) {
-            print "<div class =\"node-title\"><a href=\"$node_url\">$title</a></div>";
-          }
-          else {
-            print "<div class =\"node-title\">$delete_favorite_link</div>";
-          }
-          print render($content['body']);
-          print render($content['field_rooms_list']);
-        print "</div>";
-  print "</div>";
-?>
-</div>
+      $content['field_photo']['#items'] = array(array_shift($content['field_photo']['#items']));
+      print render($content['field_photo']);
+    ?>
+  </div>
+  <div class ="description-section">
+    <div class ="description">
+      <div class ="description-top">
+        <?php print render($content['body']); ?>
+        <?php print render($content['field_additional_body']); ?>
+      </div>
+      <div class ="description-bottom">
+        <div class ="description-bottom-left">
+          <h3>Высота этажей в чистоте</h3>
+          <?php print render($content['field_1_floor_height']); ?>
+          <?php print render($content['field_2_floor_height']); ?>
+          <?php print render($content['field_attic_height']); ?>
+        </div>
+        <div class ="description-bottom-right">
+          <?php print render($content['field_house_floors']); ?>
+          <?php print render($content['field_attic_floor']); ?>
+          <?php print render($content['field_height']); ?>
+        </div>
+      </div>
+    </div>
+    <div class ="dimensions-section">
+      <?php print render($content['field_square']); ?>
+      <?php print render($content['field_live_square']); ?>
+      <?php print render($content['field_built_square']); ?>
+      <?php print render($content['field_dimensions']); ?>
+    </div>
+  </div>
 
 </div>

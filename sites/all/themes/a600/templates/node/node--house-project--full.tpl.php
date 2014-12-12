@@ -92,7 +92,7 @@ if (module_exists('favorites')) {
 */
 ?>
 <article<?php print $attributes;?>>
-<div class="node-house-project-full">
+<div class="node-house-project node-house-project-full">
     <h1 class="node-title"><?php print $title; ?></h1>
     <div class="house-project-price">
       <div class="house-project-price-wrapper">

@@ -788,11 +788,13 @@ function custom_a600_project_order_form($form, &$form_state, $nid) {
   $form['prices']['standard_price'] = array(
     '#type' => 'fieldset',
   );
-  $form['prices']['standard_price']['description'] = array(
-    '#prefix' => '<div class="order-option-col1">',
-    '#markup' => '<div class="order-option-title">Стандартный пакет документов</div><div class="order-option-description">' . variable_get('custom_a600_standard_price_description', '') . '</div>',
-    '#suffix' => '</div>',
+  $form['prices']['standard_price']['title'] = array(
+    '#markup' => '<div class="order-option-title">Стандартный пакет документов</div>',
   );
+  $form['prices']['standard_price']['description'] = array(
+    '#markup' => '<div class="order-option-description">' . variable_get('custom_a600_standard_price_description', '') . '</div>',
+  );
+
   $options = explode(',', variable_get('custom_a600_standard_price_options', ''));
   $output = '';
   foreach ($options as $opt) {
@@ -800,8 +802,14 @@ function custom_a600_project_order_form($form, &$form_state, $nid) {
   }
   $form['prices']['standard_price']['options'] = array(
     '#prefix' => '<div class="order-option-all-options">',
-    '#suffix' => '</div>',
     '#markup' => '<div class="order-option-options">' . $output . '</div>',
+  );
+  $form['prices']['standard_price']['count-standard'] = array(
+    '#title' => 'Кол-во экземпляров',
+    '#type' => 'textfield',
+    '#default_value' => 1,
+    '#size' => 1,
+    '#suffix' => '</div>',
   );
   $form['prices']['standard_price']['col3'] = array(
     '#type' => 'fieldset',
@@ -809,8 +817,8 @@ function custom_a600_project_order_form($form, &$form_state, $nid) {
   );
   $form['prices']['standard_price']['col3']['price'] = array(
     '#prefix' => '<div class="price-wrapper">',
-    '#markup' => '<div class="standard-price price">' . $node_obj->field_price['und'][0]['value'] . '</div>',
-    '#suffix' => '<div class="price-suffix">&nbsp;</div></div>'
+    '#markup' => '<div class="standard-price price">' . number_format($node_obj->field_price['und'][0]['value'], 0, '.', ' ') . '</div>',
+    '#suffix' => '<span class="price-symbol">P</span></div>'
   );
   $form['prices']['standard_price']['col3']['price_value'] = array(
     '#type' => 'hidden',
@@ -820,14 +828,8 @@ function custom_a600_project_order_form($form, &$form_state, $nid) {
     '#prefix' => '<div class="submit-wrapper">',
     '#type' => 'submit',
     '#name' => 'standard-price',
-    '#value' => 'Оплатить',
+    '#value' => 'Оформить заказ',
     '#suffix' => '<div class="create-order-suffix">&nbsp;</div></div>'
-  );
-  $form['prices']['standard_price']['col3']['count-standard'] = array(
-    '#title' => 'Кол-во экземпляров',
-    '#type' => 'textfield',
-    '#default_value' => 1,
-    '#size' => 1,
   );
 
   if (variable_get('custom_a600_full_price_enabled', FALSE)) {

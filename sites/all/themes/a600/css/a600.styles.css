@@ -496,7 +496,7 @@ img, media {
     height: 45px;
 }
 
-.page-main  .house-project-price-wrapper .price-symbol{
+.price-symbol{
     text-decoration: line-through;
     padding-left: 5px;
 }
@@ -767,7 +767,7 @@ img, media {
 .search-result.node p{
     margin: 10px 0 0 0;
 }
-.node-house-project-full p{
+.node-house-project p{
     margin:0;
 }
 .node-house-project-full,
@@ -892,56 +892,10 @@ img, media {
     background: #ffffff;
     box-shadow: 2px 2px;
 }
-.custom-a600-project-order-form .node-house-project-order {
-    border-radius: 15px 15px 0 0;
-}
-.node-house-project-order .top-section {
-    border-bottom: 1px solid #000000;
-}
-.node-house-project-order .top-left-section,
-.node-house-project-order .top-right-section {
-    float:left;
-}
-.node-house-project-order .top-left-section img {
-    vertical-align:bottom;
-}
-.node-house-project-order .top-left-section {
-    width: 20%;
-}
-.node-house-project-order .top-right-section {
-    margin: 20px 20px 0 40px;
-    width: 75%;
-}
-.node-house-project-order .top-right-section .node-title {
-    width:100%;
-    text-transform: uppercase;
-    font-size: 24px;
-    letter-spacing: 5px;
-    height:30px;
-}
-
-.node-house-project-order .top-right-section .field--name-body{
-    width:60%;
-    float:left;
-    margin-right: 40px;
-}
-.node-house-project-order .top-right-section .field--name-field-rooms-list {
-    width:35%;
-    float: left;
-}
 fieldset#edit-prices {
     border: 0;
     margin:0;
     padding-top: 20px;
-}
-fieldset#edit-standard-price,
-fieldset#edit-full-price,
-fieldset#edit-extended-price {
-    border: 1px solid #f2cda5;
-    border-radius: 15px;
-    box-shadow: 2px 2px;
-    margin: 0 20px 20px 15%;
-    padding: 20px;
 }
 fieldset#edit-contacts {
     border: 0;
@@ -956,25 +910,13 @@ fieldset#edit-contacts .form-type-textfield label{
     text-align: left;
     width: 140px;
 }
-fieldset#edit-standard-price .order-option-options {
-    margin-top: 60px;
-}
-fieldset#edit-prices .order-option-description {
+fieldset#edit-prices .order-option-description,
+fieldset#edit-prices .order-option-all-options {
     margin-top:10px;
-}
-fieldset#edit-prices .order-option-title {
-    font-size: 24px;
 }
 fieldset#edit-prices .order-option-col1 {
     width:30%;
     float: left;
-}
-fieldset#edit-prices .order-option-all-options,
-fieldset#edit-prices .price-options-col3 {
-    margin-left:2%;
-    width:30%;
-    float: left;
-    border: none;
 }
 
 fieldset#edit-prices .additional-option-marker {
@@ -995,10 +937,6 @@ fieldset#edit-prices .form-type-textfield,
 fieldset#edit-prices .submit-wrapper {
     width:100%;
     float:left;
-}
-fieldset#edit-prices .price {
-    float:left;
-    font-size: 28px;
 }
 fieldset#edit-prices .price-suffix {
     background: url('../images/ruble.gif') no-repeat;
@@ -1025,20 +963,6 @@ fieldset#edit-prices .price-suffix {
     padding: 5px;
     width:19px;
     cursor:pointer;
-}
-#edit-prices .form-submit {
-    float: left;
-    background: #fce4c0;
-    padding: 7px;
-    border:none;
-}
-#edit-prices .create-order-suffix {
-    width: 0;
-    height: 0;
-    border: 17px solid transparent;
-    border-left-color: #fce4c0;
-    border-right: 0;
-    float: left;
 }
 /* end order house project view */
 
@@ -1281,16 +1205,16 @@ fieldset#edit-prices .price-suffix {
 /* end contacts page */
 
 /* house project page */
-.node-house-project-full .image-section {
+.node-house-project .image-section {
     width: 100%;
     overflow: hidden;
     margin: 0 auto;
 }
-.node-house-project-full .field--name-field-plans .field__item {
+.node-house-project .field--name-field-plans .field__item {
     float: left;
     margin: 15px;
 }
-.node-house-project-full .node-title {
+.node-house-project .node-title {
     font-size: 24px;
     height:30px;
     color: #990000;
@@ -1298,15 +1222,11 @@ fieldset#edit-prices .price-suffix {
     text-align: center;
     margin-bottom: 0;
 }
-.node-house-project-full .price-symbol{
-    text-decoration: line-through;
-    padding-left: 5px;
-}
 
-.node-house-project-full  .house-project-price {
+.node-house-project  .house-project-price {
     height: 0;
 }
-.node-house-project-full  .house-project-price-wrapper {
+.node-house-project  .house-project-price-wrapper {
     position: relative;
     top: 120px;
     left:948px;
@@ -1320,63 +1240,63 @@ fieldset#edit-prices .price-suffix {
     height: 55px;
     overflow: visible;
 }
-.node-house-project-full .house-project-price-wrapper .field--name-field-price {
+.node-house-project .house-project-price-wrapper .field--name-field-price {
     font-size: 28px;
     float: left;
     margin: 7px 0 0 22px;
 }
-.node-house-project-full .field__label {
+.node-house-project .field__label {
     font-family: "PT Sans Bold";
     color: #c82d25;
 }
-.node-house-project-full .description-bottom-left .field__label {
+.node-house-project .description-bottom-left .field__label {
     font-family: sans-serif;
     font-weight: normal;
     color: #000000;
 }
-.node-house-project-full h2.description-title,
-.node-house-project-full h2.plans-section-title{
+.node-house-project h2.description-title,
+.node-house-project h2.plans-section-title{
     font-family: "PT Sans Bold";
     color: #c82d25;
     padding-left: 90px;
 }
-.node-house-project-full .description-section,
-.node-house-project-full .order-section {
+.node-house-project .description-section,
+.node-house-project .order-section {
     width: 100%;
     float: left;
     padding: 0 50px 20px 90px;
 }
-.node-house-project-full .description-section .description {
+.node-house-project .description-section .description {
     width:70%;
     float:left;
 }
-.node-house-project-full .description-section .description-top,
-.node-house-project-full .description-section .description-bottom {
+.node-house-project .description-section .description-top,
+.node-house-project .description-section .description-bottom {
     width:100%;
     float:left;
 }
-.node-house-project-full .description-section .description-top {
+.node-house-project .description-section .description-top {
     margin-bottom: 20px;
 }
-.node-house-project-full .description-section .description-top .field--name-body,
-.node-house-project-full .description-section .description-top .field--name-field-additional-body,
-.node-house-project-full .description-section .description-bottom .description-bottom-left,
-.node-house-project-full .description-section .description-bottom .description-bottom-right {
+.node-house-project .description-section .description-top .field--name-body,
+.node-house-project .description-section .description-top .field--name-field-additional-body,
+.node-house-project .description-section .description-bottom .description-bottom-left,
+.node-house-project .description-section .description-bottom .description-bottom-right {
     width:45%;
     margin-right: 5%;
     float:left;
 }
-.node-house-project-full .description-section .description-bottom .description-bottom-left h3 {
+.node-house-project .description-section .description-bottom .description-bottom-left h3 {
     margin: 0;
     font-size: 16px;
     font-family: "PT Sans Bold";
     color: #c82d25;
 }
-.node-house-project-full .description-section .dimensions-section {
+.node-house-project .description-section .dimensions-section {
     width: 30%;
     float: left;
 }
-.node-house-project-full .order-section .house-project-price-footer {
+.node-house-project .order-section .house-project-price-footer {
     width: 15%;
     float: left;
     margin: 0 5% 0 32%;
@@ -1384,7 +1304,7 @@ fieldset#edit-prices .price-suffix {
     color: #c82d25;
     padding: 10px;
 }
-.node-house-project-full .order-section .create-order {
+.node-house-project .order-section .create-order {
     width: 25%;
     float: left;
     margin: 0 20% 0 0;
@@ -1392,7 +1312,7 @@ fieldset#edit-prices .price-suffix {
     border-radius: 5px;
     padding: 10px;
 }
-.node-house-project-full .order-section .create-order a {
+.node-house-project .order-section .create-order a {
     color:white;
     text-transform: uppercase;
     text-decoration: none;
@@ -1400,3 +1320,69 @@ fieldset#edit-prices .price-suffix {
     font-family: "PT Sans";
 }
 /* end house project page */
+
+/* house project order page */
+.node-house-project-order .field--name-field-photo {
+    width: 700px;
+    margin: 20px auto;
+}
+
+#edit-standard-price {
+    border: 0;
+}
+#edit-standard-price .order-option-title {
+    text-align: center;
+    font-size: 24px;
+    font-family: "PT Sans";
+    color: #c82d25;
+}
+#edit-standard-price .order-option-description,
+fieldset#edit-prices .order-option-all-options,
+fieldset#edit-prices .price-options-col3 {
+    margin-left:2%;
+    padding-left:20px;
+    width:30%;
+    float: left;
+    border: none;
+}
+fieldset#edit-prices .order-option-all-options,
+#edit-standard-price .order-option-description {
+    border-left: 2px solid #c82d25;
+}
+#edit-standard-price .form-item-count-standard {
+    margin-top: 10px;
+}
+#edit-standard-price .form-item-count-standard label {
+    display: block;
+    float: left;
+    width:30%;
+    font-weight: normal;
+}
+fieldset#edit-prices .price-options-col3 {
+    margin-left: 5%;
+    width: 25%;
+}
+#edit-standard-price .price-wrapper {
+    font-family: "Tahoma";
+    color: #c82d25;
+    font-size: 48px;
+}
+#edit-standard-price .price-options-col3 {
+    padding-top: 0;
+}
+#edit-standard-price .price {
+    float:left;
+}
+#edit-prices .form-submit {
+    float: left;
+    margin: 0 20% 0 0;
+    background-color: #c82d25;
+    border-radius: 5px;
+    padding: 10px;
+    color:white;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: "PT Sans";
+}
+/* end house project order page */
