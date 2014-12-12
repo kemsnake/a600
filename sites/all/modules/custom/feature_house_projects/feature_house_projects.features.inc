@@ -83,6 +83,46 @@ function feature_house_projects_image_default_styles() {
     ),
   );
 
+  // Exported image style: house_project_order.
+  $styles['house_project_order'] = array(
+    'name' => 'house_project_order',
+    'label' => 'house_project_order',
+    'effects' => array(
+      16 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 700,
+          'height' => '',
+          'upscale' => 1,
+        ),
+        'weight' => 1,
+      ),
+      17 => array(
+        'label' => 'Crop',
+        'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
+        'effect callback' => 'image_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_crop_form',
+        'summary theme' => 'image_crop_summary',
+        'module' => 'image',
+        'name' => 'image_crop',
+        'data' => array(
+          'width' => 700,
+          'height' => 400,
+          'anchor' => 'center-center',
+        ),
+        'weight' => 2,
+      ),
+    ),
+  );
+
   // Exported image style: house_project_thumb.
   $styles['house_project_thumb'] = array(
     'name' => 'house_project_thumb',

@@ -169,10 +169,11 @@ function feature_house_projects_field_default_field_instances() {
         'weight' => 13,
       ),
       'order' => array(
-        'label' => 'above',
+        'label' => 'inline',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'text_default',
+        'weight' => 7,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -234,10 +235,11 @@ function feature_house_projects_field_default_field_instances() {
         'weight' => 14,
       ),
       'order' => array(
-        'label' => 'above',
+        'label' => 'inline',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'text_default',
+        'weight' => 8,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -299,10 +301,11 @@ function feature_house_projects_field_default_field_instances() {
         'weight' => 2,
       ),
       'order' => array(
-        'label' => 'above',
+        'label' => 'hidden',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'text_default',
+        'weight' => 2,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -368,10 +371,11 @@ function feature_house_projects_field_default_field_instances() {
         'weight' => 12,
       ),
       'order' => array(
-        'label' => 'above',
+        'label' => 'inline',
+        'module' => 'list',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 4,
+        'type' => 'list_default',
+        'weight' => 11,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -432,10 +436,11 @@ function feature_house_projects_field_default_field_instances() {
         'weight' => 11,
       ),
       'order' => array(
-        'label' => 'above',
+        'label' => 'inline',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'text_default',
+        'weight' => 9,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -502,7 +507,7 @@ function feature_house_projects_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 24,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -564,7 +569,7 @@ function feature_house_projects_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 25,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -628,7 +633,7 @@ function feature_house_projects_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 20,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -701,10 +706,16 @@ function feature_house_projects_field_default_field_instances() {
         'weight' => 8,
       ),
       'order' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'label' => 'inline',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 2,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_decimal',
+        'weight' => 5,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -772,7 +783,7 @@ function feature_house_projects_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 26,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -836,7 +847,7 @@ function feature_house_projects_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 19,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -899,10 +910,11 @@ function feature_house_projects_field_default_field_instances() {
         'weight' => 9,
       ),
       'order' => array(
-        'label' => 'above',
+        'label' => 'inline',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'text_default',
+        'weight' => 6,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -969,7 +981,7 @@ function feature_house_projects_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 17,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -1040,10 +1052,16 @@ function feature_house_projects_field_default_field_instances() {
         'weight' => 10,
       ),
       'order' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'label' => 'inline',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 2,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_decimal',
+        'weight' => 12,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -1111,7 +1129,7 @@ function feature_house_projects_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 27,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -1173,7 +1191,7 @@ function feature_house_projects_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 29,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -1232,10 +1250,11 @@ function feature_house_projects_field_default_field_instances() {
         'weight' => 15,
       ),
       'order' => array(
-        'label' => 'above',
+        'label' => 'inline',
+        'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 7,
+        'type' => 'taxonomy_term_reference_plain',
+        'weight' => 10,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -1299,7 +1318,7 @@ function feature_house_projects_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 28,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -1359,7 +1378,7 @@ function feature_house_projects_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 18,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -1432,10 +1451,16 @@ function feature_house_projects_field_default_field_instances() {
         'weight' => 7,
       ),
       'order' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'label' => 'inline',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 2,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_decimal',
+        'weight' => 4,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -1517,7 +1542,7 @@ function feature_house_projects_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
-          'image_style' => 'medium',
+          'image_style' => 'house_project_order',
         ),
         'type' => 'image',
         'weight' => 0,
@@ -1615,7 +1640,7 @@ function feature_house_projects_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 30,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -1699,7 +1724,7 @@ function feature_house_projects_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 16,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -1773,7 +1798,7 @@ function feature_house_projects_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 31,
       ),
       'search_result' => array(
         'label' => 'hidden',
@@ -1849,7 +1874,7 @@ function feature_house_projects_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 21,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -1913,7 +1938,7 @@ function feature_house_projects_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 23,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -1981,7 +2006,7 @@ function feature_house_projects_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 15,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -2047,7 +2072,7 @@ function feature_house_projects_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 22,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -2118,10 +2143,16 @@ function feature_house_projects_field_default_field_instances() {
         'weight' => 6,
       ),
       'order' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 11,
+        'label' => 'inline',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 2,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_decimal',
+        'weight' => 3,
       ),
       'search_result' => array(
         'label' => 'hidden',
@@ -2195,7 +2226,7 @@ function feature_house_projects_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 13,
       ),
       'search_result' => array(
         'label' => 'above',
@@ -2257,7 +2288,7 @@ function feature_house_projects_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 14,
       ),
       'search_result' => array(
         'label' => 'above',

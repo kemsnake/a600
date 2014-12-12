@@ -132,6 +132,7 @@ features[field_instance][] = node-house_project-field_square
 features[field_instance][] = node-house_project-field_terrace
 features[field_instance][] = node-house_project-field_width
 features[image][] = house_project_full
+features[image][] = house_project_order
 features[image][] = house_project_thumb
 features[image][] = house_project_variant
 features[image][] = search_result_small
