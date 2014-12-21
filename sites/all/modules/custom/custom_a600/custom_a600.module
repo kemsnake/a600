@@ -453,6 +453,7 @@ function custom_a600_search_filters_form($form, &$form_state = NULL, $is_front =
     '#size' => 3,
     '#ajax' => $ajax,
     '#default_value' => $default_params['count_bedroom_floor1'],
+    '#prefix' => '<div class="bedroom-group">',
   );
 
   $form['extra_filters']['count_bedroom_group']['count_bedroom_floor1_all'] = array(
@@ -460,6 +461,7 @@ function custom_a600_search_filters_form($form, &$form_state = NULL, $is_front =
     '#type' => 'checkbox',
     '#ajax' => $ajax,
     '#default_value' => $default_params['count_bedroom_floor1_all'],
+    '#suffix' => '</div>',
   );
 
   $form['extra_filters']['count_bedroom_group']['count_bedroom_floor2'] = array(
@@ -468,6 +470,7 @@ function custom_a600_search_filters_form($form, &$form_state = NULL, $is_front =
     '#size' => 3,
     '#ajax' => $ajax,
     '#default_value' => $default_params['count_bedroom_floor2'],
+    '#prefix' => '<div class="bedroom-group">',
   );
 
   $form['extra_filters']['count_bedroom_group']['count_bedroom_floor2_all'] = array(
@@ -475,6 +478,7 @@ function custom_a600_search_filters_form($form, &$form_state = NULL, $is_front =
     '#type' => 'checkbox',
     '#ajax' => $ajax,
     '#default_value' => $default_params['count_bedroom_floor2_all'],
+    '#suffix' => '</div>',
   );
 
   $form['extra_filters']['pool'] = array(
@@ -635,7 +639,7 @@ function _custom_a600_find_projects(&$params = NULL) {
   }
 
   // ищем спец спрецпредложение
-  $query_spec_offer = clone $query;
+  /*$query_spec_offer = clone $query;
   $query_spec_offer->fieldCondition('field_special_offer ', 'value', 1);
   $query_spec_offer->range($params['page'], 1);
   $result_spec_offer = $query_spec_offer->execute();
@@ -649,18 +653,18 @@ function _custom_a600_find_projects(&$params = NULL) {
   }
   else {
     $so_offset = 0;
-  }
+  }*/
 
   $start = $params['count_search'];
   // не включаем спец предложеия, по ним отдельный поиск
-  $query->fieldCondition('field_special_offer ', 'value', 1, '!=');
+  //$query->fieldCondition('field_special_offer ', 'value', 1, '!=');
   // после пятой странциы текстовых блоков нет, так что надо показывать на 2 проекта больше
-  if ($params['page'] > 4) {
+  /*if ($params['page'] > 4) {
     $text_offset = 2;
   }
   else {
     $text_offset = 0;
-  }
+  }*/
   // считаем один раз количество проектов по запросу
   if (!isset($params['count_projects']) || $params['count_projects'] == FALSE) {
     $query_count = clone $query;
@@ -668,8 +672,10 @@ function _custom_a600_find_projects(&$params = NULL) {
     $params['count_projects'] = $query_count->execute();
   }
 
-  $query->range($start, 14 - $so_offset + $text_offset);
-  $params['count_search'] += 14 - $so_offset + $text_offset;
+  //$query->range($start, 14 - $so_offset + $text_offset);
+  $query->range($start, 12);
+  //$params['count_search'] += 14 - $so_offset + $text_offset;
+  $params['count_search'] += 12;
   // если у нас последняя страница - скрываем кнопку "Еще"
   if ($params['count_projects'] <= $params['count_search']) {
     drupal_add_js(array('remove_more_text' => TRUE), 'setting');
@@ -681,7 +687,7 @@ function _custom_a600_find_projects(&$params = NULL) {
   $output = '';
   $current_text_block = 1;
   if (isset($result['node'])) {
-    $i = 0;
+    /*$i = 0;
     $col = 0;
     $nids = array_keys($result['node']);
     foreach ($nids as $nid) {
@@ -702,7 +708,17 @@ function _custom_a600_find_projects(&$params = NULL) {
       if ($i==3 && $spec_offer_nid) {
         $output .= _custom_a600_render_special_offer($spec_offer_nid);
       }
-    }
+    }*/
+    // выводим результаты через вью
+    $search_view = views_get_view('main_page');
+    $search_view->set_display('block_1');
+    $search_view->init();
+    $nids = array_keys($result['node']);
+    $args = implode('+', $nids);
+    $search_view->pre_execute();
+    $search_view->execute();
+    $output = $search_view->render('block_1');
+    $output = views_embed_view('main_page', 'block_1', $args);
     ++$params['page'];
   }
   else {

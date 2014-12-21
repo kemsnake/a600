@@ -51,7 +51,6 @@ img, media {
     padding: 20px;
 }
 .l-content {
-    border-bottom: 1px #808080 dashed;
     overflow: hidden;
 }
 .l-highlighted-prefix{
@@ -159,6 +158,9 @@ img, media {
     width:100%;
     overflow: hidden;
 }
+#block-custom-a600-search-form #edit-extra-filters.collapsed {
+    margin-bottom: 20px;
+}
 #block-custom-a600-search-form #edit-extra-filters legend .fieldset-legend {
     background-image: url('../images/advanced-search-arrow.png');
     background-position: 135px 50%;
@@ -172,8 +174,12 @@ img, media {
 #block-custom-a600-search-form #edit-extra-filters legend {
     margin: 0 70px 20px 0;
     float: right;
+    display: block;
+    clear:both;
 }
-
+#block-custom-a600-search-form #edit-extra-filters .fieldset-wrapper {
+    float: left;
+}
 #block-custom-a600-search-form fieldset {
     border: 0;
     padding: 0;
@@ -187,6 +193,18 @@ img, media {
 #block-custom-a600-search-form .form-item label{
     font-family: Tahoma;
     font-weight: normal;
+}
+#block-custom-a600-search-form #edit-extra-filters .form-type-radio {
+    width:100%;
+    float: left;
+    margin-top: 5px;
+}
+#block-custom-a600-search-form #edit-extra-filters .form-type-radio input,
+#block-custom-a600-search-form #edit-extra-filters .form-type-radio label {
+    float: left;
+}
+#block-custom-a600-search-form #edit-extra-filters .form-type-radio input {
+    margin: 3px 3px 0 0;
 }
 #block-custom-a600-search-form .form-item-square label,
 #block-custom-a600-search-form .form-item-floor label{
@@ -243,13 +261,38 @@ img, media {
 #block-custom-a600-search-form .form-item-price-slider label {
     margin-bottom: 8px;
 }
-#block-custom-a600-search-form #edit-count-bedroom-group {
-    width: 24%;
-    margin-left: 24%;
+#block-custom-a600-search-form .bedroom-group {
+    width:50%;
+    float: left;
+}
+#block-custom-a600-search-form #edit-count-bedroom-group .fieldset-wrapper{
+    width:100%;
 }
 #block-custom-a600-search-form #edit-count-bedroom-group {
-    width: 30%;
-    margin-left: 20%;
+    width: 100%;
+    margin-bottom: 5px;
+}
+#block-custom-a600-search-form #edit-count-bedroom-group .form-item {
+    margin-bottom: 0;
+}
+#block-custom-a600-search-form #edit-count-bedroom-group .form-item-count-bedroom-floor1-all input,
+#block-custom-a600-search-form #edit-count-bedroom-group .form-item-count-bedroom-floor2-all input {
+    margin: 3px 2px 0 0;
+}
+#block-custom-a600-search-form #edit-count-bedroom-group .form-item-count-bedroom-floor1,
+#block-custom-a600-search-form #edit-count-bedroom-group .form-item-count-bedroom-floor2 {
+    width:100%;
+    float: left;
+}
+#block-custom-a600-search-form #edit-count-bedroom-group .form-item-count-bedroom-floor1 label,
+#block-custom-a600-search-form #edit-count-bedroom-group .form-item-count-bedroom-floor2 label {
+    margin: 5px 10px 0 0;
+}
+#block-custom-a600-search-form #edit-count-bedroom-group .form-item-count-bedroom-floor1 input,
+#block-custom-a600-search-form #edit-count-bedroom-group .form-item-count-bedroom-floor2 input {
+    text-align: right;
+    border-radius: 5px;
+    padding: 5px;
 }
 #block-custom-a600-search-form #edit-count-bedroom-group label,
 #block-custom-a600-search-form #edit-count-bedroom-group input {
@@ -294,11 +337,24 @@ img, media {
 #block-custom-a600-search-form .form-type-radios.form-item-second-light,
 #block-custom-a600-search-form .form-type-radios.form-item-balcony,
 #block-custom-a600-search-form .form-type-radios.form-item-terrace,
-#block-custom-a600-search-form .form-type-radios.form-item-erker,
-#block-custom-a600-search-form .form-type-radios.form-item-pool {
+#block-custom-a600-search-form .form-type-radios.form-item-erker {
     width: 17%;
 }
-
+#block-custom-a600-search-form .form-type-radios.form-item-pool .form-type-radio {
+    width: auto!important;
+    margin-right: 10px;
+}
+#block-custom-a600-search-form .form-type-radios.form-item-pool label,
+#block-custom-a600-search-form .form-type-radios.form-item-pool #edit-pool{
+    float: left;
+    margin-right: 20px;
+}
+#block-custom-a600-search-form .form-type-radios.form-item-pool label {
+    margin-top: 5px;
+}
+#block-custom-a600-search-form .form-type-radios.form-item-pool label.option {
+    margin-top: 0;
+}
 #block-custom-a600-search-form .form-item-house-basement {
     margin-left: 10px;
 }
@@ -335,19 +391,9 @@ img, media {
     border:0!important;
     margin-top:-.2em;
 }
-/*#block-custom-a600-search-form #edit-square .form-item label,
-#block-custom-a600-search-form #edit-garage .form-item label,
-#block-custom-a600-search-form #edit-floor .form-item label,
-#block-custom-a600-search-form .form-item-price-slider .sliderfield label,
-#block-custom-a600-search-form #edit-count-bedroom .form-item label{*/
-#block-custom-a600-search-form .form-type-radio label,
 #block-custom-a600-search-form .form-type-slider .sliderfield label {
     padding:7px;
     display:block;
-}
-
-#block-custom-a600-search-form #edit-garage .form-item {
-    width:120px;
 }
 #block-custom-a600-search-form #edit-floor .form-item {
     width:120px;
@@ -435,11 +481,14 @@ img, media {
 /* search results */
 .view-main-page {
     background: white;
+    overflow: hidden;
 }
 .view-main-page .view-header {
   text-align: center;
   font-family: PT Sans;
-  margin-bottom: 1em;
+}
+.view-main-page .view-content {
+  margin-top: 1em;
 }
 .view-main-page .view-header .sub-title1 {
     font-weight: bold;
@@ -455,10 +504,12 @@ img, media {
 .view-main-page .views-view-grid {
     width: 100%;
 }
-.view-main-page .views-view-grid .td {
+.view-main-page .views-view-grid td {
     width: 33%;
+    display: block;
+    float: left;
 }
-.page-main div.search-result.node .node-title {
+.view-main-page div.search-result.node .node-title {
     font-size: 18px;
     font-family: Tahoma;
     text-decoration: underline;
@@ -466,30 +517,30 @@ img, media {
     margin:5px 0;
     text-align: center;
 }
-.page-main  .field--name-field-photo,
-.page-main  .house-project-square-wrapper {
+.view-main-page  .field--name-field-photo,
+.view-main-page  .house-project-square-wrapper {
     margin:0 55px 0 55px;
     text-align: center;
 }
-.page-main  .field--name-field-photo img{
+.view-main-page  .field--name-field-photo img{
     border-radius: 10px 10px 0 0;
 }
-.page-main  .house-project-square-wrapper {
+.view-main-page  .house-project-square-wrapper {
     background-color: #f6eddf;
     overflow: hidden;
     padding: 10px 0;
 
 }
-.page-main  .house-project-square-wrapper .field--name-field-square{
+.view-main-page  .house-project-square-wrapper .field--name-field-square{
     margin-left: 30%;
     font-size: 28px;
     float: left;
 }
 
-.page-main  .house-project-price-wrapper {
+.view-main-page  .house-project-price-wrapper {
     position: relative;
     top: -140px;
-    left: 224px;
+    left: 220px;
     color: white;
     background: url('../images/price_wrapper_background.png') no-repeat;
     width: 120px;
@@ -500,14 +551,14 @@ img, media {
     text-decoration: line-through;
     padding-left: 5px;
 }
-.page-main  .house-project-price-wrapper .field--name-field-price{
+.view-main-page  .house-project-price-wrapper .field--name-field-price{
     font-size: 20px;
     float: left;
     margin: 7px 0 0 22px;
 }
 /* end search results */
 
-.page-project-search .l-content-inner {
+/*.page-project-search .l-content-inner {
     width: 100%;
     overflow: hidden;
     padding:10px;
@@ -625,7 +676,7 @@ img, media {
     width:100%;
     text-align: center;
     float: left;
-}
+}*/
 .search-no-results-block {
     font-size: 36px;
     float: left;
@@ -1093,7 +1144,7 @@ fieldset#edit-prices .price-suffix {
     width:100%;
 }
 
-.content-wrapper h1 {
+.content-title {
     margin:-20px 0 0 0;
     color: #990000;
     font-family: Tahoma;
@@ -1402,3 +1453,74 @@ fieldset#edit-prices {
     padding: 20px 0 0 90px;
 }
 /* end house project order page */
+
+/* section how-to-buy-project */
+
+.section-how-to-buy-project .top-text {
+    text-align: center;
+    width:100%;
+    border-bottom: 1px #808080 dashed;
+}
+.section-how-to-buy-project .top-text,
+.section-how-to-buy-project .bottom-text,
+.section-how-to-buy-project .description {
+    padding:10px 50px 30px 70px;
+}
+.section-how-to-buy-project .top-text span.oreder-project-link {
+    color: #c82d25;
+    font-weight: bold;
+}
+.section-how-to-buy-project .description {
+    padding-bottom: 0;
+}
+.section-how-to-buy-project .description-title {
+    font-size: 28px;
+    color: #c82d25;
+    font-weight: bold;
+    text-align: center;
+    width:100;
+    padding: 20px 0;
+}
+.section-how-to-buy-project .description ul {
+    padding-left: 25px;
+    overflow: hidden;
+}
+.section-how-to-buy-project .description ul li {
+    float: left;
+    width:45%;
+    margin: 0 5% 20px 0;
+}
+.section-how-to-buy-project .bottom-text {
+    text-align: center;
+    overflow: hidden;
+}
+.section-how-to-buy-project .bottom-text .phone-prefix {
+    font-weight: bold;
+    padding-right: 5px;
+    font-size: 22px;
+    float:left;
+    margin: 2px 0 0 40%;
+}
+.section-how-to-buy-project .bottom-text .phone-number {
+    font-weight: bold;
+    color: #c82d25;
+    font-size: 32px;
+    float:left;
+}
+.section-how-to-buy-project .main-options-wrapper {
+    overflow: hidden;
+    width: 100%;
+    padding: 0 0 20px 70px;
+}
+.section-how-to-buy-project .main-options-wrapper .main-option {
+    width:25%;
+    float: left;
+    margin-right: 8%;
+    padding-left:30px;
+    border-left: 2px solid #c82d25;
+}
+.section-how-to-buy-project .main-options-wrapper .main-option .option-red-text {
+    color: #c82d25;
+    font-weight: bold;
+}
+/* end section how-to-buy-project */
