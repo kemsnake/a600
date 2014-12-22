@@ -671,12 +671,13 @@ img, media {
     width:20px;
     height:20px;
     margin-left:5px;
-}
+}*/
 .page-project-search .more-wrapper{
     width:100%;
     text-align: center;
     float: left;
-}*/
+    background: white;
+}
 .search-no-results-block {
     font-size: 36px;
     float: left;
@@ -1028,7 +1029,7 @@ fieldset#edit-prices .price-suffix {
     margin:0 0 10px 0;
     color: #ffffff;
     font-size: 16px;
-    font-family: "PT Sans Bold";
+    font-family: "PT Sans";
     text-transform: uppercase;
 }
 #block-custom-a600-site-footer-phone {
