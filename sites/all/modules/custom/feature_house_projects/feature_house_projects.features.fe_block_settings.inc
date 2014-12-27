@@ -98,10 +98,10 @@ function feature_house_projects_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'a600' => array(
-        'region' => 'highlighted',
+        'region' => 'highlighted-text',
         'status' => 1,
         'theme' => 'a600',
-        'weight' => -19,
+        'weight' => -23,
       ),
       'bartik' => array(
         'region' => '',
@@ -136,10 +136,10 @@ function feature_house_projects_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'a600' => array(
-        'region' => 'highlighted',
+        'region' => 'highlighted-text',
         'status' => 1,
         'theme' => 'a600',
-        'weight' => -18,
+        'weight' => -22,
       ),
       'bartik' => array(
         'region' => '',
@@ -174,10 +174,10 @@ function feature_house_projects_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'a600' => array(
-        'region' => 'highlighted',
+        'region' => 'highlighted-text',
         'status' => 1,
         'theme' => 'a600',
-        'weight' => -17,
+        'weight' => -21,
       ),
       'bartik' => array(
         'region' => '',
@@ -405,7 +405,7 @@ function feature_house_projects_default_fe_block_settings() {
         'region' => 'highlighted',
         'status' => 1,
         'theme' => 'a600',
-        'weight' => -20,
+        'weight' => -23,
       ),
       'bartik' => array(
         'region' => '',
@@ -930,7 +930,7 @@ function feature_house_projects_default_fe_block_settings() {
     'delta' => 'frontpage_slideshow-block',
     'module' => 'views',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => '<front>',
     'roles' => array(),
     'themes' => array(
       'a600' => array(
@@ -959,7 +959,7 @@ function feature_house_projects_default_fe_block_settings() {
       ),
     ),
     'title' => '<none>',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   return $export;

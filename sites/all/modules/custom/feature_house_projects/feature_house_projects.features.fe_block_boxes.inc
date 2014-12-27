@@ -28,20 +28,27 @@ function feature_house_projects_default_fe_block_boxes() {
 		Это пример вопроса от посетителя за номером 1</div>
 	<div class="text">
 		Пример ответа на вопрос, но может быть длиннее</div>
+<div class="faq-more-text">
+		<a href="/faq">подробнее</a></div>
 </div>
 <div class="question second">
 	<div class="title">
 		Это пример вопроса от посетителя за номером 2</div>
 	<div class="text">
 		Пример ответа на вопрос, но может быть длиннее</div>
+<div class="faq-more-text">
+		<a href="/faq">подробнее</a></div>
 </div>
 <div class="question third">
 	<div class="title">
 		Это пример вопроса от посетителя за номером 3</div>
 	<div class="text">
 		Пример ответа на вопрос, но может быть длиннее</div>
+<div class="faq-more-text">
+		<a href="/faq">подробнее</a></div>
 </div>
-<div class="all-question-link"><a href="/faq">Все вопросы &gt;</div>
+<div class="all-question-link">
+	<a href="/faq">Все вопросы &gt;</a></div>
 ';
 
   $export['faq_block'] = $fe_block_boxes;

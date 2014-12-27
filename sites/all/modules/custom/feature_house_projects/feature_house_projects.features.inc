@@ -255,7 +255,7 @@ function feature_house_projects_image_default_styles() {
     'name' => 'slideshow_img',
     'label' => 'slideshow_img',
     'effects' => array(
-      15 => array(
+      1 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -265,13 +265,13 @@ function feature_house_projects_image_default_styles() {
         'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
-          'width' => 1100,
+          'width' => 1074,
           'height' => '',
           'upscale' => 0,
         ),
         'weight' => 1,
       ),
-      16 => array(
+      2 => array(
         'label' => 'Crop',
         'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
         'effect callback' => 'image_crop_effect',
@@ -281,8 +281,8 @@ function feature_house_projects_image_default_styles() {
         'module' => 'image',
         'name' => 'image_crop',
         'data' => array(
-          'width' => 1100,
-          'height' => 464,
+          'width' => 1074,
+          'height' => 460,
           'anchor' => 'center-top',
         ),
         'weight' => 2,

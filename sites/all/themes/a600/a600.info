@@ -26,6 +26,7 @@ regions[branding] = Branding
 regions[header] = Header
 regions[navigation] = Navigation
 regions[highlighted] = Highlighted
+regions[highlighted-text] = Highlighted text
 regions[help] = Help
 regions[content] = Content
 regions[bottom_content] = Bottom Content
