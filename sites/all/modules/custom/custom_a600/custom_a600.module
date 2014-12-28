@@ -971,6 +971,16 @@ function custom_a600_project_order_form_submit($form, &$form_state) {
 }
 
 function custom_a600_project_pay_form($form, &$form_state, $pid) {
+  $form['prefix'] = array(
+    '#markup' => '<div class="l-content-prefix">&nbsp;</div>',
+  );
+
+  $form['wrapper_start'] = array(
+    '#markup' => '<div class="pay-form-wrappper">',
+  );
+  $form['title'] = array(
+    '#markup' => '<h1 class="content-title">Оплатить проект</h1><div class="form-description">Заполните форму заказа ниже, и мы вам перезвоним в ближайшее время</div>',
+  );
   $form['pid'] = array(
     '#type' => 'hidden',
     '#value' => $pid,
@@ -979,23 +989,23 @@ function custom_a600_project_pay_form($form, &$form_state, $pid) {
     '#title' => 'ФИО',
     '#type' => 'textfield',
     '#default_value' => '',
-    '#size' => 50,
+    '#size' => 58,
   );
   $form['user_email'] = array(
     '#title' => 'E-mail',
     '#type' => 'textfield',
     '#default_value' => '',
-    '#size' => 50,
+    '#size' => 58,
   );
   $form['phone'] = array(
     '#title' => 'Телефон',
     '#type' => 'textfield',
     '#default_value' => '',
-    '#size' => 50,
+    '#size' => 58,
   );
   $form['address'] = array(
     '#title' => 'Адрес доставки',
-    '#type' => 'textfield',
+    '#type' => 'textarea',
     '#default_value' => '',
     '#size' => 50,
   );
@@ -1005,10 +1015,13 @@ function custom_a600_project_pay_form($form, &$form_state, $pid) {
     '#default_value' => FALSE,
   );
   $form['pay'] = array(
-    '#value' => 'Оплатить',
+    '#value' => 'Отправить',
     '#type' => 'submit',
   );
 
+  $form['wrapper_end'] = array(
+    '#markup' => '</div>',
+  );
   return $form;
 }
 

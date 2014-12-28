@@ -1566,3 +1566,42 @@ fieldset#edit-prices {
     float: left;
     width: 100%;
 }
+
+.custom-a600-project-pay-form {
+    margin-top: 20px;
+}
+.custom-a600-project-pay-form .pay-form-wrappper{
+    background: #ffffff;
+    padding-bottom: 20px;
+    float: left;
+    width: 100%;
+}
+.custom-a600-project-pay-form .form-description {
+    float:left;
+    width: 100%;
+    text-align: center;
+    margin: 15px auto;
+}
+.custom-a600-project-pay-form .form-item,
+.custom-a600-project-pay-form .form-submit {
+    margin-left: 30%;
+    float: left;
+    clear:both;
+}
+.custom-a600-project-pay-form .form-item input,
+.custom-a600-project-pay-form .form-item textarea {
+    line-height: 2.5;
+    border-radius: 7px;
+}
+.custom-a600-project-pay-form .form-submit {
+    float: left;
+    margin: 0 20% 0 45%;
+    background-color: #c82d25;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: "PT Sans";
+}
