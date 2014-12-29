@@ -240,6 +240,44 @@ function feature_house_projects_default_fe_block_settings() {
     'visibility' => 0,
   );
 
+  $export['block-non_front_top_block'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'machine_name' => 'non_front_top_block',
+    'module' => 'block',
+    'node_types' => array(),
+    'pages' => '<front>',
+    'roles' => array(),
+    'themes' => array(
+      'a600' => array(
+        'region' => 'slideshow',
+        'status' => 1,
+        'theme' => 'a600',
+        'weight' => 0,
+      ),
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'omega' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'omega',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 0,
+  );
+
   $export['block-search_text_block_1'] = array(
     'cache' => -1,
     'custom' => 0,

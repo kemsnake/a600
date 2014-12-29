@@ -99,6 +99,15 @@ function feature_house_projects_default_fe_block_boxes() {
   $export['logo_info'] = $fe_block_boxes;
 
   $fe_block_boxes = new stdClass();
+  $fe_block_boxes->info = 'Шапка не на главной';
+  $fe_block_boxes->format = 'full_html';
+  $fe_block_boxes->machine_name = 'non_front_top_block';
+  $fe_block_boxes->body = '<div class="non-front-top-image">&nbsp;</div>
+';
+
+  $export['non_front_top_block'] = $fe_block_boxes;
+
+  $fe_block_boxes = new stdClass();
   $fe_block_boxes->info = 'Search text block 1';
   $fe_block_boxes->format = 'full_html';
   $fe_block_boxes->machine_name = 'search_text_block_1';

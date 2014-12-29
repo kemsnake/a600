@@ -26,15 +26,14 @@ body {
 .l-footer {
     padding:20px;
 }
-.front .l-branding {
+.l-branding {
     position: absolute;
     top:0;
     left:0;
 }
 .l-branding {
     overflow: hidden;
-    background: black;
-    /*opacity: 0.5;*/
+    background-color: rgba(0, 0, 0, 0.5);
     padding-left: 36px;
     width: 100%;
     z-index: 100;
@@ -73,8 +72,9 @@ body {
 }
 .l-region--highlighted {
     background: white;
-    padding: 0 10px 20px 10px;
+    padding: 0 10px 0 10px;
     overflow: hidden;
+    box-shadow: inset 0px -25px 65px -35px #CCC;
 }
 .l-region--highlighted-text {
     overflow: hidden;
@@ -127,6 +127,10 @@ body {
 }
 
 /* search filters */
+#custom-a600-search-filters-form>div {
+    overflow: hidden;
+    margin-bottom: 20px;
+}
 #block-custom-a600-search-form {
     font-size: 14px;
     padding: 0 20px;
@@ -153,10 +157,11 @@ body {
 }
 #block-custom-a600-search-form .filters-title .row2{
     font-size: 18px;
+    margin-top: -5px;
 }
 #block-custom-a600-search-form .filters-title .row3{
-    font-size: 26px;
-    letter-spacing: 0.1ex;
+    font-size: 32px;
+    margin-top: -10px;
 }
 #block-custom-a600-search-form .filters-title-arrow {
     width: 5%;
@@ -164,7 +169,7 @@ body {
     float: left;
     background: url(../images/filters-title-arrow.png) no-repeat center;
     background-size: contain;
-    margin-top:15px;
+    margin-top: 10px;
 }
 #block-custom-a600-search-form #edit-filters {
     padding-left: 10px;
@@ -176,6 +181,9 @@ body {
     background: white;
     width:100%;
     overflow: hidden;
+}
+#block-custom-a600-search-form #edit-extra-filters.collapsed {
+    height: 1.2em;
 }
 #block-custom-a600-search-form #edit-extra-filters.collapsed {
     margin-bottom: 20px;
@@ -503,6 +511,13 @@ body {
 }
 /* end slideshow */
 
+/* non front image */
+.l-region--slideshow #block-block-18 {
+    background: url('../images/non-front-top-image.png') no-repeat;
+    background-size: cover;
+    height: 263px;
+}
+/* end non front image */
 
 /* search results */
 .view-main-page {
@@ -516,6 +531,7 @@ body {
 }
 .view-main-page .view-content {
   margin-top: 1em;
+    padding-bottom: 15px;
 }
 .view-main-page .view-header .sub-title1 {
     font-weight: bold;
@@ -527,6 +543,7 @@ body {
 .view-main-page .view-header .sub-title2 {
   font-weight: normal;
   font-size: 24px;
+    margin-top:-10px;
 }
 .view-main-page .views-view-grid {
     width: 100%;
@@ -752,7 +769,7 @@ body {
     padding: 5px 50px 20px 50px;
 }
 #block-custom-a600-site-top-phone {
-    background: rgb(182, 70, 58);
+    background: rgba(182, 70, 58, 0.5);
     /*opacity: 0.8;*/
     float: right;
     color:white;
@@ -762,7 +779,7 @@ body {
     position:absolute;
     width: 0;
     height: 0;
-    border-bottom: 30px solid rgba(182, 70, 58, 1);
+    border-bottom: 30px solid rgba(209, 143, 121, 1);
     border-left: 30px solid transparent;
     top: -30px;
     left: 216px;
@@ -1124,6 +1141,8 @@ fieldset#edit-prices .price-suffix {
 #block-block-17 {
     overflow: hidden;
     padding: 0 20px 20px 20px;
+    box-shadow: inset 0px 25px 65px -35px #CCC;
+    border-top: 1px #808080 dashed;
 }
 #block-block-17 .block__content {
     margin-left:20px;
@@ -1131,7 +1150,7 @@ fieldset#edit-prices .price-suffix {
 #block-block-17 .block__title {
     font-weight: bold;
     font-size: 32px;
-    width: 24%;
+    width: 25%;
     text-align: center;
     font-family: PT Sans;
     margin: auto;
