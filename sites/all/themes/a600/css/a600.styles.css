@@ -119,6 +119,10 @@ body {
     margin-top: 10px;
     margin-right: 1%;
 }
+.site-logo img {
+    width: 142px;
+    height: 60px;
+}
 .site-slogan {
     width: 200px;
     float: left;
