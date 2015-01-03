@@ -157,6 +157,7 @@ features[variable][] = custom_a600_full_price_description
 features[variable][] = custom_a600_full_price_enabled
 features[variable][] = custom_a600_full_price_options
 features[variable][] = custom_a600_item_price
+features[variable][] = custom_a600_search_count_per_page
 features[variable][] = custom_a600_site_phone
 features[variable][] = custom_a600_square_options
 features[variable][] = custom_a600_standard_price_additional

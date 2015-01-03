@@ -3,6 +3,11 @@
 
 function custom_a600_project_settings($form, &$form_state) {
 
+  $form['custom_a600_search_count_per_page'] = array(
+    '#type' => 'textfield',
+    '#default_value' => variable_get('custom_a600_search_count_per_page', 12),
+    '#title' => 'Кол-во результатов поиска на одной странице',
+  );
   $form['custom_a600_square_options'] = array(
     '#type' => 'textfield',
     '#default_value' => variable_get('custom_a600_square_options', ''),

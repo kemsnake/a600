@@ -83,6 +83,13 @@ function feature_house_projects_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'custom_a600_search_count_per_page';
+  $strongarm->value = '12';
+  $export['custom_a600_search_count_per_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'custom_a600_site_phone';
   $strongarm->value = '585-89-08';
   $export['custom_a600_site_phone'] = $strongarm;

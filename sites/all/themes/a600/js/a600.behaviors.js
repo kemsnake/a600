@@ -66,8 +66,11 @@
         $('#edit-count-bedroom .form-item-count-bedroom:has(input#edit-count-bedroom-all)').css("width", "85%");
 
         // прячем кнопку еще
-        if (Drupal.settings.remove_more_text === true) {
+        if (Drupal.settings.show_more_text === false ) {
             $('div.more-wrapper').hide();
+        }
+        else {
+            $('.l-content-inner').append(Drupal.settings.show_more_text);
         }
 
         // вставляем кнопки + и - для количества покупаемых проектов
@@ -113,8 +116,8 @@
                     console.log('An error occured.\n\nStatus:\n' + b + '\n\nMessage:\n' + c);
                 },
                 success: function(data) {
-                    $('div.more-wrapper').hide();
-                    $('.l-content-inner .view').append(data);
+                    $('div.more-wrapper').remove();
+                    $('.l-content-inner').append(data);
                 }
             });
             return false;

@@ -523,7 +523,7 @@ function _custom_a600_search_projects_ajax($form, &$form_state) {
   $commands[] = ajax_command_html('.l-content-inner', _custom_a600_find_projects($form_state['values']));
   if ($form_state['values']['count_projects'] >= $form_state['values']['count_search']) {
     $more_href = 'house_projects/search/' . urlencode(serialize($form_state['values']));
-    $commands[] = ajax_command_append('.l-content-inner', '<div class ="more-wrapper"><a id="load-more-link" href="' . $more_href . '"> Загрузить ещё </a></div>');
+    $commands[] = ajax_command_append('.l-content-inner', '<div class ="more-wrapper"><a id="load-more-link" class="ajax-processed" href="' . $more_href . '"> Загрузить ещё </a></div>');
   }
   return array('#type' => 'ajax', '#commands' => $commands);
 }
@@ -534,7 +534,7 @@ function _custom_a600_search_projects_append_ajax($params) {
   $results = _custom_a600_find_projects($params);
   if ($params['count_projects'] >= $params['count_search']) {
     $more_href = 'house_projects/search/' . urlencode(serialize($params));
-    $results .= '<div class ="more-wrapper"><a id="load-more-link" href="' . $more_href . '"> Загрузить ещё </a></div>';
+    $results .= '<div class ="more-wrapper"><a id="load-more-link" class="ajax-processed" href="' . $more_href . '"> Загрузить ещё </a></div>';
   }
   drupal_json_output($results);
 }
@@ -670,17 +670,21 @@ function _custom_a600_find_projects(&$params = NULL) {
     $query_count->count();
     $params['count_projects'] = $query_count->execute();
   }
-
   //$query->range($start, 14 - $so_offset + $text_offset);
-  $query->range($start, 12);
+  $count_per_page = variable_get('custom_a600_search_count_per_page', 12);
+  $query->range($start, $count_per_page);
   //$params['count_search'] += 14 - $so_offset + $text_offset;
-  $params['count_search'] += 12;
+  $params['count_search'] += $count_per_page;
   // если у нас последняя страница - скрываем кнопку "Еще"
   if ($params['count_projects'] <= $params['count_search']) {
-    drupal_add_js(array('remove_more_text' => TRUE), 'setting');
+    //drupal_add_js(array('remove_more_text' => TRUE), 'setting');
+    drupal_add_js(array('show_more_text' => FALSE), 'setting');
   }
   else {
-    drupal_add_js(array('remove_more_text' => FALSE), 'setting');
+    //drupal_add_js(array('remove_more_text' => FALSE), 'setting');
+    $more_href = 'house_projects/search/' . urlencode(serialize($params));
+    $more_html = '<div class ="more-wrapper"><a id="load-more-link" class="use-ajax" href="' . $more_href . '"> Загрузить ещё </a></div>';
+    drupal_add_js(array('show_more_text' => $more_html), 'setting');
   }
   $result = $query->execute();
   if (isset($result['node'])) {
@@ -709,7 +713,7 @@ function _custom_a600_find_projects(&$params = NULL) {
 
 
     // выводим результаты через вью
-    /*$search_view = views_get_view('main_page');
+    /* $search_view = views_get_view('main_page');
     $search_view->set_display('block_1');
     $search_view->init();
     $nids = array_keys($result['node']);

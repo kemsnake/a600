@@ -64,6 +64,13 @@ body {
 .l-content {
     overflow: hidden;
 }
+.l-content-inner {
+    margin-top: 20px;
+    overflow:hidden;
+    float:left;
+    padding-top: 20px;
+    background: #ffffff;
+}
 .l-highlighted-prefix{
     background: url(../images/top-filters-background.png) no-repeat;
     background-size: 100% auto;
@@ -80,7 +87,6 @@ body {
     overflow: hidden;
     background: #ffffff;
     border-top: 1px #808080 dashed;
-    margin-bottom: 20px;
 }
 .l-region--bottom-content{
     background: white;
@@ -533,10 +539,6 @@ body {
   text-align: center;
   font-family: PT Sans;
 }
-.view-main-page .view-content {
-  margin-top: 1em;
-    padding-bottom: 15px;
-}
 .view-main-page .view-header .sub-title1 {
     font-weight: bold;
     font-size: 32px;
@@ -727,6 +729,7 @@ body {
     text-align: center;
     float: left;
     background: white;
+    padding-bottom: 20px;
 }
 .search-no-results-block {
     font-size: 36px;
