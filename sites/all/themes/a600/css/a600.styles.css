@@ -62,7 +62,7 @@ body {
     padding: 20px;
 }
 .l-content {
-    overflow: hidden;
+    overflow: visible;
 }
 .l-content-inner {
     margin-top: 20px;
@@ -80,7 +80,7 @@ body {
 .l-region--highlighted {
     background: white;
     padding: 0 10px 0 10px;
-    overflow: hidden;
+    overflow: visible;
     box-shadow: inset 0px -25px 65px -35px #CCC;
 }
 .l-region--highlighted-text {
@@ -145,7 +145,10 @@ body {
     font-size: 14px;
     padding: 0 20px;
 }
-
+#block-custom-a600-search-form .block__content {
+    overflow: visible;
+    position: relative;
+}
 #block-custom-a600-search-form .filters-title {
     text-align: center;
     width: 10%;
@@ -283,7 +286,7 @@ body {
     width:60px;
     position:absolute;
     top: 20px;
-    left: 1130px;
+    left: 1095px;
     z-index: 100;
 }
 #block-custom-a600-search-form #edit-select-group {
@@ -396,12 +399,15 @@ body {
     margin-left: 10px;
 }
 #block-custom-a600-search-form .form-item-price-slider {
-    width: 25%;
+    width: 23%;
 }
 
 #block-custom-a600-search-form .form-item-price-slider .sliderfield {
     padding:10px!important;
     padding-left:0!important;
+}
+#block-custom-a600-search-form .form-submit {
+    margin-top: 30px;
 }
 
 /*#block-custom-a600-search-form #edit-square .form-item,

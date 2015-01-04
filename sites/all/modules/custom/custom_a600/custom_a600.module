@@ -169,7 +169,8 @@ function custom_a600_block_view($delta) {
       break;
     case 'search_form':
       $form = drupal_get_form('custom_a600_search_filters_form', drupal_is_front_page());
-      $block['content'] = drupal_render($form);
+      $block['content'] = '<div class="search-img">&nbsp;</div>';
+      $block['content'] .= drupal_render($form);
       break;
     case 'favorites_projects':
       $block['content'] = '<div id="favorites-list">' . favorites_list() . '</div>';
@@ -363,10 +364,6 @@ function custom_a600_search_filters_form($form, &$form_state = NULL, $is_front =
     '#display_bubble_format' => '%{value}%',
     '#display_inputs' => FALSE,
     '#ajax' => $ajax,
-  );
-
-  $form['filters']['search_image'] = array(
-    '#markup' => '<div class="search-img">&nbsp;</div>',
   );
 
   if (empty($ajax)) {
