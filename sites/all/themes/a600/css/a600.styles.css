@@ -61,8 +61,12 @@ body {
     overflow: hidden;
     padding: 20px;
 }
-.l-content {
+.l-top-content {
     overflow: visible;
+}
+.l-content {
+    overflow: hidden;
+    float: left;
 }
 .l-content-inner {
     margin-top: 20px;
@@ -81,15 +85,14 @@ body {
     background: white;
     padding: 0 10px 0 10px;
     overflow: visible;
-    box-shadow: inset 0px -25px 65px -35px #CCC;
-}
-.l-region--highlighted-text {
-    overflow: hidden;
-    background: #ffffff;
-    border-top: 1px #808080 dashed;
+    //box-shadow: inset 0px -25px 65px -35px #CCC;
+    box-shadow: inset 0px -20px 50px -20px  #000;
+    -webkit-box-shadow: inset 0px -25px 65px -35px #CCC;
+    -moz-box-shadow: inset 0px -25px 65px -35px #CCC;
 }
 .l-region--bottom-content{
     background: white;
+    float: left;
 }
 .footer-wrapper {
     overflow: hidden;
@@ -139,7 +142,6 @@ body {
 /* search filters */
 #custom-a600-search-filters-form>div {
     overflow: hidden;
-    margin-bottom: 20px;
 }
 #block-custom-a600-search-form {
     font-size: 14px;
@@ -453,8 +455,14 @@ body {
 }
 
 /* top blocks */
+.l-region--highlighted-suffix {
+    height: 20px;
+    background: none;
+}
 .l-region--highlighted-text {
-    width:100;
+    overflow: hidden;
+    background: #ffffff;
+    border-top: 1px #808080 dashed;
     float: left;
 }
 .l-region--highlighted-text .block {
@@ -1003,6 +1011,8 @@ body {
     border: 1px solid #000000;
     background: #ffffff;
     box-shadow: 2px 2px;
+    -webkit-box-shadow: 2px 2px;
+    -moz-box-shadow: 2px 2px;
 }
 
 fieldset#edit-contacts {
@@ -1152,6 +1162,8 @@ fieldset#edit-prices .price-suffix {
     overflow: hidden;
     padding: 0 20px 20px 20px;
     box-shadow: inset 0px 25px 65px -35px #CCC;
+    -webkit-box-shadow: inset 0px 25px 65px -35px #CCC;
+    -moz-box-shadow: inset 0px 25px 65px -35px #CCC;
     border-top: 1px #808080 dashed;
 }
 #block-block-17 .block__content {

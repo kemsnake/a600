@@ -96,14 +96,19 @@
       </header>
 
       <div class="l-main">
-        <div class="l-content" role="main">
+        <div class="l-top-content" role="main">
           <?php if ($page['highlighted']) : ?>
             <div class="l-highlighted-prefix">&nbsp;</div>
             <?php print render($page['highlighted']); ?>
           <?php endif; ?>
+
           <?php if ($page['highlighted-text']) : ?>
             <?php print render($page['highlighted-text']); ?>
+            <div class="l-region l-region--highlighted-suffix">&nbsp;</div>
           <?php endif; ?>
+        </div>
+
+        <div class="l-content" role="main">
           <?php print $breadcrumb; ?>
           <a id="main-content"></a>
           <?php print render($title_prefix); ?>
@@ -117,6 +122,7 @@
           <?php if ($action_links): ?>
             <ul class="action-links"><?php print render($action_links); ?></ul>
           <?php endif; ?>
+
           <div class="l-content-inner">
             <?php print render($page['content']); ?>
           </div>
