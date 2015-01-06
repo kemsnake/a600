@@ -10,7 +10,6 @@ img, media {
     src: url(../fonts/PTS75F.ttf); /* Путь к файлу со шрифтом */
 }
 body {
-    overflow: scroll;
     display: block;
     color: #4c4c4c;
 }
@@ -28,6 +27,7 @@ body {
 }
 .footer-bg {
     background: url(../images/footer.png);
+    background-size: contain;
     width:100%;
 }
 .l-page,
