@@ -72,7 +72,8 @@
 ?>
 <div class="page-wrapper">
   <div class="main-page-wrapper">
-    <div class="l-page">
+    <div class="l-page-bg">
+      <div class="l-page">
       <header class="l-header" role="banner">
         <div class="l-slideshow">
           <?php print render($page['slideshow']); ?>
@@ -136,10 +137,13 @@
 
 
     </div>
-    <div class="footer-wrapper">
+    </div>
+    <div class="footer-bg">
+      <div class="footer-wrapper">
       <footer class="l-footer" role="contentinfo">
         <?php print render($page['footer']); ?>
       </footer>
+    </div>
     </div>
   </div>
 </div>

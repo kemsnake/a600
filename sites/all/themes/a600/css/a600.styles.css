@@ -16,19 +16,24 @@ body {
 }
 .main-page-wrapper {
     width: 100%;
-    //overflow: hidden;
+    overflow: hidden;
 }
 .page-wrapper {
-    width: 1219px;
+    min-width: 1219px;
     margin:auto;
 }
-.l-page {
+.l-page-bg {
     background: url(../images/background.jpg);
+    width:100%;
+}
+.footer-bg {
+    background: url(../images/footer.png);
+    width:100%;
 }
 .l-page,
 .footer-wrapper {
     width: 1219px;
-    //margin:auto;
+    margin:auto;
 }
 .l-footer {
     padding:20px;
@@ -46,9 +51,7 @@ body {
     z-index: 100;
 }
 .page-wrapper {
-    width: 100%;
-
-    //overflow: hidden;
+    //width: 100%;
 }
 .l-header {
     overflow: hidden;
@@ -103,8 +106,6 @@ body {
 }
 .footer-wrapper {
     overflow: hidden;
-    background: url(../images/footer.png);
-    //width: 100%;
     background-size: contain;
 }
 .footer-site-name:active,
