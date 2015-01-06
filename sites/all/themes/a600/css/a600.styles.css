@@ -564,7 +564,7 @@ body {
 .view-main-page .view-header .sub-title1 {
     font-weight: bold;
     font-size: 32px;
-    width: 24%;
+    width: 25%;
     margin: auto;
     border-top: 5px solid #c82d25;
 }
@@ -1180,7 +1180,7 @@ fieldset#edit-prices .price-suffix {
 #block-block-17 .block__title {
     font-weight: bold;
     font-size: 32px;
-    width: 25%;
+    width: 26%;
     text-align: center;
     font-family: PT Sans;
     margin: auto;
