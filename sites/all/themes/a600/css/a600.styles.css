@@ -16,12 +16,19 @@ body {
 }
 .main-page-wrapper {
     width: 100%;
-    overflow: hidden;
+    //overflow: hidden;
 }
-.l-page,
-.l-footer {
+.page-wrapper {
     width: 1219px;
     margin:auto;
+}
+.l-page {
+    background: url(../images/background.jpg);
+}
+.l-page,
+.footer-wrapper {
+    width: 1219px;
+    //margin:auto;
 }
 .l-footer {
     padding:20px;
@@ -40,7 +47,7 @@ body {
 }
 .page-wrapper {
     width: 100%;
-    background: url(../images/background.jpg);
+
     //overflow: hidden;
 }
 .l-header {
@@ -97,7 +104,7 @@ body {
 .footer-wrapper {
     overflow: hidden;
     background: url(../images/footer.png);
-    width: 100%;
+    //width: 100%;
     background-size: contain;
 }
 .footer-site-name:active,
