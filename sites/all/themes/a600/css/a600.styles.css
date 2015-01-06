@@ -1434,12 +1434,13 @@ fieldset#edit-prices .price-suffix {
     padding: 10px;
 }
 .node-house-project .order-section .create-order {
-    width: 26%;
+    width: 27%;
     float: left;
     margin: 0 20% 0 0;
     background-color: #c82d25;
     border-radius: 5px;
     padding: 10px;
+    text-align: center;
 }
 .node-house-project .order-section .create-order a {
     color:white;
