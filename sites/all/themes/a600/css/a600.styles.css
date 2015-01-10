@@ -77,13 +77,19 @@ body {
 .l-content {
     overflow: hidden;
     float: left;
+    width:100%;
 }
 .l-content-inner {
     margin-top: 20px;
     overflow:hidden;
     float:left;
+    width:100%;
     padding-top: 20px;
     background: #ffffff;
+}
+.not-front .l-content-inner {
+    background: none;
+    padding-top: 0;
 }
 .l-highlighted-prefix{
     background: url(../images/top-filters-background.png) no-repeat;
@@ -1015,8 +1021,8 @@ body {
 
 /* order house project view */
 #custom-a600-project-order-form {
-    border-radius: 15px;
-    border: 1px solid #000000;
+    /*border-radius: 15px;
+    border: 1px solid #000000;*/
     background: #ffffff;
     box-shadow: 2px 2px;
     -webkit-box-shadow: 2px 2px;

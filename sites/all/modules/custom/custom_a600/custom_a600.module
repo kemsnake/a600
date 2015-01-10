@@ -159,7 +159,7 @@ function custom_a600_block_view($delta) {
         $block['content'] = '<div class="phone-prefix">&nbsp;</div>';
       }
       else {
-        $block['content'] = '<img src="' . drupal_get_path('theme', 'a600') . '/images/footer-tablet.png" class="footer-tablet-img">';
+        $block['content'] = '<img src="/' . drupal_get_path('theme', 'a600') . '/images/footer-tablet.png" class="footer-tablet-img">';
       }
       $block['content'] .= '<div class="phone-wrapper">
       <div class="phone-title">звоните</div>
