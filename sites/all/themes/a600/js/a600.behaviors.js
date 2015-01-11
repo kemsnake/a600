@@ -67,10 +67,7 @@
 
         // прячем кнопку еще
         if (Drupal.settings.show_more_text === false ) {
-            $('div.more-wrapper').hide();
-        }
-        else {
-            $('.l-content-inner').append(Drupal.settings.show_more_text);
+            $('div.more-wrapper').remove();
         }
 
         // вставляем кнопки + и - для количества покупаемых проектов
@@ -104,10 +101,10 @@
             });
         });
 
-        //$('#custom-a600-project-search .form-item-square select').selectmenu();
-
         $('a#load-more-link').die("click").live('click', function(){
             var href = $(this).attr("href");
+            var html = '<div class="ajax-progress ajax-progress-throbber"><div class="throbber">&nbsp;</div></div>';
+            $(this).after(html);
             $.ajax({
                 url: href,
                 dataType: 'json',
@@ -115,9 +112,15 @@
                 error: function(a, b, c) {
                     console.log('An error occured.\n\nStatus:\n' + b + '\n\nMessage:\n' + c);
                 },
+                beforeSend: function() {
+
+                },
                 success: function(data) {
                     $('div.more-wrapper').remove();
                     $('.l-content-inner').append(data);
+                },
+                complete: function () {
+
                 }
             });
             return false;

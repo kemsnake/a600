@@ -1,4 +1,4 @@
-img, media {
+img {
   max-width: 100%;
 }
 @font-face {
@@ -87,6 +87,10 @@ body {
     padding-top: 20px;
     background: #ffffff;
 }
+.page-project-search .l-content-inner {
+    background: #ffffff!important;
+    padding-top: 20px!important;
+}
 .not-front .l-content-inner {
     background: none;
     padding-top: 0;
@@ -101,8 +105,8 @@ body {
     background: white;
     padding: 0 10px 0 10px;
     overflow: visible;
-    //box-shadow: inset 0px -25px 65px -35px #CCC;
-    box-shadow: inset 0px -20px 50px -20px  #000;
+    box-shadow: inset 0px -25px 65px -35px #CCC;
+    /*box-shadow: inset 0px -20px 50px -20px  #000;*/
     -webkit-box-shadow: inset 0px -25px 65px -35px #CCC;
     -moz-box-shadow: inset 0px -25px 65px -35px #CCC;
 }
