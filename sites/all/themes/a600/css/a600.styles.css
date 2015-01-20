@@ -400,19 +400,19 @@ body {
 #block-custom-a600-search-form .form-type-radios.form-item-erker {
     width: 17%;
 }
-#block-custom-a600-search-form .form-type-radios.form-item-pool .form-type-radio {
+#block-custom-a600-search-form .form-type-radios.form-item-poll .form-type-radio {
     width: auto!important;
     margin-right: 10px;
 }
-#block-custom-a600-search-form .form-type-radios.form-item-pool label,
-#block-custom-a600-search-form .form-type-radios.form-item-pool #edit-pool{
+#block-custom-a600-search-form .form-type-radios.form-item-poll label,
+#block-custom-a600-search-form .form-type-radios.form-item-poll #edit-poll{
     float: left;
     margin-right: 20px;
 }
-#block-custom-a600-search-form .form-type-radios.form-item-pool label {
+#block-custom-a600-search-form .form-type-radios.form-item-poll label {
     margin-top: 5px;
 }
-#block-custom-a600-search-form .form-type-radios.form-item-pool label.option {
+#block-custom-a600-search-form .form-type-radios.form-item-poll label.option {
     margin-top: 0;
 }
 #block-custom-a600-search-form .form-item-house-basement {
