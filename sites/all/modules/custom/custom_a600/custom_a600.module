@@ -203,7 +203,7 @@ function _custom_a600_default_search_params() {
     'count_bedroom_floor1_all' => TRUE,
     'count_bedroom_floor2' => 3,
     'count_bedroom_floor2_all' => TRUE,
-    'pool' => 'all',
+    'poll' => 'all',
     'page' => 0,
     'count_search' => 0,
     'count_projects' => FALSE,
@@ -478,7 +478,7 @@ function custom_a600_search_filters_form($form, &$form_state = NULL, $is_front =
     '#suffix' => '</div>',
   );
 
-  $form['extra_filters']['pool'] = array(
+  $form['extra_filters']['poll'] = array(
     '#title' => 'Может быть бассейн?',
     '#type' => 'radios',
     '#options' => array(
@@ -486,7 +486,7 @@ function custom_a600_search_filters_form($form, &$form_state = NULL, $is_front =
       0 => 'Нет',
       'all' => 'Не уверен',
     ),
-    '#default_value' => $default_params['pool'],
+    '#default_value' => $default_params['poll'],
     '#ajax' => $ajax,
   );
 
@@ -544,7 +544,7 @@ function _custom_a600_search_projects_append_ajax($params) {
  *   - 'balcony': balcony (bool or all)
  *   - 'terrace': terrace (bool or all)
  *   - 'erker': erker (bool or all)
- *   - 'pool': pool (bool or all)
+ *   - 'poll': poll (bool or all)
  *   - 'count_bedroom_floor1': Bedrooms on floor1 (int or all)
  *   - 'count_bedroom_floor2': Bedrooms on floor2 (int or all)
  *   - 'page': search page (int)
@@ -610,8 +610,8 @@ function _custom_a600_find_projects(&$params = NULL) {
   if (isset($params['erker']) && $params['erker'] != 'all') {
     $query->fieldCondition('field_erker', 'value', $params['erker'], '=');
   }
-  if (isset($params['pool']) && $params['pool'] != 'all') {
-    $query->fieldCondition('field_pool', 'value', $params['pool'], '=');
+  if (isset($params['poll']) && $params['poll'] != 'all') {
+    $query->fieldCondition('field_poll', 'value', $params['poll'], '=');
   }
 
   if (isset($params['count_bedroom_floor1']) && $params['count_bedroom_floor1_all'] != TRUE) {
